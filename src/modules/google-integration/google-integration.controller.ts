@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common'
+import { Body, Controller, Get, Param } from '@nestjs/common'
 import { ApiOperation, ApiResponse } from '@nestjs/swagger'
 import { GoogleIntegrationService } from './google-integration.service'
 @Controller('google-integration')
@@ -22,8 +22,8 @@ export class GoogleIntegrationController {
   @ApiResponse({ status: 400, description: 'Erro ao realizar busca' })
   @ApiResponse({ status: 401, description: 'Usuário não autorizado' })
   @ApiResponse({ status: 404, description: 'Nenhum livro encontrado' })
-  @Get('genre/:genre')
-  searchByGenre(@Param('genre') genre: string) {
-    return this.googleIntegrationService.searchByGenre(genre)
+  @Get('genres')
+  searchByGenres(@Body() genres: string[]) {
+    return this.googleIntegrationService.searchByGenre(genres)
   }
 }
