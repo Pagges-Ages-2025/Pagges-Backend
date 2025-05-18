@@ -91,10 +91,11 @@ export class ProfileService {
   }
   
   async updateProfile(id: number, updateProfileDto: UpdateProfileDto, file?: Express.Multer.File) {
+    const genreIds = updateProfileDto?.genreIds?.split(',').map(Number)
     if (
       !updateProfileDto.name &&
       !updateProfileDto.biography &&
-      !updateProfileDto.genreIds &&
+      !genreIds &&
       !file
     ) {
       throw new BadRequestException('Nenhum campo fornecido para atualização')
@@ -110,7 +111,7 @@ export class ProfileService {
       }
 
       return await this.prisma.$transaction(async (tx) => {
-        if (updateProfileDto.name || updateProfileDto.biography) {
+        if (updateProfileDto.name || updateProfileDto.biography || file) {
           await tx.user.update({
             where: { user_id: id },
             data: {
@@ -121,7 +122,7 @@ export class ProfileService {
           })
         }
 
-        if (updateProfileDto.genreIds && updateProfileDto.genreIds.length > 0) {
+        if (genreIds && genreIds.length > 0) {
           await tx.userGenre.deleteMany({
             where: { user_id: id },
           })
@@ -129,18 +130,18 @@ export class ProfileService {
           const genres = await tx.genre.findMany({
             where: {
               genre_id: {
-                in: updateProfileDto.genreIds,
+                in: genreIds,
               },
             },
           })
 
-          if (genres.length !== updateProfileDto.genreIds.length) {
+          if (genres.length !== genreIds.length) {
             throw new BadRequestException(
               'Um ou mais gêneros informados não existem',
             )
           }
 
-          for (const genreId of updateProfileDto.genreIds) {
+          for (const genreId of genreIds) {
             await tx.userGenre.create({
               data: {
                 user_id: id,
