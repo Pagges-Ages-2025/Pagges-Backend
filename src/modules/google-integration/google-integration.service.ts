@@ -31,13 +31,19 @@ export class GoogleIntegrationService {
     }
   }
 
-  async searchByGenre(genero: string) {
-    const query = `subject:${genero}`
-    const data = await this.callGoogleBooksApi(query)
-    if (!data) {
-      throw new InternalServerErrorException('Books data is undefined')
+  async searchByGenre(genres: string[]) {
+    const genreResponseList: FormattedBooksDtoResponse[] =[]
+    for (const genre of genres) {
+      const query = `subject:${genres}`
+      const data = await this.callGoogleBooksApi(query)
+      if (!data) {
+        throw new InternalServerErrorException('Books data is undefined')
+      }
+      
+      const formatedBooks = await this.formatBooksForResponseDto(data)
+      genreResponseList.push(...formatedBooks)
     }
-    return await this.formatBooksForResponseDto(data)
+    return genreResponseList.sort()
   }
 
   private async upscaleGoogleBooksCoverImage(
