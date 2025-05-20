@@ -12,6 +12,7 @@ import { PostsModule } from './modules/posts/posts.module'
 import { PrismaModule } from './modules/prisma/prisma.module'
 import { ProfileModule } from './modules/profile/profile.module'
 import { UserGenresModule } from './modules/user-genres/user-genres.module'
+import { ChallengesModule } from './modules/challenges/challenges.module'
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { UserGenresModule } from './modules/user-genres/user-genres.module'
     MiddlewareModule,
     ProfileModule,
     BooksModule,
+    ChallengesModule,
     UserGenresModule,
     PersonalLibraryModule,
   ],
