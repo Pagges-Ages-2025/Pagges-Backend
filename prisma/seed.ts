@@ -1,59 +1,59 @@
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import { PrismaClient } from '@prisma/client'
-import * as bcrypt from 'bcrypt'
-import * as fs from 'fs'
-import * as path from 'path'
+import { PrismaClient } from "@prisma/client";
+import * as bcrypt from "bcrypt";
+import * as fs from "fs";
+import * as path from "path";
 
-const prisma = new PrismaClient()
+const prisma = new PrismaClient();
 
 async function main() {
-  const hashedPassword1 = await bcrypt.hash('password1', 10)
-  const hashedPassword2 = await bcrypt.hash('password2', 10)
-  const hashedPassword3 = await bcrypt.hash('password3', 10)
+  const hashedPassword1 = await bcrypt.hash("password1", 10);
+  const hashedPassword2 = await bcrypt.hash("password2", 10);
+  const hashedPassword3 = await bcrypt.hash("password3", 10);
 
   const users = await prisma.user.createMany({
     data: [
       {
-        name: 'Alice',
-        username: 'alice123',
-        email: 'alice@example.com',
+        name: "Alice",
+        username: "alice123",
+        email: "alice@example.com",
         password: hashedPassword1,
         points: 100,
         pages: 200,
         is_author: false,
         profile_image: fs.readFileSync(
-          path.join(__dirname, '../src/assets', 'kermit_o_sapo.jpeg'),
+          path.join(__dirname, "../src/assets", "kermit_o_sapo.jpeg")
         ),
         biography:
-          'Leitora apaixonada por ficção científica e fantasia. Sempre em busca de novas histórias para explorar.',
+          "Leitora apaixonada por ficção científica e fantasia. Sempre em busca de novas histórias para explorar.",
       },
       {
-        name: 'Bob',
-        username: 'bob456',
-        email: 'bob@example.com',
+        name: "Bob",
+        username: "bob456",
+        email: "bob@example.com",
         password: hashedPassword2,
         points: 80,
         pages: 150,
         is_author: true,
         biography:
-          'Escritor e crítico literário com mais de 10 anos de experiência. Apaixonado por ficção científica e fantasia, já publicou três livros best-sellers.',
+          "Escritor e crítico literário com mais de 10 anos de experiência. Apaixonado por ficção científica e fantasia, já publicou três livros best-sellers.",
       },
       {
-        name: 'Carol',
-        username: 'carol789',
-        email: 'carol@example.com',
+        name: "Carol",
+        username: "carol789",
+        email: "carol@example.com",
         password: hashedPassword3,
         points: 60,
         pages: 100,
         is_author: false,
         biography:
-          'Leitora voraz e amante de histórias. Sempre em busca de novos mundos e aventuras literárias.',
+          "Leitora voraz e amante de histórias. Sempre em busca de novos mundos e aventuras literárias.",
       },
     ],
-  })
+  });
 
-  const createdUsers = await prisma.user.findMany()
+  const createdUsers = await prisma.user.findMany();
 
   await prisma.userFollow.createMany({
     data: [
@@ -66,54 +66,54 @@ async function main() {
         following_id: createdUsers[2].user_id,
       },
     ],
-  })
+  });
 
   const books = await prisma.book.createMany({
     data: [
       {
         book_id: 1,
         isbn: 1111111111,
-        title: 'Clean Code',
-        genre: 'Tech',
-        cover: 'https://example.com/cleancode.jpg',
-        synopsis: 'A guide to writing clean code.',
+        title: "Clean Code",
+        genre: "Tech",
+        cover: "https://example.com/cleancode.jpg",
+        synopsis: "A guide to writing clean code.",
         year: 2008,
         pages: 464,
-        authors: 'Robert C. Martin',
+        authors: "Robert C. Martin",
       },
       {
         book_id: 2,
         isbn: 2222222222,
-        title: 'The Hobbit',
-        genre: 'Fantasy',
-        cover: 'https://example.com/hobbit.jpg',
-        synopsis: 'A hobbit goes on an adventure.',
+        title: "The Hobbit",
+        genre: "Fantasy",
+        cover: "https://example.com/hobbit.jpg",
+        synopsis: "A hobbit goes on an adventure.",
         year: 1937,
         pages: 310,
-        authors: 'J.R.R. Tolkien',
+        authors: "J.R.R. Tolkien",
       },
       {
         book_id: 3,
         isbn: 3333333333,
-        title: '1984',
-        genre: 'Dystopian',
-        cover: 'https://example.com/1984.jpg',
-        synopsis: 'A chilling dystopian future.',
+        title: "1984",
+        genre: "Dystopian",
+        cover: "https://example.com/1984.jpg",
+        synopsis: "A chilling dystopian future.",
         year: 1949,
         pages: 328,
-        authors: 'George Orwell',
+        authors: "George Orwell",
       },
     ],
-  })
+  });
 
-  const createdBooks = await prisma.book.findMany()
+  const createdBooks = await prisma.book.findMany();
 
   const postData = [
     {
       user_id: createdUsers[0].user_id,
       book_id: 1,
-      title: 'Loved Clean Code',
-      text: 'One of the best books about software craftsmanship.',
+      title: "Loved Clean Code",
+      text: "One of the best books about software craftsmanship.",
       is_spoiler: false,
       is_review: true,
       parent_id: null,
@@ -121,8 +121,8 @@ async function main() {
     {
       user_id: createdUsers[1].user_id,
       book_id: 2,
-      title: 'Bilbo Rocks!',
-      text: 'I love how Bilbo becomes brave.',
+      title: "Bilbo Rocks!",
+      text: "I love how Bilbo becomes brave.",
       is_spoiler: false,
       is_review: true,
       parent_id: null,
@@ -130,62 +130,120 @@ async function main() {
     {
       user_id: createdUsers[2].user_id,
       book_id: 3,
-      title: 'Scary but good',
-      text: '1984 is a warning we all should read.',
+      title: "Scary but good",
+      text: "1984 is a warning we all should read.",
       is_spoiler: false,
       is_review: true,
       parent_id: null,
     },
-  ]
+  ];
 
-  const posts = await prisma.post.createMany({ data: postData })
+  const posts = await prisma.post.createMany({ data: postData });
 
-  const createdPosts = await prisma.post.findMany()
+  const createdPosts = await prisma.post.findMany();
 
   await prisma.post.create({
     data: {
       user_id: createdUsers[1].user_id,
       book_id: 1,
-      title: 'Comment on Clean Code',
-      text: 'I agree, Clean Code is amazing!',
+      title: "Comment on Clean Code",
+      text: "I agree, Clean Code is amazing!",
       is_spoiler: false,
       is_review: false,
       parent_id: 1,
     },
-  })
+  });
 
-  for (let i = 0; i < 2; i++) {
+  // Generate challenges with more diverse content
+  const challenges = [
+    {
+      points: 10,
+      question: "What is the main theme of 'To Kill a Mockingbird'?",
+      alternatives: [
+        { answer: "Racial injustice and moral growth", is_correct: true },
+        { answer: "Romantic love and relationships", is_correct: false },
+        { answer: "Political corruption", is_correct: false },
+        { answer: "Environmental conservation", is_correct: false },
+      ],
+    },
+    {
+      points: 15,
+      question: "Who is the author of '1984'?",
+      alternatives: [
+        { answer: "George Orwell", is_correct: true },
+        { answer: "Aldous Huxley", is_correct: false },
+        { answer: "Ray Bradbury", is_correct: false },
+        { answer: "H.G. Wells", is_correct: false },
+      ],
+    },
+    {
+      points: 20,
+      question: "What is the setting of 'The Great Gatsby'?",
+      alternatives: [
+        { answer: "Long Island during the Roaring Twenties", is_correct: true },
+        { answer: "New York City in the 1950s", is_correct: false },
+        { answer: "Chicago during Prohibition", is_correct: false },
+        { answer: "Los Angeles in the 1920s", is_correct: false },
+      ],
+    },
+    {
+      points: 25,
+      question: "Which book features the character Holden Caulfield?",
+      alternatives: [
+        { answer: "The Catcher in the Rye", is_correct: true },
+        { answer: "On the Road", is_correct: false },
+        { answer: "The Bell Jar", is_correct: false },
+        { answer: "A Separate Peace", is_correct: false },
+      ],
+    },
+    {
+      points: 30,
+      question: "What is the main conflict in 'Lord of the Flies'?",
+      alternatives: [
+        { answer: "Civilization vs. Savagery", is_correct: true },
+        { answer: "Good vs. Evil", is_correct: false },
+        { answer: "Nature vs. Nurture", is_correct: false },
+        { answer: "Individual vs. Society", is_correct: false },
+      ],
+    },
+  ];
+
+  // Create challenges and their alternatives
+  for (const challengeData of challenges) {
     const challenge = await prisma.challenge.create({
       data: {
-        points: 10 + i * 5,
-        question: `What is the main idea of Book ${i + 1}?`,
+        points: challengeData.points,
+        question: challengeData.question,
         alternatives: {
-          create: [
-            { question: 'Correct Answer', is_correct: true },
-            { question: 'Wrong Answer 1', is_correct: false },
-            { question: 'Wrong Answer 2', is_correct: false },
-          ],
+          create: challengeData.alternatives,
         },
       },
-    })
+    });
 
-    await prisma.challengeUser.create({
-      data: {
-        user_id: createdUsers[0].user_id,
-        challenge_id: challenge.challenge_id,
-      },
-    })
+    // Create challenge-user relationships for all users
+    for (const user of createdUsers) {
+      // Randomly decide if this user has attempted this challenge
+      if (Math.random() > 0.3) {
+        // 70% chance of having attempted the challenge
+        await prisma.challengeUser.create({
+          data: {
+            user_id: user.user_id,
+            challenge_id: challenge.challenge_id,
+          },
+        });
+      }
+    }
   }
 
   await prisma.genre.createMany({
     data: [
-      { genre_name: 'Fantasy' },
-      { genre_name: 'Science Fiction' },
-      { genre_name: 'Dystopian' },
-      { genre_name: 'Technology' },
+      { genre_name: "Fantasy" },
+      { genre_name: "Science Fiction" },
+      { genre_name: "Dystopian" },
+      { genre_name: "Technology" },
     ],
-  })
-  const createdGenres = await prisma.genre.findMany()
+  });
+  const createdGenres = await prisma.genre.findMany();
 
   await prisma.userGenre.createMany({
     data: [
@@ -202,7 +260,7 @@ async function main() {
         genre_id: createdGenres[2].genre_id,
       },
     ],
-  })
+  });
 
   await prisma.postLike.createMany({
     data: [
@@ -211,7 +269,7 @@ async function main() {
       { user_id: createdUsers[1].user_id, post_id: createdPosts[1].post_id },
       { user_id: createdUsers[2].user_id, post_id: createdPosts[2].post_id },
     ],
-  })
+  });
 
   await prisma.rateBook.createMany({
     data: [
@@ -231,35 +289,35 @@ async function main() {
         rating: 3,
       },
     ],
-  })
+  });
 
   await prisma.userBookshelfState.createMany({
     data: [
       {
         user_id: createdUsers[0].user_id,
         book_id: createdBooks[0].book_id,
-        state: 'READ',
+        state: "READ",
       },
       {
         user_id: createdUsers[1].user_id,
         book_id: createdBooks[1].book_id,
-        state: 'READING',
+        state: "READING",
       },
       {
         user_id: createdUsers[2].user_id,
         book_id: createdBooks[2].book_id,
-        state: 'TO_BE_READ',
+        state: "TO_BE_READ",
       },
     ],
-  })
+  });
 }
 
 main()
   .catch((e) => {
-    console.error(e)
-    process.exit(1)
+    console.error(e);
+    process.exit(1);
   })
   // eslint-disable-next-line @typescript-eslint/no-misused-promises
   .finally(async () => {
-    await prisma.$disconnect()
-  })
+    await prisma.$disconnect();
+  });
