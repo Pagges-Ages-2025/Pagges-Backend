@@ -20,7 +20,9 @@ export class UpdateProfileDto {
   biography?: string
 
   @IsOptional()
-  @IsString()
-  @MaxLength(250)
-  genreIds?: string
+  @IsArray()
+  @ArrayMaxSize(3, { message: 'O número máximo de gêneros favoritos é 3' })
+  @ArrayUnique()
+  @IsInt({ each: true })
+  genreIds?: number[]
 }
