@@ -4,6 +4,7 @@ import {
   Controller,
   Get,
   HttpCode,
+  Patch,
   Put,
   UploadedFile,
   UseInterceptors,
@@ -13,6 +14,7 @@ import { UserTokenInfo } from 'src/decorators/user-info.decorator'
 import { JwtPayload } from 'src/interfaces/user-info.interface'
 import { UpdateProfileDto } from './dto/update-profile.dto'
 import { ProfileService } from './profile.service'
+import { UpdatePointsDto } from './dto/updatePoints.dto'
 
 @Controller('profile')
 export class ProfileController {
@@ -60,5 +62,13 @@ export class ProfileController {
       updateProfileDto,
       file,
     )
+  }
+
+  @Patch('update-points')
+  updatePoints(
+    @UserTokenInfo() userInfo: JwtPayload,
+    @Body() updatePointsDto: UpdatePointsDto,
+  ) {
+    return this.profileService.updatePoints(userInfo.id, updatePointsDto)
   }
 }

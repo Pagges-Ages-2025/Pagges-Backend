@@ -2,16 +2,48 @@ import {
   Injectable,
   NotFoundException,
   BadRequestException,
+  ConflictException,
 } from '@nestjs/common'
 import { PrismaService } from '../prisma/prisma.service'
 import { ProfileDto } from './dto/profile.dto'
 import { UpdateProfileDto } from './dto/update-profile.dto'
 import { Prisma } from '@prisma/client'
 import { fromByteArray } from 'base64-js'
+import { UpdatePointsDto } from './dto/updatePoints.dto'
 
 @Injectable()
 export class ProfileService {
   constructor(private readonly prisma: PrismaService) {}
+
+  async updatePoints(id: number, updatePointsDto: UpdatePointsDto) {
+    try {
+      await this.prisma.user.update({
+        where: { user_id: id },
+        data: {
+          points: {
+            increment: updatePointsDto.points,
+          },
+        },
+      })
+      await this.prisma.challengeUser.create({
+        data: {
+          user_id: id,
+          challenge_id: updatePointsDto.challenge_id,
+        },
+      })
+    } catch (error) {
+      if (error instanceof NotFoundException) {
+        throw error
+      }
+      if (error instanceof Prisma.PrismaClientKnownRequestError) {
+        throw new ConflictException({
+          status: 409,
+          message: 'Conflito ao atualizar pontos.',
+        })
+        }
+      throw new BadRequestException('Erro ao atualizar pontos: ' + error.message)
+    }
+  }
 
   async getProfile(email: string) {
     try {
