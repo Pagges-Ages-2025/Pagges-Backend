@@ -59,7 +59,7 @@ export class UserGenresService {
     return {
       status: 200,
       message: 'Gêneros favoritos encontrados.',
-      data: userGenres.map((ug) => ug.genre.genre_name),
+      data: userGenres.map((ug) => ug.genre),
     }
   }
 }
