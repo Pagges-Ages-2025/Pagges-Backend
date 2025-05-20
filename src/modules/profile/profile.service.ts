@@ -2,12 +2,12 @@ import {
   Injectable,
   NotFoundException,
   BadRequestException,
-} from '@nestjs/common'
-import { PrismaService } from '../prisma/prisma.service'
-import { ProfileDto } from './dto/profile.dto'
-import { UpdateProfileDto } from './dto/update-profile.dto'
-import { Prisma } from '@prisma/client'
-import { fromByteArray } from 'base64-js'
+} from "@nestjs/common";
+import { PrismaService } from "../prisma/prisma.service";
+import { ProfileDto } from "./dto/profile.dto";
+import { UpdateProfileDto } from "./dto/update-profile.dto";
+import { Prisma } from "@prisma/client";
+import { fromByteArray } from "base64-js";
 
 @Injectable()
 export class ProfileService {
@@ -26,43 +26,43 @@ export class ProfileService {
             },
           },
         },
-      })
+      });
 
       if (!user) {
-        throw new NotFoundException('Usuário não encontrado')
+        throw new NotFoundException("Usuário não encontrado");
       }
 
-      const friendsNumber = user.followers.length + user.following.length
-      const favoriteGenres = user.genres.map((ug) => ug.genre.genre_name)
+      const friendsNumber = user.followers.length + user.following.length;
+      const favoriteGenres = user.genres.map((ug) => ug.genre.genre_name);
 
       const profileImage = user.profile_image
         ? fromByteArray(user.profile_image)
-        : null
+        : null;
 
       const profileDto: ProfileDto = {
         id: user.user_id,
         name: user.name,
         email: user.email,
-        biography: user.biography || '',
+        biography: user.biography || "",
         favouriteGenres: favoriteGenres,
         readKm: user.pages || 0,
         readBooks: user.pages || 0,
         ranking: user.points || 0,
         friendsNumber: friendsNumber,
         isAuthor: user.is_author,
-        profileImage: profileImage
-      }
+        profileImage: profileImage,
+      };
 
       return {
         status: 200,
-        message: 'Perfil encontrado com sucesso.',
+        message: "Perfil encontrado com sucesso.",
         data: profileDto,
-      }
+      };
     } catch (error) {
       if (error instanceof NotFoundException) {
-        throw error
+        throw error;
       }
-      throw new BadRequestException('Erro ao buscar perfil: ' + error.message)
+      throw new BadRequestException("Erro ao buscar perfil: " + error.message);
     }
   }
 
@@ -70,43 +70,41 @@ export class ProfileService {
     try {
       const user = await this.prisma.user.findUnique({
         where: { email },
-      })
-      
+      });
+
       if (!user) {
-        throw new NotFoundException('Usuário não encontrado')
+        throw new NotFoundException("Usuário não encontrado");
       }
-      
+
       return {
         status: 200,
-        message: 'Perfil encontrado com sucesso.',
+        message: "Perfil encontrado com sucesso.",
         data: user.profile_image ? fromByteArray(user.profile_image) : null,
-      }
-      
+      };
     } catch (error) {
       if (error instanceof NotFoundException) {
-        throw error
+        throw error;
       }
-      throw new BadRequestException('Erro ao buscar perfil: ' + error.message)
+      throw new BadRequestException("Erro ao buscar perfil: " + error.message);
     }
   }
-  
-  async updateProfile(id: number, updateProfileDto: UpdateProfileDto, file?: Express.Multer.File) {
+
+  async updateProfile(id: number, updateProfileDto: UpdateProfileDto) {
     if (
       !updateProfileDto.name &&
       !updateProfileDto.biography &&
-      !updateProfileDto.genreIds &&
-      !file
+      !updateProfileDto.genreIds
     ) {
-      throw new BadRequestException('Nenhum campo fornecido para atualização')
+      throw new BadRequestException("Nenhum campo fornecido para atualização");
     }
 
     try {
       const user = await this.prisma.user.findUnique({
         where: { user_id: id },
-      })
+      });
 
       if (!user) {
-        throw new NotFoundException('Usuário não encontrado')
+        throw new NotFoundException("Usuário não encontrado");
       }
 
       return await this.prisma.$transaction(async (tx) => {
@@ -115,16 +113,17 @@ export class ProfileService {
             where: { user_id: id },
             data: {
               ...(updateProfileDto.name && { name: updateProfileDto.name }),
-              ...(updateProfileDto.biography && { biography: updateProfileDto.biography }),
-              ...(file && { profile_image: file.buffer }),
+              ...(updateProfileDto.biography && {
+                biography: updateProfileDto.biography,
+              }),
             },
-          })
+          });
         }
 
         if (updateProfileDto.genreIds && updateProfileDto.genreIds.length > 0) {
           await tx.userGenre.deleteMany({
             where: { user_id: id },
-          })
+          });
 
           const genres = await tx.genre.findMany({
             where: {
@@ -132,12 +131,12 @@ export class ProfileService {
                 in: updateProfileDto.genreIds,
               },
             },
-          })
+          });
 
           if (genres.length !== updateProfileDto.genreIds.length) {
             throw new BadRequestException(
-              'Um ou mais gêneros informados não existem',
-            )
+              "Um ou mais gêneros informados não existem"
+            );
           }
 
           for (const genreId of updateProfileDto.genreIds) {
@@ -146,32 +145,64 @@ export class ProfileService {
                 user_id: id,
                 genre_id: genreId,
               },
-            })
+            });
           }
         }
 
-        return { status: 200, message: 'Perfil atualizado com sucesso.', userId: id }
-
-      })
+        return {
+          status: 200,
+          message: "Perfil atualizado com sucesso.",
+          userId: id,
+        };
+      });
     } catch (error) {
       if (
         error instanceof NotFoundException ||
         error instanceof BadRequestException
       ) {
-        throw error
+        throw error;
       }
 
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
-        if (error.code === 'P2003') {
+        if (error.code === "P2003") {
           throw new BadRequestException(
-            'Um ou mais gêneros informados não existem',
-          )
+            "Um ou mais gêneros informados não existem"
+          );
         }
       }
 
       throw new BadRequestException(
-        'Erro ao atualizar perfil: ' + error.message,
-      )
+        "Erro ao atualizar perfil: " + error.message
+      );
+    }
+  }
+
+  async updateProfileImage(id: number, file: Express.Multer.File) {
+    if (!file) {
+      throw new BadRequestException(
+        "Nenhum arquivo foi enviado. Por favor, envie uma imagem para atualizar o perfil."
+      );
+    }
+
+    try {
+      return await this.prisma.$transaction(async (tx) => {
+        await tx.user.update({
+          where: { user_id: id },
+          data: {
+            profile_image: file.buffer,
+          },
+        });
+
+        return {
+          status: 200,
+          message: "Imagem de perfil atualizada com sucesso.",
+          userId: id,
+        };
+      });
+    } catch (error) {
+      throw new BadRequestException(
+        "Erro ao atualizar imagem de perfil: " + error.message
+      );
     }
   }
 }

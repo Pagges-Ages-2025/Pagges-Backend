@@ -31,6 +31,17 @@ export class ProfileController {
   }
 
   @Put()
+  updateProfile(
+    @UserTokenInfo() userInfo: JwtPayload,
+    @Body() updateProfileDto: UpdateProfileDto,
+  ) {
+    return this.profileService.updateProfile(
+      userInfo.id,
+      updateProfileDto
+    )
+  }
+
+  @Put('profile-image')
   @UseInterceptors(
     FileInterceptor('file', {
       limits: { fileSize: 7 * 1024 * 1024 },
@@ -50,15 +61,10 @@ export class ProfileController {
       },
     }),
   )
-  updateProfile(
+  updateProfileImage(
     @UserTokenInfo() userInfo: JwtPayload,
-    @Body() updateProfileDto: UpdateProfileDto,
     @UploadedFile() file: Express.Multer.File,
   ) {
-    return this.profileService.updateProfile(
-      userInfo.id,
-      updateProfileDto,
-      file,
-    )
+    return this.profileService.updateProfileImage(userInfo.id, file)
   }
 }
