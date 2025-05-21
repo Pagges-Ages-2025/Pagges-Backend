@@ -105,9 +105,10 @@ model Challenge {
 }
 
 model ChallengeUser {
-  user_id      Int
-  challenge_id Int
-  created_at   DateTime @default(now()) @db.Timestamptz
+  user_id                    Int
+  challenge_id               Int
+  created_at                 DateTime @default(now()) @db.Timestamptz
+  has_user_guessed_correctly Boolean
 
   user      User      @relation(fields: [user_id], references: [user_id])
   challenge Challenge @relation(fields: [challenge_id], references: [challenge_id])

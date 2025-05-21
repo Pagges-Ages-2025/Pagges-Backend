@@ -2,6 +2,7 @@ import { Injectable, NotFoundException, OnModuleInit } from "@nestjs/common";
 import { PaggesLogger } from "src/config/winston-logger/pagges-logger.utils";
 import { PrismaService } from "../prisma/prisma.service";
 import { ChallengeRequestDto } from "./dto/challenge.dto";
+import { UpdateUserPointsDto } from "./dto/update_user_points.dto";
 
 @Injectable()
 export class ChallengesService implements OnModuleInit {
@@ -64,14 +65,34 @@ export class ChallengesService implements OnModuleInit {
 
   async getAllChallenges() {
     return await this.prisma.challenge.findMany({
-      include: { alternatives: true },
+      select: {
+        challenge_id: true,
+        question: true,
+        points: true,
+        alternatives: {
+          select: {
+            alternative_id: true,
+            answer: true,
+          },
+        },
+      },
     });
   }
 
   async getChallengeById(id: string) {
     const challenge = await this.prisma.challenge.findUnique({
       where: { challenge_id: Number(id) },
-      include: { alternatives: true },
+      select: {
+        challenge_id: true,
+        question: true,
+        points: true,
+        alternatives: {
+          select: {
+            alternative_id: true,
+            answer: true,
+          },
+        },
+      },
     });
 
     if (!challenge) {
@@ -178,6 +199,65 @@ export class ChallengesService implements OnModuleInit {
 
       PaggesLogger.log(`Reset to first challenge: ${firstChallenge.question}`);
       return firstChallenge;
+    });
+  }
+
+  async updateUserPoints(userId: number, updateUserBody: UpdateUserPointsDto) {
+    const alternative = await this.prisma.alternative.findFirstOrThrow({
+      where: { alternative_id: updateUserBody.alternative_id },
+    });
+
+    const challengeAnswered = await this.prisma.challenge.findFirstOrThrow({
+      where: {
+        challenge_id: alternative.challenge_id,
+      },
+    });
+
+    await this.prisma.challengeUser.create({
+      data: {
+        challenge_id: challengeAnswered.challenge_id,
+        user_id: userId,
+        has_user_guessed_correctly: alternative.is_correct,
+      },
+    });
+
+    if (!alternative.is_correct) {
+      PaggesLogger.log("User selected wrong alternative. Nothing to do");
+      return;
+    }
+
+    PaggesLogger.log(
+      `User ${userId} answered challenge ${challengeAnswered.challenge_id} correctly`
+    );
+
+    const updatedUser = await this.prisma.user.update({
+      where: { user_id: userId },
+      data: {
+        points: {
+          increment: challengeAnswered.points,
+        },
+      },
+    });
+
+    PaggesLogger.log(
+      `User ${userId} has ${updatedUser.points} points after answering challenge ${challengeAnswered.challenge_id}`
+    );
+  }
+
+  async getCurrentChallenge() {
+    return await this.prisma.challenge.findFirst({
+      where: { is_current: true },
+      select: {
+        challenge_id: true,
+        question: true,
+        points: true,
+        alternatives: {
+          select: {
+            alternative_id: true,
+            answer: true,
+          },
+        },
+      },
     });
   }
 }

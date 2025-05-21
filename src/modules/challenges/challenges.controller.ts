@@ -9,8 +9,11 @@ import {
 } from "@nestjs/common";
 import { Cron, CronExpression } from "@nestjs/schedule";
 import { PaggesLogger } from "src/config/winston-logger/pagges-logger.utils";
+import { UserTokenInfo } from "src/decorators/user-info.decorator";
+import { JwtPayload } from "src/interfaces/user-info.interface";
 import { ChallengesService } from "./challenges.service";
 import { ChallengeRequestDto } from "./dto/challenge.dto";
+import { UpdateUserPointsDto } from "./dto/update_user_points.dto";
 
 @Controller("challenges")
 export class ChallengesController {
@@ -22,10 +25,16 @@ export class ChallengesController {
     return await this.challengesService.getAllChallenges();
   }
 
-  @Get("get/:id")
+  @Get(":id")
   @HttpCode(200)
   async getChallengeById(@Param("id") id: string) {
     return await this.challengesService.getChallengeById(id);
+  }
+
+  @Get("get-current")
+  @HttpCode(200)
+  async getCurrentChallenge() {
+    return await this.challengesService.getCurrentChallenge();
   }
 
   @Post("create")
@@ -49,5 +58,16 @@ export class ChallengesController {
         `An error occurred when trying to update the daily challenge. Error: ${error}`
       );
     }
+  }
+
+  @Post("challenge-answer")
+  async updateUserPoints(
+    @UserTokenInfo() jwtPayload: JwtPayload,
+    @Body() updateUserBody: UpdateUserPointsDto
+  ) {
+    return await this.challengesService.updateUserPoints(
+      jwtPayload.id,
+      updateUserBody
+    );
   }
 }

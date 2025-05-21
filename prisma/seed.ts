@@ -229,6 +229,7 @@ async function main() {
           data: {
             user_id: user.user_id,
             challenge_id: challenge.challenge_id,
+            has_user_guessed_correctly: Math.random() > 0.5, // Randomly assign if user guessed correctly
           },
         });
       }
