@@ -7,64 +7,61 @@ import {
   Put,
   UploadedFile,
   UseInterceptors,
-} from '@nestjs/common'
-import { FileInterceptor } from '@nestjs/platform-express'
-import { UserTokenInfo } from 'src/decorators/user-info.decorator'
-import { JwtPayload } from 'src/interfaces/user-info.interface'
-import { UpdateProfileDto } from './dto/update-profile.dto'
-import { ProfileService } from './profile.service'
+} from "@nestjs/common";
+import { FileInterceptor } from "@nestjs/platform-express";
+import { UserTokenInfo } from "src/decorators/user-info.decorator";
+import { JwtPayload } from "src/interfaces/user-info.interface";
+import { UpdateProfileDto } from "./dto/update-profile.dto";
+import { ProfileService } from "./profile.service";
 
-@Controller('profile')
+@Controller("profile")
 export class ProfileController {
   constructor(private readonly profileService: ProfileService) {}
 
   @Get()
   @HttpCode(200)
   getProfile(@UserTokenInfo() userInfo: JwtPayload) {
-    return this.profileService.getProfile(userInfo.email)
+    return this.profileService.getProfile(userInfo.email);
   }
 
-  @Get('profile-image')
+  @Get("profile-image")
   @HttpCode(200)
   getProfileImage(@UserTokenInfo() userInfo: JwtPayload) {
-    return this.profileService.getProfileImage(userInfo.email)
+    return this.profileService.getProfileImage(userInfo.email);
   }
 
   @Put()
   updateProfile(
     @UserTokenInfo() userInfo: JwtPayload,
-    @Body() updateProfileDto: UpdateProfileDto,
+    @Body() updateProfileDto: UpdateProfileDto
   ) {
-    return this.profileService.updateProfile(
-      userInfo.id,
-      updateProfileDto
-    )
+    return this.profileService.updateProfile(userInfo.id, updateProfileDto);
   }
 
-  @Put('profile-image')
+  @Put("profile-image")
   @UseInterceptors(
-    FileInterceptor('file', {
+    FileInterceptor("file", {
       limits: { fileSize: 7 * 1024 * 1024 },
       fileFilter: (req, file, cb) => {
         const allowedMimeTypes = [
-          'image/jpeg',
-          'image/png',
-          'image/webp',
-          'image/heic',
-        ]
+          "image/jpeg",
+          "image/png",
+          "image/webp",
+          "image/heic",
+        ];
 
         if (allowedMimeTypes.includes(file.mimetype)) {
-          cb(null, true)
+          cb(null, true);
         } else {
-          cb(new BadRequestException('Formato de arquivo inválido.'), false)
+          cb(new BadRequestException("Formato de arquivo inválido."), false);
         }
       },
-    }),
+    })
   )
   updateProfileImage(
     @UserTokenInfo() userInfo: JwtPayload,
-    @UploadedFile() file: Express.Multer.File,
+    @UploadedFile() file: Express.Multer.File
   ) {
-    return this.profileService.updateProfileImage(userInfo.id, file)
+    return this.profileService.updateProfileImage(userInfo.id, file);
   }
 }
