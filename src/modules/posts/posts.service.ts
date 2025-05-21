@@ -85,6 +85,7 @@ export class PostsService {
         livro: {
           select: {
             book_id: true,
+            google_image_url: true,
             title: true,
           },
         },
@@ -101,25 +102,16 @@ export class PostsService {
     })
 
     if (postsByBook.length == 0) {
-      throw new NotFoundException(
-        'Não existe comentários ou resenhas sobre esse livro',
-      )
+      throw new NotFoundException({
+        status: 204,
+        message: 'Não existe comentários ou resenhas sobre esse livro'
+      })
     }
     return {
       status: 200,
       message: 'Resenhas e comentários encontrados com sucesso',
       data: postsByBook.map((post) => ({
-        autor: post.user,
-        texto: post.text,
-        dataPostagem: post.created_at,
-        curtidas: post._count.liked_by,
-        comentarios: post._count.comments,
-        spoiler: post.is_spoiler,
-        tipo: post.is_review ? 'Resenha' : 'Comentário',
-        titulo: post.title,
-        livro: post.livro,
-        post_id: post.post_id,
-        id_postPai: post.parent_id,
+        post
       })),
     }
   }
