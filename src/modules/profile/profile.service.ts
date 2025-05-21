@@ -90,16 +90,11 @@ export class ProfileService {
     }
   }
 
-  async updateProfile(
-    id: number,
-    updateProfileDto: UpdateProfileDto,
-    file?: Express.Multer.File
-  ) {
+  async updateProfile(id: number, updateProfileDto: UpdateProfileDto) {
     if (
       !updateProfileDto.name &&
       !updateProfileDto.biography &&
-      !updateProfileDto.genreIds &&
-      !file
+      !updateProfileDto.genreIds
     ) {
       throw new BadRequestException("Nenhum campo fornecido para atualização");
     }
@@ -122,7 +117,6 @@ export class ProfileService {
               ...(updateProfileDto.biography && {
                 biography: updateProfileDto.biography,
               }),
-              ...(file && { profile_image: file.buffer }),
             },
           });
         }
@@ -180,6 +174,35 @@ export class ProfileService {
 
       throw new BadRequestException(
         "Erro ao atualizar perfil: " + error.message
+      );
+    }
+  }
+
+  async updateProfileImage(id: number, file: Express.Multer.File) {
+    if (!file) {
+      throw new BadRequestException(
+        "Nenhum arquivo foi enviado. Por favor, envie uma imagem para atualizar o perfil."
+      );
+    }
+
+    try {
+      return await this.prisma.$transaction(async (tx) => {
+        await tx.user.update({
+          where: { user_id: id },
+          data: {
+            profile_image: file.buffer,
+          },
+        });
+
+        return {
+          status: 200,
+          message: "Imagem de perfil atualizada com sucesso.",
+          userId: id,
+        };
+      });
+    } catch (error) {
+      throw new BadRequestException(
+        "Erro ao atualizar imagem de perfil: " + error.message
       );
     }
   }
