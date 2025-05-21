@@ -49,7 +49,9 @@ export class ChallengesController {
     return await this.challengesService.deleteChallenge(id);
   }
 
-  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT)
+  @Cron(CronExpression.EVERY_DAY_AT_MIDNIGHT, {
+    timeZone: "America/Sao_Paulo",
+  })
   async updateCurrentChallenge() {
     try {
       await this.challengesService.updateCurrentChallenge();

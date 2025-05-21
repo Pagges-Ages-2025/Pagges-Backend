@@ -17,6 +17,7 @@ import { UserGenresModule } from "./modules/user-genres/user-genres.module";
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       validationSchema: Joi.object({
         PORT: Joi.number().required(),
@@ -26,7 +27,6 @@ import { UserGenresModule } from "./modules/user-genres/user-genres.module";
       }),
     }),
     WinstonModule.forRoot(winstonLoggerConfig),
-    ScheduleModule.forRoot(),
     PrismaModule,
     GoogleIntegrationModule,
     AuthModule,
