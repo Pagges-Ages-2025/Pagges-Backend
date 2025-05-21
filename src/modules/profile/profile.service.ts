@@ -44,13 +44,14 @@ export class ProfileService {
         name: user.name,
         email: user.email,
         biography: user.biography || "",
-        favouriteGenres: favoriteGenres,
+        favoriteGenres: favoriteGenres,
         readKm: user.pages || 0,
         readBooks: user.pages || 0,
-        ranking: user.points || 0,
+        //ranking: user.points || 0, ------- proxima sprint
         friendsNumber: friendsNumber,
         isAuthor: user.is_author,
         profileImage: profileImage,
+        points: user.points || 0,
       };
 
       return {
