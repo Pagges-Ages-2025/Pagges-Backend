@@ -1,0 +1,1670 @@
+{
+  "Clássicos": [
+    {
+      "Pergunta": "Qual é o nome completo do autor de \"Dom Quixote\"?",
+      "Opção 1": "Miguel de Cervantes Saavedra",
+      "Opção 2": "Pablo Neruda",
+      "Opção 3": "Federico García Lorca",
+      "Resposta Correta": "Miguel de Cervantes Saavedra"
+    },
+    {
+      "Pergunta": "Qual livro inspirou a revolução russa e foi escrito por George Orwell?",
+      "Opção 1": "A Revolução dos Bichos",
+      "Opção 2": 1984,
+      "Opção 3": "O Capital",
+      "Resposta Correta": "A Revolução dos Bichos"
+    },
+    {
+      "Pergunta": "Moby Dick foi escrito por qual autor?",
+      "Opção 1": "Herman Melville",
+      "Opção 2": "Mark Twain",
+      "Opção 3": "Nathaniel Hawthorne",
+      "Resposta Correta": "Herman Melville"
+    },
+    {
+      "Pergunta": "O que a maçã simboliza no livro \"O Morro dos Ventos Uivantes\"?",
+      "Opção 1": "O desejo proibido e a tentação",
+      "Opção 2": "O destino e a tragédia",
+      "Opção 3": "O amor eterno",
+      "Resposta Correta": "O desejo proibido e a tentação"
+    },
+    {
+      "Pergunta": "Quem é a protagonista de \"Orgulho e Preconceito\"?",
+      "Opção 1": "Elizabeth Bennet",
+      "Opção 2": "Jane Eyre",
+      "Opção 3": "Anna Karenina",
+      "Resposta Correta": "Elizabeth Bennet"
+    },
+    {
+      "Pergunta": "Qual desses livros NÃO foi escrito por Machado de Assis?",
+      "Opção 1": "O Guarani",
+      "Opção 2": "Memórias Póstumas de Brás Cubas",
+      "Opção 3": "Dom Casmurro",
+      "Resposta Correta": "O Guarani"
+    },
+    {
+      "Pergunta": "Em \"O Pequeno Príncipe\", o que a raposa ensina ao príncipe?",
+      "Opção 1": "Que o essencial é invisível aos olhos",
+      "Opção 2": "Que viajar é mais importante do que ter um lar",
+      "Opção 3": "Que devemos sempre confiar nos outros",
+      "Resposta Correta": "Que o essencial é invisível aos olhos"
+    },
+    {
+      "Pergunta": "Qual é a obra mais famosa de Franz Kafka?",
+      "Opção 1": "A Metamorfose",
+      "Opção 2": "Crime e Castigo",
+      "Opção 3": "O Processo",
+      "Resposta Correta": "A Metamorfose"
+    },
+    {
+      "Pergunta": "Qual autor escreveu \"A Divina Comédia\"?",
+      "Opção 1": "Dante Alighieri",
+      "Opção 2": "Homero",
+      "Opção 3": "Virgílio",
+      "Resposta Correta": "Dante Alighieri"
+    },
+    {
+      "Pergunta": "Qual desses livros é um romance gótico?",
+      "Opção 1": "Drácula",
+      "Opção 2": "O Grande Gatsby",
+      "Opção 3": "O Sol é Para Todos",
+      "Resposta Correta": "Drácula"
+    },
+    {
+      "Pergunta": "Quem é o autor de \"O Apanhador no Campo de Centeio\"?",
+      "Opção 1": "J.D. Salinger",
+      "Opção 2": "Harper Lee",
+      "Opção 3": "Ernest Hemingway",
+      "Resposta Correta": "J.D. Salinger"
+    },
+    {
+      "Pergunta": "Qual desses livros de George Orwell é uma crítica ao totalitarismo?",
+      "Opção 1": 1984,
+      "Opção 2": "Admirável Mundo Novo",
+      "Opção 3": "Fahrenheit 451",
+      "Resposta Correta": 1984
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Senhor das Moscas\"?",
+      "Opção 1": "William Golding",
+      "Opção 2": "George Orwell",
+      "Opção 3": "Aldous Huxley",
+      "Resposta Correta": "William Golding"
+    },
+    {
+      "Pergunta": "Qual dessas histórias foi escrita por Mary Shelley?",
+      "Opção 1": "Frankenstein",
+      "Opção 2": "O Médico e o Monstro",
+      "Opção 3": "Drácula",
+      "Resposta Correta": "Frankenstein"
+    },
+    {
+      "Pergunta": "O que acontece com Gregor Samsa em \"A Metamorfose\"?",
+      "Opção 1": "Ele se transforma em um inseto",
+      "Opção 2": "Ele descobre um segredo de sua família",
+      "Opção 3": "Ele perde a memória",
+      "Resposta Correta": "Ele se transforma em um inseto"
+    },
+    {
+      "Pergunta": "Qual dessas obras NÃO é de Shakespeare?",
+      "Opção 1": "Os Miseráveis",
+      "Opção 2": "Hamlet",
+      "Opção 3": "Macbeth",
+      "Resposta Correta": "Os Miseráveis"
+    },
+    {
+      "Pergunta": "Os Três Mosqueteiros foi escrito por qual autor?",
+      "Opção 1": "Alexandre Dumas",
+      "Opção 2": "Victor Hugo",
+      "Opção 3": "Gustave Flaubert",
+      "Resposta Correta": "Alexandre Dumas"
+    },
+    {
+      "Pergunta": "Qual desses livros de José Saramago trata de uma epidemia de cegueira?",
+      "Opção 1": "Ensaio sobre a Cegueira",
+      "Opção 2": "O Evangelho Segundo Jesus Cristo",
+      "Opção 3": "A Caverna",
+      "Resposta Correta": "Ensaio sobre a Cegueira"
+    },
+    {
+      "Pergunta": "Quem escreveu \"Cem Anos de Solidão\"?",
+      "Opção 1": "Gabriel García Márquez",
+      "Opção 2": "Mario Vargas Llosa",
+      "Opção 3": "Pablo Neruda",
+      "Resposta Correta": "Gabriel García Márquez"
+    },
+    {
+      "Pergunta": "Em qual país se passa a história de \"Anna Karenina\"?",
+      "Opção 1": "Rússia",
+      "Opção 2": "França",
+      "Opção 3": "Inglaterra",
+      "Resposta Correta": "Rússia"
+    },
+    {
+      "Pergunta": "Qual desses livros foi escrito por Fiódor Dostoiévski?",
+      "Opção 1": "Crime e Castigo",
+      "Opção 2": "O Grande Gatsby",
+      "Opção 3": "O Estrangeiro",
+      "Resposta Correta": "Crime e Castigo"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Grande Gatsby\"?",
+      "Opção 1": "F. Scott Fitzgerald",
+      "Opção 2": "Ernest Hemingway",
+      "Opção 3": "Charles Dickens",
+      "Resposta Correta": "F. Scott Fitzgerald"
+    },
+    {
+      "Pergunta": "Qual desses livros foi escrito por Charles Dickens?",
+      "Opção 1": "David Copperfield",
+      "Opção 2": "A Revolução dos Bichos",
+      "Opção 3": "O Processo",
+      "Resposta Correta": "David Copperfield"
+    },
+    {
+      "Pergunta": "Qual obra de Victor Hugo fala sobre a revolução francesa?",
+      "Opção 1": "Os Miseráveis",
+      "Opção 2": "Guerra e Paz",
+      "Opção 3": "O Conde de Monte Cristo",
+      "Resposta Correta": "Os Miseráveis"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Retrato de Dorian Gray\"?",
+      "Opção 1": "Oscar Wilde",
+      "Opção 2": "Mary Shelley",
+      "Opção 3": "Bram Stoker",
+      "Resposta Correta": "Oscar Wilde"
+    },
+    {
+      "Pergunta": "Em qual cidade se passa \"Crime e Castigo\"?",
+      "Opção 1": "São Petersburgo",
+      "Opção 2": "Moscou",
+      "Opção 3": "Londres",
+      "Resposta Correta": "São Petersburgo"
+    },
+    {
+      "Pergunta": "Quem escreveu \"As Viagens de Gulliver\"?",
+      "Opção 1": "Jonathan Swift",
+      "Opção 2": "Daniel Defoe",
+      "Opção 3": "Jules Verne",
+      "Resposta Correta": "Jonathan Swift"
+    },
+    {
+      "Pergunta": "Qual dessas obras é considerada um dos primeiros romances realistas?",
+      "Opção 1": "Dom Quixote",
+      "Opção 2": "Memórias Póstumas de Brás Cubas",
+      "Opção 3": "O Morro dos Ventos Uivantes",
+      "Resposta Correta": "Dom Quixote"
+    },
+    {
+      "Pergunta": "Quem escreveu \"A Ilha do Tesouro\"?",
+      "Opção 1": "Robert Louis Stevenson",
+      "Opção 2": "Jules Verne",
+      "Opção 3": "Mark Twain",
+      "Resposta Correta": "Robert Louis Stevenson"
+    },
+    {
+      "Pergunta": "Qual desses romances foi escrito por Emily Brontë?",
+      "Opção 1": "O Morro dos Ventos Uivantes",
+      "Opção 2": "Orgulho e Preconceito",
+      "Opção 3": "Razão e Sensibilidade",
+      "Resposta Correta": "O Morro dos Ventos Uivantes"
+    }
+  ],
+  "Fantasia": [
+    {
+      "Pergunta": "Quem escreveu \"O Senhor dos Anéis\"?",
+      "Opção 1": "J.R.R. Tolkien",
+      "Opção 2": "C.S. Lewis",
+      "Opção 3": "J.K. Rowling",
+      "Resposta Correta": "J.R.R. Tolkien"
+    },
+    {
+      "Pergunta": "Em que escola Harry Potter estudou?",
+      "Opção 1": "Hogwarts",
+      "Opção 2": "Ilvermorny",
+      "Opção 3": "Durmstrang",
+      "Resposta Correta": "Hogwarts"
+    },
+    {
+      "Pergunta": "Qual é o nome do dragão em \"O Hobbit\"?",
+      "Opção 1": "Smaug",
+      "Opção 2": "Drogon",
+      "Opção 3": "Falkor",
+      "Resposta Correta": "Smaug"
+    },
+    {
+      "Pergunta": "Qual desses livros pertence às Crônicas de Nárnia?",
+      "Opção 1": "O Leão, a Feiticeira e o Guarda-Roupa",
+      "Opção 2": "O Nome do Vento",
+      "Opção 3": "Eragon",
+      "Resposta Correta": "O Leão, a Feiticeira e o Guarda-Roupa"
+    },
+    {
+      "Pergunta": "Qual desses personagens NÃO pertence ao universo de \"O Senhor dos Anéis\"?",
+      "Opção 1": "Aslan",
+      "Opção 2": "Legolas",
+      "Opção 3": "Gandalf",
+      "Resposta Correta": "Aslan"
+    },
+    {
+      "Pergunta": "Qual é o nome do vilão principal em \"Harry Potter\"?",
+      "Opção 1": "Voldemort",
+      "Opção 2": "Sauron",
+      "Opção 3": "Darth Vader",
+      "Resposta Correta": "Voldemort"
+    },
+    {
+      "Pergunta": "Qual livro inicia a saga \"Percy Jackson e os Olimpianos\"?",
+      "Opção 1": "O Ladrão de Raios",
+      "Opção 2": "A Maldição do Titã",
+      "Opção 3": "O Filho de Netuno",
+      "Resposta Correta": "O Ladrão de Raios"
+    },
+    {
+      "Pergunta": "Qual desses personagens pertence à saga \"Jogos Vorazes\"?",
+      "Opção 1": "Katniss Everdeen",
+      "Opção 2": "Tris Prior",
+      "Opção 3": "Bella Swan",
+      "Resposta Correta": "Katniss Everdeen"
+    },
+    {
+      "Pergunta": "Qual é o nome da protagonista de \"Divergente\"?",
+      "Opção 1": "Tris Prior",
+      "Opção 2": "Katniss Everdeen",
+      "Opção 3": "Clary Fray",
+      "Resposta Correta": "Tris Prior"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Nome do Vento\"?",
+      "Opção 1": "Patrick Rothfuss",
+      "Opção 2": "Brandon Sanderson",
+      "Opção 3": "George R.R. Martin",
+      "Resposta Correta": "Patrick Rothfuss"
+    },
+    {
+      "Pergunta": "Qual é o primeiro livro da série \"As Crônicas de Gelo e Fogo\"?",
+      "Opção 1": "A Guerra dos Tronos",
+      "Opção 2": "O Senhor dos Anéis",
+      "Opção 3": "A Fúria dos Reis",
+      "Resposta Correta": "A Guerra dos Tronos"
+    },
+    {
+      "Pergunta": "Qual desses personagens é um elfo doméstico em \"Harry Potter\"?",
+      "Opção 1": "Dobby",
+      "Opção 2": "Kreacher",
+      "Opção 3": "Thranduil",
+      "Resposta Correta": "Dobby"
+    },
+    {
+      "Pergunta": "Quem escreveu \"Eragon\", primeiro livro da saga \"Ciclo da Herança\"?",
+      "Opção 1": "Christopher Paolini",
+      "Opção 2": "Rick Riordan",
+      "Opção 3": "Suzanne Collins",
+      "Resposta Correta": "Christopher Paolini"
+    },
+    {
+      "Pergunta": "Em \"A Bússola de Ouro\", qual é o nome do urso de armadura que ajuda Lyra?",
+      "Opção 1": "Iorek Byrnison",
+      "Opção 2": "Aslan",
+      "Opção 3": "Smaug",
+      "Resposta Correta": "Iorek Byrnison"
+    },
+    {
+      "Pergunta": "Quem é o autor de \"O Último Desejo\", primeiro livro da saga \"The Witcher\"?",
+      "Opção 1": "Andrzej Sapkowski",
+      "Opção 2": "Neil Gaiman",
+      "Opção 3": "Terry Pratchett",
+      "Resposta Correta": "Andrzej Sapkowski"
+    },
+    {
+      "Pergunta": "Qual é o nome do mago em \"O Senhor dos Anéis\"?",
+      "Opção 1": "Gandalf",
+      "Opção 2": "Saruman",
+      "Opção 3": "Dumbledore",
+      "Resposta Correta": "Gandalf"
+    },
+    {
+      "Pergunta": "Quem escreveu \"Coraline\"?",
+      "Opção 1": "Neil Gaiman",
+      "Opção 2": "J.K. Rowling",
+      "Opção 3": "Stephen King",
+      "Resposta Correta": "Neil Gaiman"
+    },
+    {
+      "Pergunta": "Qual é o nome do mundo onde se passa \"As Crônicas de Nárnia\"?",
+      "Opção 1": "Nárnia",
+      "Opção 2": "Westeros",
+      "Opção 3": "Terra Média",
+      "Resposta Correta": "Nárnia"
+    },
+    {
+      "Pergunta": "Qual desses livros pertence ao universo de \"O Senhor dos Anéis\"?",
+      "Opção 1": "O Silmarillion",
+      "Opção 2": "O Nome do Vento",
+      "Opção 3": "O Hobbit",
+      "Resposta Correta": "O Silmarillion"
+    },
+    {
+      "Pergunta": "Qual é o nome da espada de Aragorn?",
+      "Opção 1": "Andúril",
+      "Opção 2": "Excalibur",
+      "Opção 3": "Gungnir",
+      "Resposta Correta": "Andúril"
+    },
+    {
+      "Pergunta": "Qual é o título do último livro da série \"Harry Potter\"?",
+      "Opção 1": "Harry Potter e as Relíquias da Morte",
+      "Opção 2": "Harry Potter e o Enigma do Príncipe",
+      "Opção 3": "Harry Potter e a Câmara Secreta",
+      "Resposta Correta": "Harry Potter e as Relíquias da Morte"
+    },
+    {
+      "Pergunta": "Quem é o autor de \"American Gods\"?",
+      "Opção 1": "Neil Gaiman",
+      "Opção 2": "Stephen King",
+      "Opção 3": "Rick Riordan",
+      "Resposta Correta": "Neil Gaiman"
+    },
+    {
+      "Pergunta": "Qual desses livros faz parte da trilogia \"Fronteiras do Universo\"?",
+      "Opção 1": "A Faca Sutil",
+      "Opção 2": "O Senhor das Moscas",
+      "Opção 3": "A Dança dos Dragões",
+      "Resposta Correta": "A Faca Sutil"
+    },
+    {
+      "Pergunta": "Em \"The Witcher\", qual é o nome da princesa que Geralt deve proteger?",
+      "Opção 1": "Ciri",
+      "Opção 2": "Arya",
+      "Opção 3": "Hermione",
+      "Resposta Correta": "Ciri"
+    },
+    {
+      "Pergunta": "Quem escreveu \"Discworld\", a famosa série de fantasia cômica?",
+      "Opção 1": "Terry Pratchett",
+      "Opção 2": "Douglas Adams",
+      "Opção 3": "Brandon Sanderson",
+      "Resposta Correta": "Terry Pratchett"
+    },
+    {
+      "Pergunta": "Qual desses livros pertence ao universo de \"As Crônicas de Gelo e Fogo\"?",
+      "Opção 1": "O Festim dos Corvos",
+      "Opção 2": "O Hobbit",
+      "Opção 3": "A Bússola de Ouro",
+      "Resposta Correta": "O Festim dos Corvos"
+    },
+    {
+      "Pergunta": "Qual é o nome do navio de Will Turner em \"Piratas do Caribe\"?",
+      "Opção 1": "Pérola Negra",
+      "Opção 2": "Holandês Voador",
+      "Opção 3": "Interceptor",
+      "Resposta Correta": "Holandês Voador"
+    },
+    {
+      "Pergunta": "Em \"Harry Potter\", qual é o nome do Patrono de Hermione?",
+      "Opção 1": "Lontra",
+      "Opção 2": "Lobo",
+      "Opção 3": "Coruja",
+      "Resposta Correta": "Lontra"
+    },
+    {
+      "Pergunta": "Qual é o nome verdadeiro do bruxo conhecido como \"Voldemort\"?",
+      "Opção 1": "Tom Riddle",
+      "Opção 2": "Salazar Slytherin",
+      "Opção 3": "Grindelwald",
+      "Resposta Correta": "Tom Riddle"
+    }
+  ],
+  "Suspense e Terror": [
+    {
+      "Pergunta": "Quem é o autor de \"O Iluminado\"?",
+      "Opção 1": "Stephen King",
+      "Opção 2": "Edgar Allan Poe",
+      "Opção 3": "H.P. Lovecraft",
+      "Resposta Correta": "Stephen King"
+    },
+    {
+      "Pergunta": "Qual é o nome do hotel em \"O Iluminado\"?",
+      "Opção 1": "Overlook Hotel",
+      "Opção 2": "Bates Motel",
+      "Opção 3": "The Grand Budapest",
+      "Resposta Correta": "Overlook Hotel"
+    },
+    {
+      "Pergunta": "Qual desses livros NÃO foi escrito por Stephen King?",
+      "Opção 1": "O Chamado de Cthulhu",
+      "Opção 2": "It: A Coisa",
+      "Opção 3": "Carrie, a Estranha",
+      "Resposta Correta": "O Chamado de Cthulhu"
+    },
+    {
+      "Pergunta": "Quem é o autor de \"Drácula\"?",
+      "Opção 1": "Bram Stoker",
+      "Opção 2": "Mary Shelley",
+      "Opção 3": "H.G. Wells",
+      "Resposta Correta": "Bram Stoker"
+    },
+    {
+      "Pergunta": "Qual é o nome do monstro em \"Frankenstein\"?",
+      "Opção 1": "Ele não tem nome",
+      "Opção 2": "Victor Frankenstein",
+      "Opção 3": "Adam",
+      "Resposta Correta": "Ele não tem nome"
+    },
+    {
+      "Pergunta": "Em \"Psicose\", quem é o assassino?",
+      "Opção 1": "Norman Bates",
+      "Opção 2": "Patrick Bateman",
+      "Opção 3": "Hannibal Lecter",
+      "Resposta Correta": "Norman Bates"
+    },
+    {
+      "Pergunta": "Quem é o autor de \"O Médico e o Monstro\"?",
+      "Opção 1": "Robert Louis Stevenson",
+      "Opção 2": "Arthur Conan Doyle",
+      "Opção 3": "Edgar Allan Poe",
+      "Resposta Correta": "Robert Louis Stevenson"
+    },
+    {
+      "Pergunta": "Qual desses autores é conhecido por criar o gênero de terror cósmico?",
+      "Opção 1": "H.P. Lovecraft",
+      "Opção 2": "Stephen King",
+      "Opção 3": "Shirley Jackson",
+      "Resposta Correta": "H.P. Lovecraft"
+    },
+    {
+      "Pergunta": "Qual é o título da obra mais famosa de H.P. Lovecraft?",
+      "Opção 1": "O Chamado de Cthulhu",
+      "Opção 2": "Nas Montanhas da Loucura",
+      "Opção 3": "A Cor Que Caiu do Espaço",
+      "Resposta Correta": "O Chamado de Cthulhu"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Exorcista\"?",
+      "Opção 1": "William Peter Blatty",
+      "Opção 2": "Stephen King",
+      "Opção 3": "Thomas Harris",
+      "Resposta Correta": "William Peter Blatty"
+    },
+    {
+      "Pergunta": "Qual é o nome do assassino em \"O Silêncio dos Inocentes\"?",
+      "Opção 1": "Hannibal Lecter",
+      "Opção 2": "Norman Bates",
+      "Opção 3": "Jack Torrance",
+      "Resposta Correta": "Hannibal Lecter"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Bebê de Rosemary\"?",
+      "Opção 1": "Ira Levin",
+      "Opção 2": "Stephen King",
+      "Opção 3": "Shirley Jackson",
+      "Resposta Correta": "Ira Levin"
+    },
+    {
+      "Pergunta": "Qual desses livros de Edgar Allan Poe é um conto de terror?",
+      "Opção 1": "O Coração Delator",
+      "Opção 2": "O Retrato de Dorian Gray",
+      "Opção 3": "O Médico e o Monstro",
+      "Resposta Correta": "O Coração Delator"
+    },
+    {
+      "Pergunta": "Em \"A Assombração da Casa da Colina\", qual é o nome da protagonista?",
+      "Opção 1": "Eleanor Vance",
+      "Opção 2": "Wendy Torrance",
+      "Opção 3": "Annie Wilkes",
+      "Resposta Correta": "Eleanor Vance"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Vilarejo\", um livro de terror brasileiro?",
+      "Opção 1": "Raphael Montes",
+      "Opção 2": "André Vianco",
+      "Opção 3": "César Bravo",
+      "Resposta Correta": "Raphael Montes"
+    },
+    {
+      "Pergunta": "Qual desses livros de terror foi adaptado para uma famosa série da Netflix?",
+      "Opção 1": "A Maldição da Residência Hill",
+      "Opção 2": "It: A Coisa",
+      "Opção 3": "O Chamado de Cthulhu",
+      "Resposta Correta": "A Maldição da Residência Hill"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Turno da Noite\"?",
+      "Opção 1": "André Vianco",
+      "Opção 2": "Stephen King",
+      "Opção 3": "Raphael Montes",
+      "Resposta Correta": "André Vianco"
+    },
+    {
+      "Pergunta": "Qual desses personagens é um assassino serial em \"O Colecionador\"?",
+      "Opção 1": "Frederick Clegg",
+      "Opção 2": "Patrick Bateman",
+      "Opção 3": "Norman Bates",
+      "Resposta Correta": "Frederick Clegg"
+    },
+    {
+      "Pergunta": "Qual é o nome da cidade onde se passam muitos dos livros de Stephen King?",
+      "Opção 1": "Derry",
+      "Opção 2": "Salem",
+      "Opção 3": "Arkham",
+      "Resposta Correta": "Derry"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Homem de Giz\"?",
+      "Opção 1": "C.J. Tudor",
+      "Opção 2": "Paula Hawkins",
+      "Opção 3": "Gillian Flynn",
+      "Resposta Correta": "C.J. Tudor"
+    },
+    {
+      "Pergunta": "Qual livro de Agatha Christie apresenta o detetive Hercule Poirot investigando um assassinato em um trem?",
+      "Opção 1": "Assassinato no Expresso do Oriente",
+      "Opção 2": "O Caso dos Dez Negrinhos",
+      "Opção 3": "Morte no Nilo",
+      "Resposta Correta": "Assassinato no Expresso do Oriente"
+    },
+    {
+      "Pergunta": "Quem é a protagonista de \"Garota Exemplar\"?",
+      "Opção 1": "Amy Dunne",
+      "Opção 2": "Rachel Watson",
+      "Opção 3": "Lisbeth Salander",
+      "Resposta Correta": "Amy Dunne"
+    },
+    {
+      "Pergunta": "Qual desses livros pertence ao gênero thriller psicológico?",
+      "Opção 1": "Em Águas Sombrias",
+      "Opção 2": "Harry Potter e a Pedra Filosofal",
+      "Opção 3": "As Crônicas de Nárnia",
+      "Resposta Correta": "Em Águas Sombrias"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Morcego\", primeiro livro da série do detetive Harry Hole?",
+      "Opção 1": "Jo Nesbø",
+      "Opção 2": "Stieg Larsson",
+      "Opção 3": "Gillian Flynn",
+      "Resposta Correta": "Jo Nesbø"
+    },
+    {
+      "Pergunta": "Qual é o nome da vila amaldiçoada em \"A Hora do Lobisomem\" de Stephen King?",
+      "Opção 1": "Tarker's Mills",
+      "Opção 2": "Castle Rock",
+      "Opção 3": "Salem's Lot",
+      "Resposta Correta": "Tarker's Mills"
+    },
+    {
+      "Pergunta": "Qual desses romances foi escrito por Shirley Jackson?",
+      "Opção 1": "Sempre Vivemos no Castelo",
+      "Opção 2": "O Iluminado",
+      "Opção 3": "O Chamado",
+      "Resposta Correta": "Sempre Vivemos no Castelo"
+    },
+    {
+      "Pergunta": "Qual autor é conhecido como o \"pai do horror moderno\"?",
+      "Opção 1": "Edgar Allan Poe",
+      "Opção 2": "Stephen King",
+      "Opção 3": "H.P. Lovecraft",
+      "Resposta Correta": "Edgar Allan Poe"
+    },
+    {
+      "Pergunta": "Qual é o título do livro que inspirou o filme \"O Chamado\"?",
+      "Opção 1": "Ringu",
+      "Opção 2": "Ju-On",
+      "Opção 3": "Dark Water",
+      "Resposta Correta": "Ringu"
+    },
+    {
+      "Pergunta": "Quem é o autor de \"O Código Da Vinci\"?",
+      "Opção 1": "Dan Brown",
+      "Opção 2": "John Grisham",
+      "Opção 3": "Ken Follett",
+      "Resposta Correta": "Dan Brown"
+    },
+    {
+      "Pergunta": "Qual livro é protagonizado por Lisbeth Salander e Mikael Blomkvist?",
+      "Opção 1": "Os Homens que Não Amavam as Mulheres",
+      "Opção 2": "Garota Exemplar",
+      "Opção 3": "O Doador de Memórias",
+      "Resposta Correta": "Os Homens que Não Amavam as Mulheres"
+    }
+  ],
+  "Romance": [
+    {
+      "Pergunta": "Qual livro de Colleen Hoover conta a história de Lily e Ryle?",
+      "Opção 1": "É Assim Que Acaba",
+      "Opção 2": "Verity",
+      "Opção 3": "Métrica",
+      "Resposta Correta": "É Assim Que Acaba"
+    },
+    {
+      "Pergunta": "Qual é o nome da protagonista de \"Os Sete Maridos de Evelyn Hugo\"?",
+      "Opção 1": "Evelyn Hugo",
+      "Opção 2": "Celia St. James",
+      "Opção 3": "Daisy Jones",
+      "Resposta Correta": "Evelyn Hugo"
+    },
+    {
+      "Pergunta": "Em \"Teto Para Dois\", como os protagonistas dividem o apartamento sem se encontrarem?",
+      "Opção 1": "Ele dorme de dia, ela de noite",
+      "Opção 2": "Eles se evitam",
+      "Opção 3": "Eles trocam mensagens apenas pelo WhatsApp",
+      "Resposta Correta": "Ele dorme de dia, ela de noite"
+    },
+    {
+      "Pergunta": "Qual desses livros foi escrito por Taylor Jenkins Reid?",
+      "Opção 1": "Daisy Jones & The Six",
+      "Opção 2": "A Hipótese do Amor",
+      "Opção 3": "Antes Que O Café Esfrie",
+      "Resposta Correta": "Daisy Jones & The Six"
+    },
+    {
+      "Pergunta": "Qual desses livros de Emily Henry envolve um romance entre escritores?",
+      "Opção 1": "Leitura de Verão",
+      "Opção 2": "O Acordo",
+      "Opção 3": "Um Dia",
+      "Resposta Correta": "Leitura de Verão"
+    },
+    {
+      "Pergunta": "Qual livro de Jojo Moyes virou um filme estrelado por Emilia Clarke?",
+      "Opção 1": "Como Eu Era Antes de Você",
+      "Opção 2": "A Última Carta de Amor",
+      "Opção 3": "Um Caminho para a Liberdade",
+      "Resposta Correta": "Como Eu Era Antes de Você"
+    },
+    {
+      "Pergunta": "Qual é o nome do protagonista masculino de \"A Culpa é das Estrelas\"?",
+      "Opção 1": "Augustus Waters",
+      "Opção 2": "Miles Halter",
+      "Opção 3": "Noah Calhoun",
+      "Resposta Correta": "Augustus Waters"
+    },
+    {
+      "Pergunta": "Em \"Vermelho, Branco e Sangue Azul\", qual é o nome do príncipe britânico?",
+      "Opção 1": "Henry",
+      "Opção 2": "Alex",
+      "Opção 3": "Edward",
+      "Resposta Correta": "Henry"
+    },
+    {
+      "Pergunta": "Qual livro de Casey McQuiston mistura romance e viagem no tempo?",
+      "Opção 1": "One Last Stop",
+      "Opção 2": "Vermelho, Branco e Sangue Azul",
+      "Opção 3": "Amor & Gelato",
+      "Resposta Correta": "One Last Stop"
+    },
+    {
+      "Pergunta": "Em \"Os Dois Morrem No Final\", qual aplicativo avisa aos personagens que estão no último dia de vida?",
+      "Opção 1": "Death-Cast",
+      "Opção 2": "LastCall",
+      "Opção 3": "DeadLine",
+      "Resposta Correta": "Death-Cast"
+    },
+    {
+      "Pergunta": "Qual livro da Colleen Hoover mistura suspense e romance?",
+      "Opção 1": "Verity",
+      "Opção 2": "Todas as Suas Imperfeições",
+      "Opção 3": "2025-11-09T00:00:00",
+      "Resposta Correta": "Verity"
+    },
+    {
+      "Pergunta": "Em \"Os 27 Crushes de Molly\", qual é a principal insegurança da protagonista?",
+      "Opção 1": "Sua aparência e peso",
+      "Opção 2": "Medo de se apaixonar",
+      "Opção 3": "Problemas familiares",
+      "Resposta Correta": "Sua aparência e peso"
+    },
+    {
+      "Pergunta": "Qual desses livros envolve um romance falso entre cientistas?",
+      "Opção 1": "A Hipótese do Amor",
+      "Opção 2": "Vermelho, Branco e Sangue Azul",
+      "Opção 3": "Teto Para Dois",
+      "Resposta Correta": "A Hipótese do Amor"
+    },
+    {
+      "Pergunta": "Qual romance de Christina Lauren envolve um casal que se casa por conveniência?",
+      "Opção 1": "Amor & Sorte",
+      "Opção 2": "Minha Versão de Você",
+      "Opção 3": "Imperfeitos",
+      "Resposta Correta": "Imperfeitos"
+    },
+    {
+      "Pergunta": "Em \"Amor & Gelato\", onde se passa a maior parte da história?",
+      "Opção 1": "Itália",
+      "Opção 2": "França",
+      "Opção 3": "Espanha",
+      "Resposta Correta": "Itália"
+    },
+    {
+      "Pergunta": "Qual é o nome do protagonista masculino de \"Os Garotos Corvos\"?",
+      "Opção 1": "Gansey",
+      "Opção 2": "Atlas",
+      "Opção 3": "Cardan",
+      "Resposta Correta": "Gansey"
+    },
+    {
+      "Pergunta": "Qual desses livros mistura romance e fantasia?",
+      "Opção 1": "Corte de Espinhos e Rosas",
+      "Opção 2": "O Lado Feio do Amor",
+      "Opção 3": "Para Sempre Interrompido",
+      "Resposta Correta": "Corte de Espinhos e Rosas"
+    },
+    {
+      "Pergunta": "Em \"Antes Que O Café Esfrie\", o que acontece se alguém não voltar antes do café esfriar?",
+      "Opção 1": "Fica preso no passado",
+      "Opção 2": "Volta para um tempo aleatório",
+      "Opção 3": "Desaparece para sempre",
+      "Resposta Correta": "Fica preso no passado"
+    },
+    {
+      "Pergunta": "Qual livro de Nicholas Sparks conta a história de Noah e Allie?",
+      "Opção 1": "Diário de Uma Paixão",
+      "Opção 2": "Um Porto Seguro",
+      "Opção 3": "O Melhor de Mim",
+      "Resposta Correta": "Diário de Uma Paixão"
+    },
+    {
+      "Pergunta": "Qual livro de Casey McQuiston tem uma protagonista bissexual?",
+      "Opção 1": "One Last Stop",
+      "Opção 2": "É Assim Que Acaba",
+      "Opção 3": "2025-11-09T00:00:00",
+      "Resposta Correta": "One Last Stop"
+    },
+    {
+      "Pergunta": "Qual desses livros de Emily Henry envolve um romance entre rivais?",
+      "Opção 1": "Book Lovers",
+      "Opção 2": "Leitura de Verão",
+      "Opção 3": "Teto Para Dois",
+      "Resposta Correta": "Book Lovers"
+    },
+    {
+      "Pergunta": "Qual livro de Ali Hazelwood tem uma protagonista que é neurocientista?",
+      "Opção 1": "A Hipótese do Amor",
+      "Opção 2": "Os Dois Morrem No Final",
+      "Opção 3": "Para Sempre Interrompido",
+      "Resposta Correta": "A Hipótese do Amor"
+    },
+    {
+      "Pergunta": "Qual desses romances tem uma protagonista que trabalha com livros?",
+      "Opção 1": "A Pequena Livraria dos Sonhos",
+      "Opção 2": "Mil Beijos de Garoto",
+      "Opção 3": "Uma Segunda Chance",
+      "Resposta Correta": "A Pequena Livraria dos Sonhos"
+    },
+    {
+      "Pergunta": "Em \"O Primeiro a Morrer no Final\", o que acontece com os personagens?",
+      "Opção 1": "Eles descobrem que um deles vai morrer",
+      "Opção 2": "Eles viajam no tempo",
+      "Opção 3": "Eles perdem a memória",
+      "Resposta Correta": "Eles descobrem que um deles vai morrer"
+    },
+    {
+      "Pergunta": "Qual livro de Emily Henry tem um romance entre uma editora e um autor?",
+      "Opção 1": "Book Lovers",
+      "Opção 2": "Leitura de Verão",
+      "Opção 3": "2025-11-09T00:00:00",
+      "Resposta Correta": "Book Lovers"
+    },
+    {
+      "Pergunta": "Qual romance LGBTQIA+ da Adam Silvera envolve dois garotos lidando com o último dia de vida?",
+      "Opção 1": "Os Dois Morrem No Final",
+      "Opção 2": "Amor & Sorte",
+      "Opção 3": "Leitura de Verão",
+      "Resposta Correta": "Os Dois Morrem No Final"
+    },
+    {
+      "Pergunta": "Qual desses livros se passa na Escócia?",
+      "Opção 1": "A Pequena Livraria dos Sonhos",
+      "Opção 2": "O Último Adeus",
+      "Opção 3": "Teto Para Dois",
+      "Resposta Correta": "A Pequena Livraria dos Sonhos"
+    },
+    {
+      "Pergunta": "Qual desses livros de Colleen Hoover tem um personagem chamado Atlas?",
+      "Opção 1": "É Assim Que Acaba",
+      "Opção 2": "2025-11-09T00:00:00",
+      "Opção 3": "Todas as Suas Imperfeições",
+      "Resposta Correta": "É Assim Que Acaba"
+    },
+    {
+      "Pergunta": "Qual desses romances envolve um casal que se conhece por cartas?",
+      "Opção 1": "A Última Carta de Amor",
+      "Opção 2": "Amor & Gelato",
+      "Opção 3": "O Primeiro a Morrer no Final",
+      "Resposta Correta": "A Última Carta de Amor"
+    },
+    {
+      "Pergunta": "Em \"Novembro, 9\", qual é a promessa que os personagens fazem?",
+      "Opção 1": "Se encontrar todo ano na mesma data",
+      "Opção 2": "Nunca se apaixonar",
+      "Opção 3": "Nunca mentir um para o outro",
+      "Resposta Correta": "Se encontrar todo ano na mesma data"
+    }
+  ],
+  "Distopia": [
+    {
+      "Pergunta": "Qual é o lema do Partido em \"1984\"?",
+      "Opção 1": "Guerra é Paz, Liberdade é Escravidão, Ignorância é Força",
+      "Opção 2": "Ordem e Progresso",
+      "Opção 3": "Tudo pelo Bem Maior",
+      "Resposta Correta": "Guerra é Paz, Liberdade é Escravidão, Ignorância é Força"
+    },
+    {
+      "Pergunta": "Em \"Admirável Mundo Novo\", qual droga é usada para controlar as emoções da sociedade?",
+      "Opção 1": "Soma",
+      "Opção 2": "Prozium",
+      "Opção 3": "Felicium",
+      "Resposta Correta": "Soma"
+    },
+    {
+      "Pergunta": "Qual desses livros foi escrito por Margaret Atwood?",
+      "Opção 1": "O Conto da Aia",
+      "Opção 2": "Fahrenheit 451",
+      "Opção 3": "O Homem no Castelo Alto",
+      "Resposta Correta": "O Conto da Aia"
+    },
+    {
+      "Pergunta": "Qual é o nome da protagonista de \"O Conto da Aia\"?",
+      "Opção 1": "Offred",
+      "Opção 2": "Katniss",
+      "Opção 3": "Tris",
+      "Resposta Correta": "Offred"
+    },
+    {
+      "Pergunta": "Em \"Fahrenheit 451\", qual é a profissão do protagonista?",
+      "Opção 1": "Bombeiro",
+      "Opção 2": "Jornalista",
+      "Opção 3": "Cientista",
+      "Resposta Correta": "Bombeiro"
+    },
+    {
+      "Pergunta": "Em \"Jogos Vorazes\", como Katniss recebe seu apelido de \"Garota em Chamas\"?",
+      "Opção 1": "Por causa de um vestido flamejante",
+      "Opção 2": "Porque ela sobrevive a um incêndio",
+      "Opção 3": "Porque sua família é dona de uma fornalha",
+      "Resposta Correta": "Por causa de um vestido flamejante"
+    },
+    {
+      "Pergunta": "Qual desses autores escreveu \"A Máquina do Tempo\"?",
+      "Opção 1": "H.G. Wells",
+      "Opção 2": "George Orwell",
+      "Opção 3": "Aldous Huxley",
+      "Resposta Correta": "H.G. Wells"
+    },
+    {
+      "Pergunta": "Em \"Divergente\", qual é a facção da protagonista?",
+      "Opção 1": "Abnegação",
+      "Opção 2": "Audácia",
+      "Opção 3": "Erudição",
+      "Resposta Correta": "Abnegação"
+    },
+    {
+      "Pergunta": "Qual é o nome do governo opressor em \"1984\"?",
+      "Opção 1": "Grande Irmão",
+      "Opção 2": "A Liga",
+      "Opção 3": "O Partido Supremo",
+      "Resposta Correta": "Grande Irmão"
+    },
+    {
+      "Pergunta": "Em \"A Revolução dos Bichos\", qual animal representa Stalin?",
+      "Opção 1": "Porco",
+      "Opção 2": "Cavalo",
+      "Opção 3": "Corvo",
+      "Resposta Correta": "Porco"
+    },
+    {
+      "Pergunta": "Qual desses livros foi adaptado para uma série da HBO?",
+      "Opção 1": "O Conto da Aia",
+      "Opção 2": "O Doador de Memórias",
+      "Opção 3": "Fahrenheit 451",
+      "Resposta Correta": "O Conto da Aia"
+    },
+    {
+      "Pergunta": "Qual desses livros apresenta um mundo onde os livros são proibidos?",
+      "Opção 1": "Fahrenheit 451",
+      "Opção 2": "O Conto da Aia",
+      "Opção 3": "A Laranja Mecânica",
+      "Resposta Correta": "Fahrenheit 451"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Homem no Castelo Alto\", uma distopia onde os nazistas venceram a Segunda Guerra?",
+      "Opção 1": "Philip K. Dick",
+      "Opção 2": "Ray Bradbury",
+      "Opção 3": "William Gibson",
+      "Resposta Correta": "Philip K. Dick"
+    },
+    {
+      "Pergunta": "Em \"A Laranja Mecânica\", qual é o nome do protagonista?",
+      "Opção 1": "Alex",
+      "Opção 2": "Winston",
+      "Opção 3": "Bernard",
+      "Resposta Correta": "Alex"
+    },
+    {
+      "Pergunta": "Qual é o governo que controla Panem em \"Jogos Vorazes\"?",
+      "Opção 1": "A Capital",
+      "Opção 2": "O Partido",
+      "Opção 3": "O Grande Conselho",
+      "Resposta Correta": "A Capital"
+    },
+    {
+      "Pergunta": "Em \"O Doador de Memórias\", o que diferencia Jonas das outras pessoas?",
+      "Opção 1": "Ele enxerga cores",
+      "Opção 2": "Ele não sente dor",
+      "Opção 3": "Ele pode ler mentes",
+      "Resposta Correta": "Ele enxerga cores"
+    },
+    {
+      "Pergunta": "Qual desses livros tem como premissa um vírus mortal que dizima a população?",
+      "Opção 1": "Estação Onze",
+      "Opção 2": 1984,
+      "Opção 3": "O Doador de Memórias",
+      "Resposta Correta": "Estação Onze"
+    },
+    {
+      "Pergunta": "Em \"Delírio\", qual emoção é considerada uma doença?",
+      "Opção 1": "Amor",
+      "Opção 2": "Ódio",
+      "Opção 3": "Felicidade",
+      "Resposta Correta": "Amor"
+    },
+    {
+      "Pergunta": "Quem escreveu \"Oryx e Crake\", uma distopia ambiental?",
+      "Opção 1": "Margaret Atwood",
+      "Opção 2": "George Orwell",
+      "Opção 3": "Aldous Huxley",
+      "Resposta Correta": "Margaret Atwood"
+    },
+    {
+      "Pergunta": "Em \"Maze Runner\", qual é o nome do labirinto onde os personagens estão presos?",
+      "Opção 1": "Clareira",
+      "Opção 2": "A Cúpula",
+      "Opção 3": "O Enclave",
+      "Resposta Correta": "Clareira"
+    },
+    {
+      "Pergunta": "Qual é o nome da protagonista de \"A Seleção\"?",
+      "Opção 1": "America Singer",
+      "Opção 2": "Katniss Everdeen",
+      "Opção 3": "June Iparis",
+      "Resposta Correta": "America Singer"
+    },
+    {
+      "Pergunta": "Quem é o autor de \"Nós\", uma das primeiras distopias da literatura?",
+      "Opção 1": "Yevgeny Zamyatin",
+      "Opção 2": "Aldous Huxley",
+      "Opção 3": "Philip K. Dick",
+      "Resposta Correta": "Yevgeny Zamyatin"
+    },
+    {
+      "Pergunta": "Em \"Legend\", de Marie Lu, qual é o nome do protagonista masculino?",
+      "Opção 1": "Day",
+      "Opção 2": "Maxon",
+      "Opção 3": "Adam",
+      "Resposta Correta": "Day"
+    },
+    {
+      "Pergunta": "Qual é o nome do programa que seleciona casais em \"Matched\"?",
+      "Opção 1": "Sociedade",
+      "Opção 2": "Enlace Perfeito",
+      "Opção 3": "Destino Certo",
+      "Resposta Correta": "Sociedade"
+    },
+    {
+      "Pergunta": "Qual é o lema dos cidadãos em \"A Laranja Mecânica\"?",
+      "Opção 1": "O que é bom para todos é bom para um",
+      "Opção 2": "Eu só quero um pouco de ultraviolência",
+      "Opção 3": "Ignorância é felicidade",
+      "Resposta Correta": "Eu só quero um pouco de ultraviolência"
+    },
+    {
+      "Pergunta": "Qual desses livros apresenta uma sociedade onde apenas um homem retém as memórias do passado?",
+      "Opção 1": "O Doador de Memórias",
+      "Opção 2": "Fahrenheit 451",
+      "Opção 3": "O Conto da Aia",
+      "Resposta Correta": "O Doador de Memórias"
+    },
+    {
+      "Pergunta": "Em \"O Conto da Aia\", qual é a justificativa do governo para subjugar as mulheres?",
+      "Opção 1": "A queda da fertilidade",
+      "Opção 2": "A ameaça estrangeira",
+      "Opção 3": "O aumento da violência",
+      "Resposta Correta": "A queda da fertilidade"
+    },
+    {
+      "Pergunta": "Qual desses livros distópicos virou uma série da Netflix?",
+      "Opção 1": "O Problema dos Três Corpos",
+      "Opção 2": "Fahrenheit 451",
+      "Opção 3": "Jogos Vorazes",
+      "Resposta Correta": "O Problema dos Três Corpos"
+    },
+    {
+      "Pergunta": "Em \"Jogos Vorazes\", qual distrito era responsável pela eletricidade?",
+      "Opção 1": "Distrito 5",
+      "Opção 2": "Distrito 3",
+      "Opção 3": "Distrito 9",
+      "Resposta Correta": "Distrito 5"
+    },
+    {
+      "Pergunta": "Quem escreveu \"A Estrada\", uma distopia pós-apocalíptica sobre um pai e seu filho?",
+      "Opção 1": "Cormac McCarthy",
+      "Opção 2": "William Gibson",
+      "Opção 3": "Philip K. Dick",
+      "Resposta Correta": "Cormac McCarthy"
+    }
+  ],
+  "Ficção Científica": [
+    {
+      "Pergunta": "Quem escreveu \"Eu, Robô\", um dos livros mais influentes da ficção científica?",
+      "Opção 1": "Isaac Asimov",
+      "Opção 2": "Philip K. Dick",
+      "Opção 3": "Arthur C. Clarke",
+      "Resposta Correta": "Isaac Asimov"
+    },
+    {
+      "Pergunta": "Qual é o nome do robô protagonista em \"O Homem Bicentenário\"?",
+      "Opção 1": "Andrew",
+      "Opção 2": "HAL 9000",
+      "Opção 3": "Marvin",
+      "Resposta Correta": "Andrew"
+    },
+    {
+      "Pergunta": "Em \"Duna\", qual é o planeta onde a história se passa?",
+      "Opção 1": "Arrakis",
+      "Opção 2": "Tatooine",
+      "Opção 3": "Vulcano",
+      "Resposta Correta": "Arrakis"
+    },
+    {
+      "Pergunta": "Quem escreveu \"Neuromancer\", um dos pilares do cyberpunk?",
+      "Opção 1": "William Gibson",
+      "Opção 2": "Philip K. Dick",
+      "Opção 3": "Isaac Asimov",
+      "Resposta Correta": "William Gibson"
+    },
+    {
+      "Pergunta": "Qual desses livros inspirou o filme \"Blade Runner\"?",
+      "Opção 1": "Androides Sonham com Ovelhas Elétricas?",
+      "Opção 2": "O Homem do Castelo Alto",
+      "Opção 3": "Neuromancer",
+      "Resposta Correta": "Androides Sonham com Ovelhas Elétricas?"
+    },
+    {
+      "Pergunta": "Qual desses livros apresenta uma sociedade onde os humanos vivem em cidades subterrâneas?",
+      "Opção 1": "O Fim da Infância",
+      "Opção 2": "Fundação",
+      "Opção 3": "O Sol Desvelado",
+      "Resposta Correta": "O Sol Desvelado"
+    },
+    {
+      "Pergunta": "Qual é o nome da droga que prolonga a vida em \"Duna\"?",
+      "Opção 1": "Melange",
+      "Opção 2": "Soma",
+      "Opção 3": "Adrenocromo",
+      "Resposta Correta": "Melange"
+    },
+    {
+      "Pergunta": "Quem escreveu \"Contato\", livro que inspirou o filme estrelado por Jodie Foster?",
+      "Opção 1": "Carl Sagan",
+      "Opção 2": "Arthur C. Clarke",
+      "Opção 3": "H.G. Wells",
+      "Resposta Correta": "Carl Sagan"
+    },
+    {
+      "Pergunta": "Em \"O Fim da Infância\", qual é o nome da raça alienígena que entra em contato com a Terra?",
+      "Opção 1": "Senhores Supremos",
+      "Opção 2": "Andarilhos do Espaço",
+      "Opção 3": "Soberanos de Zeta",
+      "Resposta Correta": "Senhores Supremos"
+    },
+    {
+      "Pergunta": "Qual desses livros é considerado um dos primeiros romances de ficção científica?",
+      "Opção 1": "A Máquina do Tempo",
+      "Opção 2": "O Planeta dos Macacos",
+      "Opção 3": "Fundação",
+      "Resposta Correta": "A Máquina do Tempo"
+    },
+    {
+      "Pergunta": "Qual é o nome do computador superinteligente em \"2001: Uma Odisseia no Espaço\"?",
+      "Opção 1": "HAL 9000",
+      "Opção 2": "Deep Thought",
+      "Opção 3": "Skynet",
+      "Resposta Correta": "HAL 9000"
+    },
+    {
+      "Pergunta": "Em \"Fundação\", de Isaac Asimov, qual é a ciência que prevê o futuro das civilizações?",
+      "Opção 1": "Psico-história",
+      "Opção 2": "Sociodinâmica",
+      "Opção 3": "Neurofísica",
+      "Resposta Correta": "Psico-história"
+    },
+    {
+      "Pergunta": "Qual autor escreveu \"O Planeta dos Macacos\"?",
+      "Opção 1": "Pierre Boulle",
+      "Opção 2": "Arthur C. Clarke",
+      "Opção 3": "H.G. Wells",
+      "Resposta Correta": "Pierre Boulle"
+    },
+    {
+      "Pergunta": "Qual é a primeira regra das Três Leis da Robótica de Asimov?",
+      "Opção 1": "Um robô não pode ferir um ser humano",
+      "Opção 2": "Um robô deve sempre seguir ordens",
+      "Opção 3": "Um robô deve proteger sua própria existência",
+      "Resposta Correta": "Um robô não pode ferir um ser humano"
+    },
+    {
+      "Pergunta": "Qual livro de Andy Weir conta a história de um astronauta preso em Marte?",
+      "Opção 1": "Perdido em Marte",
+      "Opção 2": "O Problema dos Três Corpos",
+      "Opção 3": "Artemis",
+      "Resposta Correta": "Perdido em Marte"
+    },
+    {
+      "Pergunta": "Em \"O Problema dos Três Corpos\", qual civilização alienígena entra em contato com a Terra?",
+      "Opção 1": "Trissolarianos",
+      "Opção 2": "Andarilhos",
+      "Opção 3": "Cetianos",
+      "Resposta Correta": "Trissolarianos"
+    },
+    {
+      "Pergunta": "Qual autor escreveu \"Snow Crash\", um dos clássicos do cyberpunk?",
+      "Opção 1": "Neal Stephenson",
+      "Opção 2": "William Gibson",
+      "Opção 3": "Philip K. Dick",
+      "Resposta Correta": "Neal Stephenson"
+    },
+    {
+      "Pergunta": "Em \"Guerra do Velho\", de John Scalzi, como os soldados são recrutados?",
+      "Opção 1": "Idosos são rejuvenescidos",
+      "Opção 2": "Crianças são treinadas desde cedo",
+      "Opção 3": "Pessoas são clonadas para lutar",
+      "Resposta Correta": "Idosos são rejuvenescidos"
+    },
+    {
+      "Pergunta": "Qual desses livros aborda uma viagem no tempo para impedir um assassinato?",
+      "Opção 1": "11/22/63",
+      "Opção 2": "O Homem do Castelo Alto",
+      "Opção 3": "O Fim da Infância",
+      "Resposta Correta": "11/22/63"
+    },
+    {
+      "Pergunta": "Qual é o nome da cidade onde ocorre a maior parte da trama de \"Neuromancer\"?",
+      "Opção 1": "Chiba City",
+      "Opção 2": "Zion",
+      "Opção 3": "Nova Londres",
+      "Resposta Correta": "Chiba City"
+    },
+    {
+      "Pergunta": "Em \"Artemis\", de Andy Weir, onde se passa a história?",
+      "Opção 1": "Na Lua",
+      "Opção 2": "Em Marte",
+      "Opção 3": "Em Titã",
+      "Resposta Correta": "Na Lua"
+    },
+    {
+      "Pergunta": "Qual autor escreveu \"O Fim da Infância\"?",
+      "Opção 1": "Arthur C. Clarke",
+      "Opção 2": "Isaac Asimov",
+      "Opção 3": "Philip K. Dick",
+      "Resposta Correta": "Arthur C. Clarke"
+    },
+    {
+      "Pergunta": "Qual desses livros foi escrito por Liu Cixin?",
+      "Opção 1": "O Problema dos Três Corpos",
+      "Opção 2": "Neuromancer",
+      "Opção 3": "Fundação",
+      "Resposta Correta": "O Problema dos Três Corpos"
+    },
+    {
+      "Pergunta": "Em \"Hyperion\", qual é o nome da entidade misteriosa que assombra os personagens?",
+      "Opção 1": "Shrike",
+      "Opção 2": "Leviatã",
+      "Opção 3": "Executor",
+      "Resposta Correta": "Shrike"
+    },
+    {
+      "Pergunta": "Qual livro de ficção científica apresenta um mundo onde humanos vivem sob domínio de máquinas?",
+      "Opção 1": "Matrix: O Livro",
+      "Opção 2": "Neuromancer",
+      "Opção 3": "Eu, Robô",
+      "Resposta Correta": "Neuromancer"
+    },
+    {
+      "Pergunta": "Em \"A Longa Viagem a um Pequeno Planeta Hostil\", qual é a profissão dos protagonistas?",
+      "Opção 1": "Colonizadores espaciais",
+      "Opção 2": "Operadores de um túnel espacial",
+      "Opção 3": "Caçadores de recompensas",
+      "Resposta Correta": "Operadores de um túnel espacial"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Fim da Morte\", terceiro livro da trilogia \"O Problema dos Três Corpos\"?",
+      "Opção 1": "Liu Cixin",
+      "Opção 2": "Ken Liu",
+      "Opção 3": "Neal Stephenson",
+      "Resposta Correta": "Liu Cixin"
+    },
+    {
+      "Pergunta": "Qual desses livros fala sobre inteligência artificial criando sua própria consciência?",
+      "Opção 1": "Eu, Robô",
+      "Opção 2": "O Homem Bicentenário",
+      "Opção 3": "A Máquina Diferencial",
+      "Resposta Correta": "O Homem Bicentenário"
+    },
+    {
+      "Pergunta": "Em \"O Enigma de Andrômeda\", o que ameaça a humanidade?",
+      "Opção 1": "Um vírus alienígena",
+      "Opção 2": "Uma guerra nuclear",
+      "Opção 3": "Um buraco negro",
+      "Resposta Correta": "Um vírus alienígena"
+    }
+  ],
+  "AçãoAventura": [
+    {
+      "Pergunta": "Quem é o autor de \"O Conde de Monte Cristo\"?",
+      "Opção 1": "Alexandre Dumas",
+      "Opção 2": "Victor Hugo",
+      "Opção 3": "Gustave Flaubert",
+      "Resposta Correta": "Alexandre Dumas"
+    },
+    {
+      "Pergunta": "Em \"O Senhor das Moscas\", o que acontece com os meninos?",
+      "Opção 1": "Ficam presos em uma ilha",
+      "Opção 2": "São sequestrados por piratas",
+      "Opção 3": "Sobrevivem a uma guerra nuclear",
+      "Resposta Correta": "Ficam presos em uma ilha"
+    },
+    {
+      "Pergunta": "Qual livro de Jules Verne narra a jornada de um submarino pelo oceano?",
+      "Opção 1": "Vinte Mil Léguas Submarinas",
+      "Opção 2": "A Ilha Misteriosa",
+      "Opção 3": "Viagem ao Centro da Terra",
+      "Resposta Correta": "Vinte Mil Léguas Submarinas"
+    },
+    {
+      "Pergunta": "Qual é o nome do capitão do submarino Nautilus em \"Vinte Mil Léguas Submarinas\"?",
+      "Opção 1": "Capitão Nemo",
+      "Opção 2": "Capitão Ahab",
+      "Opção 3": "Capitão Flint",
+      "Resposta Correta": "Capitão Nemo"
+    },
+    {
+      "Pergunta": "Em \"O Tesouro da Ilha\", qual é o nome do pirata mais famoso?",
+      "Opção 1": "Long John Silver",
+      "Opção 2": "Barba Negra",
+      "Opção 3": "Capitão Gancho",
+      "Resposta Correta": "Long John Silver"
+    },
+    {
+      "Pergunta": "Qual desses livros de Alexandre Dumas conta a história de vingança de Edmond Dantès?",
+      "Opção 1": "O Conde de Monte Cristo",
+      "Opção 2": "Os Três Mosqueteiros",
+      "Opção 3": "O Homem da Máscara de Ferro",
+      "Resposta Correta": "O Conde de Monte Cristo"
+    },
+    {
+      "Pergunta": "Quem é o autor de \"As Aventuras de Sherlock Holmes\"?",
+      "Opção 1": "Arthur Conan Doyle",
+      "Opção 2": "Agatha Christie",
+      "Opção 3": "Wilkie Collins",
+      "Resposta Correta": "Arthur Conan Doyle"
+    },
+    {
+      "Pergunta": "Qual desses personagens é um arqueólogo aventureiro em \"As Minas do Rei Salomão\"?",
+      "Opção 1": "Allan Quatermain",
+      "Opção 2": "Indiana Jones",
+      "Opção 3": "Nathan Drake",
+      "Resposta Correta": "Allan Quatermain"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Lobo do Mar\", um romance de aventura no mar?",
+      "Opção 1": "Jack London",
+      "Opção 2": "Herman Melville",
+      "Opção 3": "Robert Louis Stevenson",
+      "Resposta Correta": "Jack London"
+    },
+    {
+      "Pergunta": "Qual desses livros inspirou a criação do personagem Indiana Jones?",
+      "Opção 1": "As Minas do Rei Salomão",
+      "Opção 2": "O Chamado Selvagem",
+      "Opção 3": "O Corsário Negro",
+      "Resposta Correta": "As Minas do Rei Salomão"
+    },
+    {
+      "Pergunta": "Qual livro de Mark Twain narra a jornada de um garoto pelo rio Mississippi?",
+      "Opção 1": "As Aventuras de Huckleberry Finn",
+      "Opção 2": "O Príncipe e o Mendigo",
+      "Opção 3": "As Viagens de Gulliver",
+      "Resposta Correta": "As Aventuras de Huckleberry Finn"
+    },
+    {
+      "Pergunta": "Em \"As Crônicas de Artur\", de Bernard Cornwell, quem é o protagonista?",
+      "Opção 1": "Derfel Cadarn",
+      "Opção 2": "Lancelot",
+      "Opção 3": "Percival",
+      "Resposta Correta": "Derfel Cadarn"
+    },
+    {
+      "Pergunta": "Qual é o título do primeiro livro da série \"Jack Reacher\", de Lee Child?",
+      "Opção 1": "Dinheiro Sujo",
+      "Opção 2": "Acerto de Contas",
+      "Opção 3": "Zona de Perigo",
+      "Resposta Correta": "Zona de Perigo"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Chamado Selvagem\", um livro sobre um cão em meio à corrida do ouro?",
+      "Opção 1": "Jack London",
+      "Opção 2": "Mark Twain",
+      "Opção 3": "H.G. Wells",
+      "Resposta Correta": "Jack London"
+    },
+    {
+      "Pergunta": "Qual desses livros narra a busca por um tesouro perdido?",
+      "Opção 1": "O Tesouro da Ilha",
+      "Opção 2": "O Retrato de Dorian Gray",
+      "Opção 3": "Dom Casmurro",
+      "Resposta Correta": "O Tesouro da Ilha"
+    },
+    {
+      "Pergunta": "Qual personagem de \"As Crônicas Saxônicas\" é conhecido como \"o Senhor da Guerra\"?",
+      "Opção 1": "Uhtred de Bebbanburg",
+      "Opção 2": "Ragnar Lothbrok",
+      "Opção 3": "Harald Hardrada",
+      "Resposta Correta": "Uhtred de Bebbanburg"
+    },
+    {
+      "Pergunta": "Em \"Jurassic Park\", o que acontece na ilha?",
+      "Opção 1": "Dinossauros são recriados e escapam",
+      "Opção 2": "Um meteoro destrói o parque",
+      "Opção 3": "Humanos descobrem vida alienígena",
+      "Resposta Correta": "Dinossauros são recriados e escapam"
+    },
+    {
+      "Pergunta": "Quem escreveu \"A Ilha Perdida\", um clássico da literatura infantojuvenil brasileira?",
+      "Opção 1": "Maria José Dupré",
+      "Opção 2": "Monteiro Lobato",
+      "Opção 3": "Ruth Rocha",
+      "Resposta Correta": "Maria José Dupré"
+    },
+    {
+      "Pergunta": "Qual é o primeiro livro da série \"Percy Jackson e os Olimpianos\"?",
+      "Opção 1": "O Ladrão de Raios",
+      "Opção 2": "A Maldição do Titã",
+      "Opção 3": "O Filho de Netuno",
+      "Resposta Correta": "O Ladrão de Raios"
+    },
+    {
+      "Pergunta": "Em \"As Aventuras de Tom Sawyer\", qual é o nome do melhor amigo de Tom?",
+      "Opção 1": "Huckleberry Finn",
+      "Opção 2": "Jim Hawkins",
+      "Opção 3": "D’Artagnan",
+      "Resposta Correta": "Huckleberry Finn"
+    },
+    {
+      "Pergunta": "Qual autor escreveu \"O Último Reino\", que inspirou a série \"The Last Kingdom\"?",
+      "Opção 1": "Bernard Cornwell",
+      "Opção 2": "Ken Follett",
+      "Opção 3": "Wilbur Smith",
+      "Resposta Correta": "Bernard Cornwell"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Cão dos Baskerville\", uma das aventuras mais famosas de Sherlock Holmes?",
+      "Opção 1": "Arthur Conan Doyle",
+      "Opção 2": "Edgar Allan Poe",
+      "Opção 3": "Agatha Christie",
+      "Resposta Correta": "Arthur Conan Doyle"
+    },
+    {
+      "Pergunta": "Qual livro de Michael Crichton inspirou um dos filmes de ficção científica mais icônicos da história?",
+      "Opção 1": "Jurassic Park",
+      "Opção 2": "O Enigma de Andrômeda",
+      "Opção 3": "Linha do Tempo",
+      "Resposta Correta": "Jurassic Park"
+    },
+    {
+      "Pergunta": "Em \"O Último dos Moicanos\", quem é o protagonista?",
+      "Opção 1": "Falcão Olhos de Águia",
+      "Opção 2": "Uhtred",
+      "Opção 3": "Allan Quatermain",
+      "Resposta Correta": "Falcão Olhos de Águia"
+    },
+    {
+      "Pergunta": "Qual desses livros narra a fuga de um presidiário injustamente condenado?",
+      "Opção 1": "O Conde de Monte Cristo",
+      "Opção 2": "A Ilha do Tesouro",
+      "Opção 3": "O Chamado Selvagem",
+      "Resposta Correta": "O Conde de Monte Cristo"
+    },
+    {
+      "Pergunta": "Em \"A Ilha do Tesouro\", qual objeto os personagens buscam?",
+      "Opção 1": "Um mapa do tesouro",
+      "Opção 2": "Um pergaminho mágico",
+      "Opção 3": "Um amuleto sagrado",
+      "Resposta Correta": "Um mapa do tesouro"
+    },
+    {
+      "Pergunta": "Qual desses livros de aventura foi escrito por Wilbur Smith?",
+      "Opção 1": "O Deus do Deserto",
+      "Opção 2": "O Conde de Monte Cristo",
+      "Opção 3": "O Chamado Selvagem",
+      "Resposta Correta": "O Deus do Deserto"
+    },
+    {
+      "Pergunta": "Qual desses livros se passa em uma civilização maia fictícia?",
+      "Opção 1": "O Reino",
+      "Opção 2": "A Fortaleza de Vidro",
+      "Opção 3": "A Cidade Perdida",
+      "Resposta Correta": "O Reino"
+    },
+    {
+      "Pergunta": "Em \"Inferno\", de Dan Brown, qual cidade é um dos principais cenários da história?",
+      "Opção 1": "Florença",
+      "Opção 2": "Roma",
+      "Opção 3": "Paris",
+      "Resposta Correta": "Florença"
+    }
+  ],
+  "Policial": [
+    {
+      "Pergunta": "Quem é o autor de \"O Assassinato no Expresso do Oriente\"?",
+      "Opção 1": "Agatha Christie",
+      "Opção 2": "Arthur Conan Doyle",
+      "Opção 3": "Raymond Chandler",
+      "Resposta Correta": "Agatha Christie"
+    },
+    {
+      "Pergunta": "Qual é o detetive protagonista de \"O Assassinato no Expresso do Oriente\"?",
+      "Opção 1": "Hercule Poirot",
+      "Opção 2": "Sherlock Holmes",
+      "Opção 3": "Philip Marlowe",
+      "Resposta Correta": "Hercule Poirot"
+    },
+    {
+      "Pergunta": "Qual desses romances apresenta um crime cometido em uma ilha isolada?",
+      "Opção 1": "E Não Sobrou Nenhum",
+      "Opção 2": "O Cão dos Baskerville",
+      "Opção 3": "O Silêncio dos Inocentes",
+      "Resposta Correta": "E Não Sobrou Nenhum"
+    },
+    {
+      "Pergunta": "Qual é o nome do parceiro de Sherlock Holmes?",
+      "Opção 1": "Dr. Watson",
+      "Opção 2": "Hercule Poirot",
+      "Opção 3": "Mycroft Holmes",
+      "Resposta Correta": "Dr. Watson"
+    },
+    {
+      "Pergunta": "Qual desses livros de Agatha Christie apresenta um crime em um cruzeiro?",
+      "Opção 1": "Morte no Nilo",
+      "Opção 2": "O Caso dos Dez Negrinhos",
+      "Opção 3": "Assassinato no Expresso do Oriente",
+      "Resposta Correta": "Morte no Nilo"
+    },
+    {
+      "Pergunta": "Quem é o autor de \"O Falcão Maltês\"?",
+      "Opção 1": "Dashiell Hammett",
+      "Opção 2": "Raymond Chandler",
+      "Opção 3": "James Ellroy",
+      "Resposta Correta": "Dashiell Hammett"
+    },
+    {
+      "Pergunta": "Em \"O Cão dos Baskerville\", quem é o detetive que investiga a morte do dono da mansão?",
+      "Opção 1": "Sherlock Holmes",
+      "Opção 2": "Hercule Poirot",
+      "Opção 3": "Auguste Dupin",
+      "Resposta Correta": "Sherlock Holmes"
+    },
+    {
+      "Pergunta": "Qual é o detetive protagonista da série de livros de Raymond Chandler?",
+      "Opção 1": "Philip Marlowe",
+      "Opção 2": "Sam Spade",
+      "Opção 3": "Harry Hole",
+      "Resposta Correta": "Philip Marlowe"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Poderoso Chefão\", um clássico do crime organizado?",
+      "Opção 1": "Mario Puzo",
+      "Opção 2": "James Ellroy",
+      "Opção 3": "Dennis Lehane",
+      "Resposta Correta": "Mario Puzo"
+    },
+    {
+      "Pergunta": "Em \"O Silêncio dos Inocentes\", qual é o nome do serial killer que Hannibal Lecter ajuda a capturar?",
+      "Opção 1": "Buffalo Bill",
+      "Opção 2": "Jack, o Estripador",
+      "Opção 3": "Norman Bates",
+      "Resposta Correta": "Buffalo Bill"
+    },
+    {
+      "Pergunta": "Qual é o primeiro livro da série protagonizada pelo detetive Harry Hole?",
+      "Opção 1": "O Morcego",
+      "Opção 2": "A Estrela do Diabo",
+      "Opção 3": "Boneco de Neve",
+      "Resposta Correta": "O Morcego"
+    },
+    {
+      "Pergunta": "Quem é o autor de \"Boneco de Neve\", um thriller policial nórdico?",
+      "Opção 1": "Jo Nesbø",
+      "Opção 2": "Stieg Larsson",
+      "Opção 3": "Harlan Coben",
+      "Resposta Correta": "Jo Nesbø"
+    },
+    {
+      "Pergunta": "Qual é o primeiro livro da trilogia \"Millennium\", de Stieg Larsson?",
+      "Opção 1": "Os Homens que Não Amavam as Mulheres",
+      "Opção 2": "A Garota na Teia de Aranha",
+      "Opção 3": "A Menina que Brincava com Fogo",
+      "Resposta Correta": "Os Homens que Não Amavam as Mulheres"
+    },
+    {
+      "Pergunta": "Em \"Os Homens que Não Amavam as Mulheres\", qual é o nome da hacker protagonista?",
+      "Opção 1": "Lisbeth Salander",
+      "Opção 2": "Mikaela Blomkvist",
+      "Opção 3": "Clarice Starling",
+      "Resposta Correta": "Lisbeth Salander"
+    },
+    {
+      "Pergunta": "Qual livro de Edgar Allan Poe é considerado a primeira história de detetive da literatura?",
+      "Opção 1": "Os Assassinatos da Rua Morgue",
+      "Opção 2": "O Corvo",
+      "Opção 3": "O Gato Preto",
+      "Resposta Correta": "Os Assassinatos da Rua Morgue"
+    },
+    {
+      "Pergunta": "Qual desses livros de Gillian Flynn envolve um assassinato misterioso?",
+      "Opção 1": "Garota Exemplar",
+      "Opção 2": "O Chamado do Cuco",
+      "Opção 3": "O Alienista",
+      "Resposta Correta": "Garota Exemplar"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Chamado do Cuco\", protagonizado pelo detetive Cormoran Strike?",
+      "Opção 1": "Robert Galbraith",
+      "Opção 2": "John Grisham",
+      "Opção 3": "Harlan Coben",
+      "Resposta Correta": "Robert Galbraith"
+    },
+    {
+      "Pergunta": "Qual detetive protagoniza os livros de Harlan Coben?",
+      "Opção 1": "Myron Bolitar",
+      "Opção 2": "Harry Bosch",
+      "Opção 3": "Sam Spade",
+      "Resposta Correta": "Myron Bolitar"
+    },
+    {
+      "Pergunta": "Qual desses romances policiais foi adaptado para a série \"Mindhunter\"?",
+      "Opção 1": "O Caçador de Mentes",
+      "Opção 2": "O Espião que Sabia Demais",
+      "Opção 3": "A Noite Mais Escura",
+      "Resposta Correta": "O Caçador de Mentes"
+    },
+    {
+      "Pergunta": "Quem escreveu \"A Verdade Sobre o Caso Harry Quebert\"?",
+      "Opção 1": "Joël Dicker",
+      "Opção 2": "John Grisham",
+      "Opção 3": "Stephen King",
+      "Resposta Correta": "Joël Dicker"
+    },
+    {
+      "Pergunta": "Qual é o nome do investigador protagonista dos livros de Michael Connelly?",
+      "Opção 1": "Harry Bosch",
+      "Opção 2": "Jack Reacher",
+      "Opção 3": "Hercule Poirot",
+      "Resposta Correta": "Harry Bosch"
+    },
+    {
+      "Pergunta": "Qual livro de James Ellroy investiga um assassinato real de Hollywood?",
+      "Opção 1": "Dália Negra",
+      "Opção 2": "Cidade das Cinzas",
+      "Opção 3": "O Caso dos Dez Negrinhos",
+      "Resposta Correta": "Dália Negra"
+    },
+    {
+      "Pergunta": "Quem é o autor da série de livros sobre Alex Cross?",
+      "Opção 1": "James Patterson",
+      "Opção 2": "Lee Child",
+      "Opção 3": "Jo Nesbø",
+      "Resposta Correta": "James Patterson"
+    },
+    {
+      "Pergunta": "Qual livro de Truman Capote inaugurou o gênero \"romance de não-ficção policial\"?",
+      "Opção 1": "A Sangue Frio",
+      "Opção 2": "O Poderoso Chefão",
+      "Opção 3": "O Cemitério",
+      "Resposta Correta": "A Sangue Frio"
+    },
+    {
+      "Pergunta": "Qual desses romances de Agatha Christie se passa em um pequeno vilarejo inglês?",
+      "Opção 1": "Um Corpo na Biblioteca",
+      "Opção 2": "O Caso dos Dez Negrinhos",
+      "Opção 3": "Morte no Nilo",
+      "Resposta Correta": "Um Corpo na Biblioteca"
+    },
+    {
+      "Pergunta": "Quem escreveu \"O Doador de Almas\", um romance policial brasileiro?",
+      "Opção 1": "Raphael Montes",
+      "Opção 2": "André Vianco",
+      "Opção 3": "Jô Soares",
+      "Resposta Correta": "Raphael Montes"
+    },
+    {
+      "Pergunta": "Qual livro de Paula Hawkins começa com uma protagonista observando algo suspeito de um trem?",
+      "Opção 1": "A Garota no Trem",
+      "Opção 2": "Em Águas Sombrias",
+      "Opção 3": "Garota Exemplar",
+      "Resposta Correta": "A Garota no Trem"
+    },
+    {
+      "Pergunta": "Qual detetive protagoniza os livros de Henning Mankell?",
+      "Opção 1": "Kurt Wallander",
+      "Opção 2": "Mikael Blomkvist",
+      "Opção 3": "Philip Marlowe",
+      "Resposta Correta": "Kurt Wallander"
+    },
+    {
+      "Pergunta": "Qual livro de Robert Galbraith envolve uma modelo encontrada morta?",
+      "Opção 1": "O Chamado do Cuco",
+      "Opção 2": "A Carreira do Mal",
+      "Opção 3": "Branco Letal",
+      "Resposta Correta": "O Chamado do Cuco"
+    }
+  ]
+}
