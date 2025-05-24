@@ -71,37 +71,34 @@ async function main() {
   const books = await prisma.book.createMany({
     data: [
       {
-        book_id: 1,
-        isbn: 1111111111,
         title: "Clean Code",
-        genre: "Tech",
-        cover: "https://example.com/cleancode.jpg",
         synopsis: "A guide to writing clean code.",
         year: 2008,
         pages: 464,
         authors: "Robert C. Martin",
+        google_book_id: "1111111111",
+        google_image_url:
+          "https://books.google.com/books/content?id=1111111111&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       },
       {
-        book_id: 2,
-        isbn: 2222222222,
         title: "The Hobbit",
-        genre: "Fantasy",
-        cover: "https://example.com/hobbit.jpg",
         synopsis: "A hobbit goes on an adventure.",
         year: 1937,
         pages: 310,
         authors: "J.R.R. Tolkien",
+        google_book_id: "2222222222",
+        google_image_url:
+          "https://books.google.com/books/content?id=2222222222&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       },
       {
-        book_id: 3,
-        isbn: 3333333333,
         title: "1984",
-        genre: "Dystopian",
-        cover: "https://example.com/1984.jpg",
         synopsis: "A chilling dystopian future.",
         year: 1949,
         pages: 328,
         authors: "George Orwell",
+        google_book_id: "3333333333",
+        google_image_url:
+          "https://books.google.com/books/content?id=3333333333&printsec=frontcover&img=1&zoom=1&source=gbs_api",
       },
     ],
   });
@@ -112,7 +109,6 @@ async function main() {
     {
       user_id: createdUsers[0].user_id,
       book_id: 1,
-      title: "Loved Clean Code",
       text: "One of the best books about software craftsmanship.",
       is_spoiler: false,
       is_review: true,
@@ -121,7 +117,6 @@ async function main() {
     {
       user_id: createdUsers[1].user_id,
       book_id: 2,
-      title: "Bilbo Rocks!",
       text: "I love how Bilbo becomes brave.",
       is_spoiler: false,
       is_review: true,
@@ -130,7 +125,6 @@ async function main() {
     {
       user_id: createdUsers[2].user_id,
       book_id: 3,
-      title: "Scary but good",
       text: "1984 is a warning we all should read.",
       is_spoiler: false,
       is_review: true,
@@ -146,7 +140,6 @@ async function main() {
     data: {
       user_id: createdUsers[1].user_id,
       book_id: 1,
-      title: "Comment on Clean Code",
       text: "I agree, Clean Code is amazing!",
       is_spoiler: false,
       is_review: false,
@@ -245,6 +238,24 @@ async function main() {
     ],
   });
   const createdGenres = await prisma.genre.findMany();
+
+  // Add BookGenre relationships
+  await prisma.bookGenre.createMany({
+    data: [
+      {
+        book_id: createdBooks[0].book_id, // Clean Code
+        genre_id: createdGenres[3].genre_id, // Technology
+      },
+      {
+        book_id: createdBooks[1].book_id, // The Hobbit
+        genre_id: createdGenres[0].genre_id, // Fantasy
+      },
+      {
+        book_id: createdBooks[2].book_id, // 1984
+        genre_id: createdGenres[2].genre_id, // Dystopian
+      },
+    ],
+  });
 
   await prisma.userGenre.createMany({
     data: [

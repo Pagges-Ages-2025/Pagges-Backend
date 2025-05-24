@@ -1,7 +1,7 @@
-import { Injectable, NotFoundException } from '@nestjs/common'
-import { PaggesLogger } from 'src/config/winston-logger/pagges-logger.utils'
-import { PrismaService } from '../prisma/prisma.service'
-import { PostDto } from './dto/post.dto'
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { PaggesLogger } from "src/config/winston-logger/pagges-logger.utils";
+import { PrismaService } from "../prisma/prisma.service";
+import { PostDto } from "./dto/post.dto";
 
 @Injectable()
 export class PostsService {
@@ -13,7 +13,6 @@ export class PostsService {
         book_id: true,
         user_id: true,
         is_spoiler: true,
-        title: true,
         text: true,
         is_review: true,
         parent_id: true,
@@ -40,15 +39,15 @@ export class PostsService {
         is_review: true,
       },
       orderBy: {
-        created_at: 'desc',
+        created_at: "desc",
       },
       take: 5,
-    })
+    });
 
     return reviews.map((post) => ({
       ...post,
       likes: post._count.liked_by,
-    }))
+    }));
   }
 
   async createNewPost(dto: PostDto, userId: number) {
@@ -57,18 +56,18 @@ export class PostsService {
         ...dto,
         user_id: userId,
       },
-    })
-    PaggesLogger.log('Created new Post entity: ' + post.post_id)
-    return post
+    });
+    PaggesLogger.log("Created new Post entity: " + post.post_id);
+    return post;
   }
 
   async getBookReviews(id: number) {
     const livro = await this.prismaService.book.findUnique({
       where: { book_id: id },
-    })
+    });
 
     if (!livro) {
-      throw new NotFoundException('Livro não encontrado')
+      throw new NotFoundException("Livro não encontrado");
     }
 
     const postsByBook = await this.prismaService.post.findMany({
@@ -96,18 +95,18 @@ export class PostsService {
         },
       },
       orderBy: {
-        created_at: 'desc',
+        created_at: "desc",
       },
-    })
+    });
 
     if (postsByBook.length == 0) {
       throw new NotFoundException(
-        'Não existe comentários ou resenhas sobre esse livro',
-      )
+        "Não existe comentários ou resenhas sobre esse livro"
+      );
     }
     return {
       status: 200,
-      message: 'Resenhas e comentários encontrados com sucesso',
+      message: "Resenhas e comentários encontrados com sucesso",
       data: postsByBook.map((post) => ({
         autor: post.user,
         texto: post.text,
@@ -115,12 +114,11 @@ export class PostsService {
         curtidas: post._count.liked_by,
         comentarios: post._count.comments,
         spoiler: post.is_spoiler,
-        tipo: post.is_review ? 'Resenha' : 'Comentário',
-        titulo: post.title,
+        tipo: post.is_review ? "Resenha" : "Comentário",
         livro: post.livro,
         post_id: post.post_id,
         id_postPai: post.parent_id,
       })),
-    }
+    };
   }
 }
