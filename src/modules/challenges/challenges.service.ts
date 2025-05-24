@@ -1,4 +1,9 @@
-import { Injectable, NotFoundException, OnModuleInit } from "@nestjs/common";
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+  OnModuleInit,
+} from "@nestjs/common";
 import { PaggesLogger } from "src/config/winston-logger/pagges-logger.utils";
 import { PrismaService } from "../prisma/prisma.service";
 import { ChallengeRequestDto } from "./dto/challenge.dto";
@@ -213,6 +218,20 @@ export class ChallengesService implements OnModuleInit {
       },
     });
 
+    const userChallenge = await this.prisma.challengeUser.findFirst({
+      where: {
+        challenge_id: challengeAnswered.challenge_id,
+        user_id: userId,
+      },
+    });
+
+    if (userChallenge) {
+      PaggesLogger.log(
+        `User ${userId} already answered challenge ${challengeAnswered.challenge_id}`
+      );
+      throw new BadRequestException("User already answered this challenge");
+    }
+
     await this.prisma.challengeUser.create({
       data: {
         challenge_id: challengeAnswered.challenge_id,
@@ -223,7 +242,9 @@ export class ChallengesService implements OnModuleInit {
 
     if (!alternative.is_correct) {
       PaggesLogger.log("User selected wrong alternative. Nothing to do");
-      return;
+      return {
+        user_guessed_correctly: false,
+      };
     }
 
     PaggesLogger.log(
@@ -242,6 +263,10 @@ export class ChallengesService implements OnModuleInit {
     PaggesLogger.log(
       `User ${userId} has ${updatedUser.points} points after answering challenge ${challengeAnswered.challenge_id}`
     );
+
+    return {
+      user_guessed_correctly: true,
+    };
   }
 
   async getCurrentChallenge() {

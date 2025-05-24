@@ -63,6 +63,7 @@ export class ChallengesController {
   }
 
   @Post("challenge-answer")
+  @HttpCode(200)
   async updateUserPoints(
     @UserTokenInfo() jwtPayload: JwtPayload,
     @Body() updateUserBody: UpdateUserPointsDto
