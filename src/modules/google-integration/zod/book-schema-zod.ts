@@ -1,4 +1,4 @@
-import { z } from 'zod'
+import { z } from "zod";
 
 export const VolumeSchema = z.object({
   kind: z.string().nullish(),
@@ -19,7 +19,7 @@ export const VolumeSchema = z.object({
             type: z.string().nullish(),
             identifier: z.string().nullish(),
           })
-          .nullish(),
+          .nullish()
       )
       .nullish(),
     pageCount: z.number().nullish(),
@@ -131,7 +131,14 @@ export const VolumeSchema = z.object({
       textSnippet: z.string().nullish(),
     })
     .nullish(),
-})
+});
 
-export const GoogleBooksVolumesSchema = VolumeSchema.array()
-export type GoogleBooksVolumesType = z.infer<typeof GoogleBooksVolumesSchema>
+export const GoogleBooksResponseSchema = z.object({
+  items: VolumeSchema.array().nullish(),
+  totalItems: z.number().nullish(),
+  kind: z.string().nullish(),
+});
+
+// Keep the original type for backward compatibility
+export const GoogleBooksVolumesSchema = VolumeSchema.array();
+export type GoogleBooksVolumesType = z.infer<typeof GoogleBooksVolumesSchema>;
