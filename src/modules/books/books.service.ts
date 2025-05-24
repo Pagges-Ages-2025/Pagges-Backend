@@ -207,11 +207,6 @@ export class BooksService {
       throw new NotFoundException('Nenhum livro em alta encontrado');
     }
 
-    const serializedBooks = trendingBooks.map((book) => ({
-      ...book,
-      isbn: book.isbn ? book.isbn.toString() : null,
-    }));
-
-    return serializedBooks;
+    return trendingBooks;
   }
 }
