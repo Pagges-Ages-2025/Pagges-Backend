@@ -51,21 +51,20 @@ model User {
 }
 
 model Book {
-  book_id          Int      @id
-  isbn             BigInt?
-  title            String?  @db.VarChar(255)
-  genre            String?  @db.VarChar(255)
-  cover            String?  @db.VarChar(1000)
-  synopsis         String?  @db.VarChar(1000)
+  book_id          Int      @id @default(autoincrement())
+  google_book_id   String   @unique
+  title            String   @db.VarChar(8000)
+  synopsis         String?  @db.VarChar(8000)
   year             Int?
   pages            Int?
-  authors          String?  @db.VarChar(255)
-  google_image_url String?  @db.VarChar(1000)
+  authors          String?  @db.VarChar(8000)
+  google_image_url String?  @db.VarChar(8000)
   created_at       DateTime @default(now()) @db.Timestamptz
 
   in_user_bookshelf UserBookshelfState[]
   posts             Post[]
   ratings           RateBook[]
+  BookGenre         BookGenre[]
 
   @@map("book")
 }
@@ -75,7 +74,6 @@ model Post {
   book_id    Int
   user_id    Int
   is_spoiler Boolean  @default(false)
-  title      String?  @db.VarChar(255)
   text       String   @db.VarChar(1000)
   is_review  Boolean  @default(false)
   parent_id  Int?
@@ -96,6 +94,7 @@ model Challenge {
   points       Int
   question     String   @db.VarChar(255)
   created_at   DateTime @default(now()) @db.Timestamptz
+  is_current   Boolean  @default(false)
 
   users        ChallengeUser[]
   alternatives Alternative[]
@@ -104,9 +103,10 @@ model Challenge {
 }
 
 model ChallengeUser {
-  user_id      Int
-  challenge_id Int
-  created_at   DateTime @default(now()) @db.Timestamptz
+  user_id                    Int
+  challenge_id               Int
+  created_at                 DateTime @default(now()) @db.Timestamptz
+  has_user_guessed_correctly Boolean
 
   user      User      @relation(fields: [user_id], references: [user_id])
   challenge Challenge @relation(fields: [challenge_id], references: [challenge_id])
@@ -118,7 +118,7 @@ model ChallengeUser {
 model Alternative {
   alternative_id Int      @id @default(autoincrement())
   is_correct     Boolean  @default(false)
-  question       String   @db.VarChar(255)
+  answer         String   @db.VarChar(255)
   challenge_id   Int
   created_at     DateTime @default(now()) @db.Timestamptz
 
@@ -127,11 +127,25 @@ model Alternative {
   @@map("alternative")
 }
 
-model Genre {
-  genre_id   Int    @id @default(autoincrement())
-  genre_name String @db.VarChar(255) @unique
+model BookGenre {
+  book_id    Int
+  genre_id   Int
+  created_at DateTime @default(now()) @db.Timestamptz
 
-  users UserGenre[]
+  book  Book  @relation(fields: [book_id], references: [book_id])
+  genre Genre @relation(fields: [genre_id], references: [genre_id])
+
+  @@id([book_id, genre_id])
+  @@map("book_genre")
+}
+
+model Genre {
+  genre_id   Int      @id @default(autoincrement())
+  genre_name String   @unique @db.VarChar(255)
+  created_at DateTime @default(now()) @db.Timestamptz
+
+  users     UserGenre[]
+  BookGenre BookGenre[]
 
   @@map("genre")
 }

@@ -1,65 +1,74 @@
-import { Injectable, InternalServerErrorException } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
-import axios from 'axios'
-import { PaggesLogger } from 'src/config/winston-logger/pagges-logger.utils'
-import { FormattedBooksDtoResponse } from './dto/formattedBooksResponse.dto'
-import { ImageLinks } from './types/types'
+import { Injectable, InternalServerErrorException } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
+import axios from "axios";
+import { PaggesLogger } from "src/config/winston-logger/pagges-logger.utils";
+import { FormattedBooksDtoResponse } from "./dto/formattedBooksResponse.dto";
+import { ImageLinks } from "./types/types";
 import {
-  GoogleBooksVolumesSchema,
+  GoogleBooksResponseSchema,
   GoogleBooksVolumesType,
-} from './zod/book-schema-zod'
+} from "./zod/book-schema-zod";
 @Injectable()
 export class GoogleIntegrationService {
-  private readonly apiKey: string
-  private readonly API_URL = 'https://www.googleapis.com/books/v1/volumes'
+  private readonly apiKey: string;
+  private readonly API_URL = "https://www.googleapis.com/books/v1/volumes";
 
   constructor(private readonly configService: ConfigService) {
-    this.apiKey = this.configService.getOrThrow('GOOGLE_API_KEY')
+    this.apiKey = this.configService.getOrThrow("GOOGLE_API_KEY");
   }
 
   async searchBooks(queryParam: string) {
     try {
-      const query = `intitle:${queryParam}`
-      const books = await this.callGoogleBooksApi(query)
+      const query = `intitle:${queryParam}`;
+      const books = await this.callGoogleBooksApi(query);
       if (!books) {
-        throw new InternalServerErrorException('Books data is undefined')
+        throw new InternalServerErrorException("Books data is undefined");
       }
-      return await this.formatBooksForResponseDto(books)
+      return await this.formatBooksForResponseDto(books);
     } catch (error) {
-      PaggesLogger.error('Erro ao buscar livros:', error)
-      throw error
+      PaggesLogger.error("Erro ao buscar livros:", error);
+      throw error;
     }
   }
 
-  async searchByGenre(genero: string) {
-    const query = `subject:${genero}`
-    const data = await this.callGoogleBooksApi(query)
-    if (!data) {
-      throw new InternalServerErrorException('Books data is undefined')
+  async searchByGenre(genres: string[]) {
+    const genreResponseList: FormattedBooksDtoResponse[] = [];
+    for (const genre of genres) {
+      const query = `subject:${genre}`;
+      const data = await this.callGoogleBooksApi(query);
+      if (!data) {
+        throw new InternalServerErrorException("Books data is undefined");
+      }
+
+      const formatedBooks = await this.formatBooksForResponseDto(data);
+      genreResponseList.push(...formatedBooks);
     }
-    return await this.formatBooksForResponseDto(data)
+    return genreResponseList.sort();
   }
 
   private async upscaleGoogleBooksCoverImage(
-    googleBooksImageLink: string,
+    googleBooksImageLink: string
   ): Promise<string | null> {
-    const imageCandidateUrl = googleBooksImageLink.replace(/zoom=\d/, 'zoom=10')
+    const imageCandidateUrl = googleBooksImageLink.replace(
+      /zoom=\d/,
+      "zoom=10"
+    );
 
-    const responseHeaders = await axios.head(imageCandidateUrl)
+    const responseHeaders = await axios.head(imageCandidateUrl);
 
     if (
-      responseHeaders.headers['content-length'] !== '9103' &&
-      responseHeaders.headers['content-length'] !== '4448'
+      responseHeaders.headers["content-length"] !== "9103" &&
+      responseHeaders.headers["content-length"] !== "4448"
     ) {
-      return imageCandidateUrl
+      return imageCandidateUrl;
     }
-    return null
+    return null;
   }
 
   private async formatBooksForResponseDto(books: GoogleBooksVolumesType) {
     const formattedBooks: FormattedBooksDtoResponse[] = await Promise.all(
       books.map(async (book) => {
-        const volumeInfo = book.volumeInfo
+        const volumeInfo = book.volumeInfo;
 
         if (
           !volumeInfo.title ||
@@ -69,28 +78,28 @@ export class GoogleIntegrationService {
           !volumeInfo.imageLinks ||
           !volumeInfo.publishedDate
         ) {
-          return null
+          return null;
         }
         const bestBookCoverImage = this.getBestGoogleCoverBookImage(
-          volumeInfo.imageLinks,
-        )
+          volumeInfo.imageLinks
+        );
 
         if (!bestBookCoverImage) {
-          return null
+          return null;
         }
 
         const upscaledGoogleImageBook =
-          await this.upscaleGoogleBooksCoverImage(bestBookCoverImage)
+          await this.upscaleGoogleBooksCoverImage(bestBookCoverImage);
 
         if (!upscaledGoogleImageBook) {
-          return null
+          return null;
         }
 
         return {
-          id: book.id, // Adicionando o ID do livro na resposta
+          id: book.id,
           titulo: volumeInfo.title,
           autores: volumeInfo.authors.filter(
-            (author): author is string => !!author,
+            (author): author is string => !!author
           ),
           capa: upscaledGoogleImageBook,
           paginas: volumeInfo.pageCount,
@@ -98,13 +107,13 @@ export class GoogleIntegrationService {
           anoDePublicacao: volumeInfo.publishedDate,
           generos: volumeInfo.categories
             ? volumeInfo.categories.filter(
-                (category): category is string => !!category,
+                (category): category is string => !!category
               )
             : undefined,
-        }
-      }),
-    ).then((books) => books.filter((book) => book !== null)) // Filter undesired books
-    return formattedBooks
+        };
+      })
+    ).then((books) => books.filter((book) => book !== null)); // Filter undesired books
+    return formattedBooks;
   }
 
   private getBestGoogleCoverBookImage(imageLinks: ImageLinks): string | null {
@@ -116,118 +125,123 @@ export class GoogleIntegrationService {
       imageLinks.small,
       imageLinks.thumbnail,
       imageLinks.smallThumbnail,
-    ]
+    ];
 
-    return priority.find(Boolean) ?? null
+    return priority.find(Boolean) ?? null;
   }
 
   private async callGoogleBooksApi(queryParams: string) {
     try {
-      const urlByTitle = `${this.API_URL}?q=${queryParams}&langRestrict=pt-BR&maxResults=30&printType=books&key=${this.apiKey}`
+      const urlByTitle = `${this.API_URL}?q=${queryParams}&langRestrict=pt-BR&maxResults=30&printType=books&key=${this.apiKey}`;
 
-      const googleResponse = await axios.get(urlByTitle)
+      const googleResponse = await axios.get(urlByTitle);
 
-      const parsedResponse = GoogleBooksVolumesSchema.safeParse(
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-        googleResponse.data.items,
-      )
+      const parsedResponse = GoogleBooksResponseSchema.safeParse(
+        googleResponse.data
+      );
 
       if (parsedResponse.error) {
         PaggesLogger.error(
-          'Error parsing Google Books API response: ' +
-            JSON.stringify(parsedResponse.error),
-        )
-        throw new InternalServerErrorException()
+          "Error parsing Google Books API response: " +
+            JSON.stringify(parsedResponse.error)
+        );
+        throw new InternalServerErrorException();
       }
 
-      const uniqueBooks = this.getUniqueBooksById(parsedResponse.data)
+      if (!parsedResponse.data.items) {
+        return [];
+      }
 
-      PaggesLogger.log('Successfully called Google Books API')
-      return uniqueBooks
+      const uniqueBooks = this.getUniqueBooksById(parsedResponse.data.items);
+
+      PaggesLogger.log("Successfully called Google Books API");
+      return uniqueBooks;
     } catch (error) {
       if (axios.isAxiosError(error)) {
         PaggesLogger.error(
-          'An error occoured when calling Google API - Error:' + error.message,
-        )
-        throw new InternalServerErrorException()
+          "An error occoured when calling Google API - Error:" + error.message
+        );
+        throw new InternalServerErrorException();
       }
     }
   }
 
   private getUniqueBooksById(
-    books: GoogleBooksVolumesType,
+    books: GoogleBooksVolumesType
   ): GoogleBooksVolumesType {
-    const booksIds = new Set<string>()
-    const uniqueBooks: GoogleBooksVolumesType = []
+    const booksIds = new Set<string>();
+    const uniqueBooks: GoogleBooksVolumesType = [];
 
     for (const book of books) {
       if (!booksIds.has(book.id)) {
-        booksIds.add(book.id)
-        uniqueBooks.push(book)
+        booksIds.add(book.id);
+        uniqueBooks.push(book);
       }
     }
 
-    return uniqueBooks
+    return uniqueBooks;
   }
 
   async getBookById(bookId: string) {
     try {
-      PaggesLogger.log(`Buscando livro com ID ${bookId} na API do Google Books`)
-      const url = `${this.API_URL}/${bookId}?key=${this.apiKey}`
+      PaggesLogger.log(
+        `Buscando livro com ID ${bookId} na API do Google Books`
+      );
+      const url = `${this.API_URL}/${bookId}?key=${this.apiKey}`;
 
-      const response = await axios.get(url)
+      const response = await axios.get(url);
 
       if (!response.data || !response.data.volumeInfo) {
-        PaggesLogger.error(`Dados do livro não encontrados para ID ${bookId}`)
+        PaggesLogger.error(`Dados do livro não encontrados para ID ${bookId}`);
         throw new InternalServerErrorException(
-          'Livro não encontrado na API do Google',
-        )
+          "Livro não encontrado na API do Google"
+        );
       }
 
-      const volumeInfo = response.data.volumeInfo
+      const volumeInfo = response.data.volumeInfo;
 
       // Log para depuração
-      PaggesLogger.log(`Livro encontrado: ${volumeInfo.title}`)
+      PaggesLogger.log(`Livro encontrado: ${volumeInfo.title}`);
 
       // Obtém a melhor imagem de capa disponível
       const bestBookCoverImage = volumeInfo.imageLinks
         ? this.getBestGoogleCoverBookImage(volumeInfo.imageLinks)
-        : null
+        : null;
 
       // Tenta melhorar a qualidade da imagem se disponível
       const upscaledGoogleImageBook = bestBookCoverImage
         ? await this.upscaleGoogleBooksCoverImage(bestBookCoverImage)
-        : null
+        : null;
 
       return {
         googleBookId: bookId,
-        title: volumeInfo.title || 'Sem título',
-        authors: volumeInfo.authors?.join(', ') || 'Autor desconhecido',
+        title: volumeInfo.title || "Sem título",
+        authors: volumeInfo.authors?.join(", ") || "Autor desconhecido",
         cover: bestBookCoverImage,
         google_image_url: upscaledGoogleImageBook || bestBookCoverImage,
-        synopsis: volumeInfo.description || 'Sem sinopse disponível',
+        synopsis: volumeInfo.description || "Sem sinopse disponível",
         year: volumeInfo.publishedDate
           ? volumeInfo.publishedDate.substring(0, 4)
           : null,
         pages: volumeInfo.pageCount || 0,
-        genre: volumeInfo.categories?.join(', ') || 'Gênero desconhecido',
-      }
+        genre: volumeInfo.categories?.join(", ") || "Gênero desconhecido",
+      };
     } catch (error) {
       if (axios.isAxiosError(error)) {
         PaggesLogger.error(
-          `Erro do Axios ao buscar livro com ID ${bookId}: ${error.message}`,
-        )
+          `Erro do Axios ao buscar livro com ID ${bookId}: ${error.message}`
+        );
         PaggesLogger.error(
-          `Detalhes do erro: ${JSON.stringify(error.response?.data || {})}`,
-        )
+          `Detalhes do erro: ${JSON.stringify(error.response?.data || {})}`
+        );
       } else {
         PaggesLogger.error(
-          `Erro ao buscar livro com ID ${bookId}: ${error.message}`,
-        )
+          `Erro ao buscar livro com ID ${bookId}: ${error.message}`
+        );
       }
       throw new InternalServerErrorException(
-        'Erro ao buscar livro na API do Google',
-      )
+        "Erro ao buscar livro na API do Google"
+      );
     }
   }
 }
