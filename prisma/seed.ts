@@ -78,7 +78,7 @@ async function main() {
         authors: "Robert C. Martin",
         google_book_id: "1111111111",
         google_image_url:
-          "https://books.google.com/books/content?id=1111111111&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+          "https://books.google.com/books/content?id=_i6bDeoCQzsC&printsec=frontcover&img=1&zoom=10&edge=curl&source=gbs_api",
       },
       {
         title: "The Hobbit",
@@ -88,7 +88,7 @@ async function main() {
         authors: "J.R.R. Tolkien",
         google_book_id: "2222222222",
         google_image_url:
-          "https://books.google.com/books/content?id=2222222222&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+          "https://books.google.com/books/content?id=CixXEAAAQBAJ&printsec=frontcover&img=1&zoom=10&source=gbs_api",
       },
       {
         title: "1984",
@@ -98,7 +98,78 @@ async function main() {
         authors: "George Orwell",
         google_book_id: "3333333333",
         google_image_url:
-          "https://books.google.com/books/content?id=3333333333&printsec=frontcover&img=1&zoom=1&source=gbs_api",
+          "https://books.google.com/books/content?id=EKgWEAAAQBAJ&printsec=frontcover&img=1&zoom=10&edge=curl&source=gbs_api",
+      },
+      {
+        title: "The Great Gatsby",
+        synopsis: "A story of the American Dream and its corruption.",
+        year: 1925,
+        pages: 180,
+        authors: "F. Scott Fitzgerald",
+        google_book_id: "4444444444",
+        google_image_url:
+          "https://books.google.com/books/content?id=adjCx-wnhWsC&printsec=frontcover&img=1&zoom=10&edge=curl&source=gbs_api",
+      },
+      {
+        title: "To Kill a Mockingbird",
+        synopsis:
+          "A classic of modern American literature about racial injustice.",
+        year: 1960,
+        pages: 281,
+        authors: "Harper Lee",
+        google_book_id: "5555555555",
+        google_image_url:
+          "https://books.google.com/books/content?id=P5LEDQAAQBAJ&printsec=frontcover&img=1&zoom=10&edge=curl&source=gbs_api",
+      },
+      {
+        title: "The Lord of the Rings",
+        synopsis:
+          "An epic high-fantasy novel about the quest to destroy the One Ring.",
+        year: 1954,
+        pages: 1178,
+        authors: "J.R.R. Tolkien",
+        google_book_id: "6666666666",
+        google_image_url:
+          "http://books.google.com/books/content?id=GWorEAAAQBAJ&printsec=frontcover&img=1&zoom=10&edge=curl&source=gbs_api",
+      },
+      {
+        title: "Pride and Prejudice",
+        synopsis: "A romantic novel of manners about the Bennet family.",
+        year: 1813,
+        pages: 432,
+        authors: "Jane Austen",
+        google_book_id: "7777777777",
+        google_image_url:
+          "http://books.google.com/books/content?id=s1gVAAAAYAAJ&printsec=frontcover&img=1&zoom=10&source=gbs_api",
+      },
+      {
+        title: "The Catcher in the Rye",
+        synopsis: "A classic coming-of-age story about teenage alienation.",
+        year: 1951,
+        pages: 277,
+        authors: "J.D. Salinger",
+        google_book_id: "8888888888",
+        google_image_url: "https://m.media-amazon.com/images/I/91fQEUwFMyL.jpg",
+      },
+      {
+        title: "The Alchemist",
+        synopsis: "A philosophical novel about following your dreams.",
+        year: 1988,
+        pages: 208,
+        authors: "Paulo Coelho",
+        google_book_id: "9999999999",
+        google_image_url:
+          "https://m.media-amazon.com/images/I/71+2-t7M35L._AC_UF1000,1000_QL80_DpWeblab_.jpg",
+      },
+      {
+        title: "The Little Prince",
+        synopsis:
+          "A poetic tale about a young prince who visits various planets.",
+        year: 1943,
+        pages: 111,
+        authors: "Antoine de Saint-Exupéry",
+        google_book_id: "0000000000",
+        google_image_url: "https://m.media-amazon.com/images/I/71OZY035QKL.jpg",
       },
     ],
   });
@@ -126,6 +197,62 @@ async function main() {
       user_id: createdUsers[2].user_id,
       book_id: 3,
       text: "1984 is a warning we all should read.",
+      is_spoiler: false,
+      is_review: true,
+      parent_id: null,
+    },
+    {
+      user_id: createdUsers[0].user_id,
+      book_id: 4,
+      text: "A masterpiece about the American Dream. The symbolism is incredible.",
+      is_spoiler: false,
+      is_review: true,
+      parent_id: null,
+    },
+    {
+      user_id: createdUsers[1].user_id,
+      book_id: 5,
+      text: "A powerful story about justice and growing up. Atticus Finch is one of the greatest literary characters.",
+      is_spoiler: false,
+      is_review: true,
+      parent_id: null,
+    },
+    {
+      user_id: createdUsers[2].user_id,
+      book_id: 6,
+      text: "The world-building in this book is absolutely incredible. Tolkien's masterpiece.",
+      is_spoiler: false,
+      is_review: true,
+      parent_id: null,
+    },
+    {
+      user_id: createdUsers[0].user_id,
+      book_id: 7,
+      text: "Jane Austen's wit and social commentary are timeless. Elizabeth Bennet is such a strong character.",
+      is_spoiler: false,
+      is_review: true,
+      parent_id: null,
+    },
+    {
+      user_id: createdUsers[1].user_id,
+      book_id: 8,
+      text: "Holden's voice is so authentic. A perfect portrayal of teenage alienation.",
+      is_spoiler: false,
+      is_review: true,
+      parent_id: null,
+    },
+    {
+      user_id: createdUsers[2].user_id,
+      book_id: 9,
+      text: "A beautiful allegory about following your dreams. Very inspiring.",
+      is_spoiler: false,
+      is_review: true,
+      parent_id: null,
+    },
+    {
+      user_id: createdUsers[0].user_id,
+      book_id: 10,
+      text: "A profound story that speaks to both children and adults. The Little Prince teaches us about love and loss.",
       is_spoiler: false,
       is_review: true,
       parent_id: null,
@@ -235,6 +362,10 @@ async function main() {
       { genre_name: "Science Fiction" },
       { genre_name: "Dystopian" },
       { genre_name: "Technology" },
+      { genre_name: "Classic Literature" },
+      { genre_name: "Romance" },
+      { genre_name: "Philosophy" },
+      { genre_name: "Coming of Age" },
     ],
   });
   const createdGenres = await prisma.genre.findMany();
@@ -253,6 +384,34 @@ async function main() {
       {
         book_id: createdBooks[2].book_id, // 1984
         genre_id: createdGenres[2].genre_id, // Dystopian
+      },
+      {
+        book_id: createdBooks[3].book_id, // The Great Gatsby
+        genre_id: createdGenres[4].genre_id, // Classic Literature
+      },
+      {
+        book_id: createdBooks[4].book_id, // To Kill a Mockingbird
+        genre_id: createdGenres[4].genre_id, // Classic Literature
+      },
+      {
+        book_id: createdBooks[5].book_id, // The Lord of the Rings
+        genre_id: createdGenres[0].genre_id, // Fantasy
+      },
+      {
+        book_id: createdBooks[6].book_id, // Pride and Prejudice
+        genre_id: createdGenres[5].genre_id, // Romance
+      },
+      {
+        book_id: createdBooks[7].book_id, // The Catcher in the Rye
+        genre_id: createdGenres[7].genre_id, // Coming of Age
+      },
+      {
+        book_id: createdBooks[8].book_id, // The Alchemist
+        genre_id: createdGenres[6].genre_id, // Philosophy
+      },
+      {
+        book_id: createdBooks[9].book_id, // The Little Prince
+        genre_id: createdGenres[6].genre_id, // Philosophy
       },
     ],
   });
@@ -300,6 +459,41 @@ async function main() {
         book_id: createdBooks[2].book_id,
         rating: 3,
       },
+      {
+        user_id: createdUsers[0].user_id,
+        book_id: createdBooks[3].book_id,
+        rating: 5,
+      },
+      {
+        user_id: createdUsers[1].user_id,
+        book_id: createdBooks[4].book_id,
+        rating: 5,
+      },
+      {
+        user_id: createdUsers[2].user_id,
+        book_id: createdBooks[5].book_id,
+        rating: 5,
+      },
+      {
+        user_id: createdUsers[0].user_id,
+        book_id: createdBooks[6].book_id,
+        rating: 4,
+      },
+      {
+        user_id: createdUsers[1].user_id,
+        book_id: createdBooks[7].book_id,
+        rating: 4,
+      },
+      {
+        user_id: createdUsers[2].user_id,
+        book_id: createdBooks[8].book_id,
+        rating: 5,
+      },
+      {
+        user_id: createdUsers[0].user_id,
+        book_id: createdBooks[9].book_id,
+        rating: 5,
+      },
     ],
   });
 
@@ -319,6 +513,41 @@ async function main() {
         user_id: createdUsers[2].user_id,
         book_id: createdBooks[2].book_id,
         state: "TO_BE_READ",
+      },
+      {
+        user_id: createdUsers[0].user_id,
+        book_id: createdBooks[3].book_id,
+        state: "READ",
+      },
+      {
+        user_id: createdUsers[1].user_id,
+        book_id: createdBooks[4].book_id,
+        state: "READ",
+      },
+      {
+        user_id: createdUsers[2].user_id,
+        book_id: createdBooks[5].book_id,
+        state: "READING",
+      },
+      {
+        user_id: createdUsers[0].user_id,
+        book_id: createdBooks[6].book_id,
+        state: "READ",
+      },
+      {
+        user_id: createdUsers[1].user_id,
+        book_id: createdBooks[7].book_id,
+        state: "TO_BE_READ",
+      },
+      {
+        user_id: createdUsers[2].user_id,
+        book_id: createdBooks[8].book_id,
+        state: "READ",
+      },
+      {
+        user_id: createdUsers[0].user_id,
+        book_id: createdBooks[9].book_id,
+        state: "READ",
       },
     ],
   });
