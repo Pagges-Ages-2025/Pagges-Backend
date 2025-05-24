@@ -44,4 +44,9 @@ export class BooksController {
   getBookScreen(@Param('bookId', ParseIntPipe) bookId: number) {
     return this.booksService.getBookScreen(bookId)
   }
+
+  @Get('trending')
+  gerTrendingBooks() {
+    return this.booksService.getTrendingBooks();
+  }
 }

@@ -83,8 +83,6 @@ export class BooksService {
         }
     }
 
-    
-
     async getBookScreen(book_id: number) {
       const bookInfo = await this.prisma.book.findUnique({
         where: {
@@ -105,4 +103,48 @@ export class BooksService {
       return[bookInfo, bookByAuthor]
     }
 
+  async getTrendingBooks() {
+    const ratedBooks = await this.prisma.rateBook.groupBy({
+      by: ['book_id'],
+      _avg: {
+        rating: true,
+      },
+      having: {
+        rating: {
+          _avg: {
+            gt: 4,
+          },
+        },
+      },
+    });
+
+    if(!ratedBooks || ratedBooks.length === 0) {
+      throw new NotFoundException('Nenhum livro bem avaliado encontrado');
+    }
+
+    const bookIds = ratedBooks.map((b) => b.book_id);
+
+    const trendingBooks = await this.prisma.book.findMany({
+      where: {
+        book_id: {
+          in: bookIds,
+        },
+      },
+      include: {
+        ratings: true, 
+      },
+      take: 10, 
+    });
+
+    if (!trendingBooks || trendingBooks.length === 0) {
+      throw new NotFoundException('Nenhum livro em alta encontrado');
+    }
+
+    const serializedBooks = trendingBooks.map((book) => ({
+      ...book,
+      isbn: book.isbn ? book.isbn.toString() : null,
+    }));
+
+    return serializedBooks;
+  }
 }
