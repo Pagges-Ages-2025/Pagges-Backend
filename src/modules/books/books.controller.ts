@@ -51,4 +51,9 @@ export class BooksController {
   async registerBookInDatabase(@Body() book: BookToRegisterDto) {
     return await this.booksService.registerBookInDatabase(book);
   }
+
+  @Get('trending')
+  gerTrendingBooks() {
+    return this.booksService.getTrendingBooks();
+  }
 }

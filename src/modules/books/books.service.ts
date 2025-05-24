@@ -170,4 +170,53 @@ export class BooksService {
       data: newBook,
     };
   }
+
+  async getTrendingBooks() {
+    const ratedBooks = await this.prisma.rateBook.groupBy({
+      by: ['book_id'],
+      _avg: {
+        rating: true,
+      },
+      having: {
+        rating: {
+          _avg: {
+            gt: 4,
+          },
+        },
+      },
+    });
+
+    if (!ratedBooks || ratedBooks.length === 0) {
+      throw new NotFoundException('Nenhum livro bem avaliado encontrado');
+    }
+
+    const bookIds = ratedBooks.map((b) => b.book_id);
+
+    const avgRatingMap = new Map<number, number>(
+      ratedBooks.map((b) => [b.book_id, b._avg.rating ?? 0])
+    );
+
+    const trendingBooks = await this.prisma.book.findMany({
+      where: {
+        book_id: {
+          in: bookIds,
+        },
+      },
+      include: {
+        ratings: true,
+      },
+      take: 10,
+    });
+
+    if (!trendingBooks || trendingBooks.length === 0) {
+      throw new NotFoundException('Nenhum livro em alta encontrado');
+    }
+
+    const booksWithAvg = trendingBooks.map((book) => ({
+      ...book,
+      averageRating: avgRatingMap.get(book.book_id) ?? null,
+    }));
+
+    return booksWithAvg;
+  }
 }
