@@ -4,6 +4,7 @@ import { PrismaClient } from "@prisma/client";
 import * as bcrypt from "bcrypt";
 import * as fs from "fs";
 import * as path from "path";
+import { challengeSeed } from "./seed-dev-challenges";
 
 const prisma = new PrismaClient();
 
@@ -274,72 +275,11 @@ async function main() {
     },
   });
 
-  // Generate challenges with more diverse content
-  const challenges = [
-    {
-      points: 10,
-      question: "What is the main theme of 'To Kill a Mockingbird'?",
-      alternatives: [
-        { answer: "Racial injustice and moral growth", is_correct: true },
-        { answer: "Romantic love and relationships", is_correct: false },
-        { answer: "Political corruption", is_correct: false },
-        { answer: "Environmental conservation", is_correct: false },
-      ],
-    },
-    {
-      points: 15,
-      question: "Who is the author of '1984'?",
-      alternatives: [
-        { answer: "George Orwell", is_correct: true },
-        { answer: "Aldous Huxley", is_correct: false },
-        { answer: "Ray Bradbury", is_correct: false },
-        { answer: "H.G. Wells", is_correct: false },
-      ],
-    },
-    {
-      points: 20,
-      question: "What is the setting of 'The Great Gatsby'?",
-      alternatives: [
-        { answer: "Long Island during the Roaring Twenties", is_correct: true },
-        { answer: "New York City in the 1950s", is_correct: false },
-        { answer: "Chicago during Prohibition", is_correct: false },
-        { answer: "Los Angeles in the 1920s", is_correct: false },
-      ],
-    },
-    {
-      points: 25,
-      question: "Which book features the character Holden Caulfield?",
-      alternatives: [
-        { answer: "The Catcher in the Rye", is_correct: true },
-        { answer: "On the Road", is_correct: false },
-        { answer: "The Bell Jar", is_correct: false },
-        { answer: "A Separate Peace", is_correct: false },
-      ],
-    },
-    {
-      points: 30,
-      question: "What is the main conflict in 'Lord of the Flies'?",
-      alternatives: [
-        { answer: "Civilization vs. Savagery", is_correct: true },
-        { answer: "Good vs. Evil", is_correct: false },
-        { answer: "Nature vs. Nurture", is_correct: false },
-        { answer: "Individual vs. Society", is_correct: false },
-      ],
-    },
-  ];
+  await challengeSeed(prisma);
 
-  // Create challenges and their alternatives
-  for (const challengeData of challenges) {
-    const challenge = await prisma.challenge.create({
-      data: {
-        points: challengeData.points,
-        question: challengeData.question,
-        alternatives: {
-          create: challengeData.alternatives,
-        },
-      },
-    });
+  const challenges = await prisma.challenge.findMany();
 
+  for (const challenge of challenges) {
     // Create challenge-user relationships for all users
     for (const user of createdUsers) {
       // Randomly decide if this user has attempted this challenge
