@@ -1,0 +1,39 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: DB-PROD-PASSWORD # Change this in production
+      POSTGRES_DB: pagges
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - pagges-network
+
+  pagges-backend:
+    image: 029236691098.dkr.ecr.us-east-2.amazonaws.com/pagges:pagges-backend-latest
+    container_name: pagges-backend-prod
+    environment:
+      PORT: 3000
+      DATABASE_URL: postgres://postgres:DB-PROD-PASSWORD@postgres:5432/pagges
+      JWT_SECRET: q7AvmhnTGEeyw/jBFpoWXXsEurSeiASFG5XDPZqCZA9BRXV3Prvdp0VEJNoItANdrt53cAR1sdSMt26PIDKE1w==
+      GOOGLE_API_KEY: AIzaSyA9jAhh8kQ4Ax3gWru5XZE7T5p8WgHfoX8
+    ports:
+      - "80:3000"
+    depends_on:
+      - postgres
+    restart: always
+    networks:
+      - pagges-network
+
+networks:
+  pagges-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
