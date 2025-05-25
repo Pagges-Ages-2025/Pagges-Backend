@@ -25,7 +25,7 @@ export class ChallengesController {
     return await this.challengesService.getAllChallenges();
   }
 
-  @Get(":id")
+  @Get("/get-by-id/:id")
   @HttpCode(200)
   async getChallengeById(@Param("id") id: string) {
     return await this.challengesService.getChallengeById(id);
