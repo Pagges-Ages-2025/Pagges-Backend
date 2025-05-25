@@ -135,6 +135,7 @@ export class BooksService {
         `Livro ${book.titulo} já existe no banco de dados. Não será criado novamente.`
       );
       return {
+        data: existingBook,
         message: "Livro já existe no banco de dados.",
         status: 200,
       };
@@ -173,7 +174,7 @@ export class BooksService {
 
   async getTrendingBooks() {
     const ratedBooks = await this.prisma.rateBook.groupBy({
-      by: ['book_id'],
+      by: ["book_id"],
       _avg: {
         rating: true,
       },
@@ -187,7 +188,7 @@ export class BooksService {
     });
 
     if (!ratedBooks || ratedBooks.length === 0) {
-      throw new NotFoundException('Nenhum livro bem avaliado encontrado');
+      throw new NotFoundException("Nenhum livro bem avaliado encontrado");
     }
 
     const bookIds = ratedBooks.map((b) => b.book_id);
@@ -209,7 +210,7 @@ export class BooksService {
     });
 
     if (!trendingBooks || trendingBooks.length === 0) {
-      throw new NotFoundException('Nenhum livro em alta encontrado');
+      throw new NotFoundException("Nenhum livro em alta encontrado");
     }
 
     const booksWithAvg = trendingBooks.map((book) => ({
