@@ -5,7 +5,7 @@ services:
     container_name: postgres
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: pagges-db-2025 # Change this in production
+      POSTGRES_PASSWORD: ABC # Change this in production
       POSTGRES_DB: pagges
     ports:
       - "5432:5432"
@@ -22,9 +22,9 @@ services:
     container_name: pagges-backend-prod
     environment:
       PORT: 3000
-      DATABASE_URL: postgres://postgres:pagges-db-2025@postgres:5432/pagges
-      JWT_SECRET: q7AvmhnTGEeyw/jBFpoWXXsEurSeiASFG5XDPZqCZA9BRXV3Prvdp0VEJNoItANdrt53cAR1sdSMt26PIDKE1w==
-      GOOGLE_API_KEY: AIzaSyA9jAhh8kQ4Ax3gWru5XZE7T5p8WgHfoX8
+      DATABASE_URL: ABC
+      JWT_SECRET: ABC
+      GOOGLE_API_KEY: ABC
     ports:
       - "80:3000"
     depends_on:
