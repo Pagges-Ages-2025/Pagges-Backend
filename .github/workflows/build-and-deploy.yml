@@ -8,7 +8,7 @@ on:
 
 env:
   AWS_REGION: us-east-2
-  ECR_REPOSITORY: 029236691098.dkr.ecr.us-east-2.amazonaws.com/pagges
+  ECR_REPOSITORY: 029236691098.dkr.ecr.us-east-2.amazonaws.com
   REPOSITORY_NAME: pagges
 
 jobs:
