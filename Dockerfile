@@ -23,6 +23,7 @@ WORKDIR /app
 # Copy built application from builder stage
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/prisma ./prisma
 
 # Expose the port your app runs on
 EXPOSE 3000
