@@ -8,8 +8,8 @@ on:
 
 env:
   AWS_REGION: us-east-2
-  ECR_REPOSITORY: 029236691098.dkr.ecr.us-east-2.amazonaws.com
-  IMAGE_NAME: pagges-backend-prod
+  ECR_REPOSITORY: 029236691098.dkr.ecr.us-east-2.amazonaws.com/pagges
+  IMAGE_NAME: pagges
 
 jobs:
   build-and-push:
