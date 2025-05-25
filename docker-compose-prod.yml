@@ -17,7 +17,7 @@ services:
 
   pagges-backend:
     command: >
-      sh -c "npx prisma migrate deploy && node dist/src/main.js"
+      sh -c "npx prisma migrate deploy && ts-node prisma/seed-prod.ts && node dist/src/main.js"
     image: 029236691098.dkr.ecr.us-east-2.amazonaws.com/pagges:pagges-backend-15240244275
     container_name: pagges-backend-prod
     environment:
