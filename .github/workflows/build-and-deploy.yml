@@ -8,7 +8,7 @@ on:
 
 env:
   AWS_REGION: us-east-2
-  ECR_REPOSITORY: 029236691098.dkr.ecr.us-east-2.amazonaws.com
+  ECR_REGISTRY: 029236691098.dkr.ecr.us-east-2.amazonaws.com
   REPOSITORY_NAME: pagges
 
 jobs:
@@ -55,11 +55,11 @@ jobs:
             **Triggered by:** ${{ github.actor }}
 
             **Image Details:**
-            - Registry: ${{ env.ECR_REPOSITORY }}
-            - Image: ${{ env.REPOSITORY_NAME }}
-            - Tag: ${{ github.run_id }}
+            - Registry: ${{ env.ECR_REGISTRY }}
+            - Repository: ${{ env.REPOSITORY_NAME }}
+            - Image Tag: ${{ github.run_id }}
 
-            **Full Image:** `${{ env.ECR_REPOSITORY }}/${{ env.REPOSITORY_NAME }}:${{ github.run_id }}`
+            **Full Image:** `${{ env.ECR_REGISTRY }}/${{ env.REPOSITORY_NAME }}:${{ github.run_id }}`
 
             [View Workflow Run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
