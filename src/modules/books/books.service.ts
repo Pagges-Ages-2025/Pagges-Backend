@@ -23,7 +23,7 @@ export class BooksService {
     return {
       status: 200,
       message: "avaliações encontradas com sucesso.",
-      data: Math.round(avaregeRating._avg.rating),
+      data: Number(avaregeRating._avg.rating.toFixed(1)),
     };
   }
 
