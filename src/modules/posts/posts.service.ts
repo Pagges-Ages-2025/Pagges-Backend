@@ -9,45 +9,60 @@ export class PostsService {
 
   async getRecentReviewsFromUser(userId: number) {
     const reviews = await this.prismaService.post.findMany({
-      select: {
-        book_id: true,
-        user_id: true,
-        is_spoiler: true,
-        text: true,
-        is_review: true,
-        parent_id: true,
-        created_at: true,
-        livro: {
-          select: {
-            google_image_url: true,
-            title: true,
-          },
-        },
-        user: {
-          select: {
-            username: true,
-          },
-        },
-        _count: {
-          select: {
-            liked_by: true,
-          },
-        },
-      },
       where: {
         user_id: userId,
-        is_review: true,
-      },
-      orderBy: {
-        created_at: "desc",
-      },
-      take: 5,
-    });
+        parent_id: null,
+      } 
+      // select: {
+      //   book_id: true,
+      //   user_id: true,
+      //   is_spoiler: true,
+      //   title: true,
+      //   text: true,
+      //   is_review: true,
+      //   parent_id: true,
+      //   created_at: true,
+      //   livro: {
+      //     select: {
+      //       google_image_url: true,
+      //       title: true,
+      //     },
+      //   },
+      //   user: {
+      //     select: {
+      //       username: true,
+      //     },
+      //   },
+      //   _count: {
+      //     select: {
+      //       liked_by: true,
+      //     },
+      //   },
+      // },
+      // where: {
+      //   user_id: userId,
+      //   is_review: true,
+      // },
+      // orderBy: {
+      //   created_at: 'desc',
+      // },
+      // take: 5,
+    })
+    // Fetch children for each review
+    const reviewsWithChildren = await Promise.all(
+      reviews.map(async (post) => {
+      const children = await this.prismaService.post.findMany({
+        where: { parent_id: post.post_id },
+      });
+      return {
+        ...post,
+        children,
+        likes: post._count?.liked_by
+      };
+      })
+    );
 
-    return reviews.map((post) => ({
-      ...post,
-      likes: post._count.liked_by,
-    }));
+    return reviewsWithChildren;
   }
 
   async createNewPost(dto: PostDto, userId: number) {
@@ -84,6 +99,7 @@ export class PostsService {
         livro: {
           select: {
             book_id: true,
+            google_image_url: true,
             title: true,
           },
         },
@@ -100,24 +116,16 @@ export class PostsService {
     });
 
     if (postsByBook.length == 0) {
-      throw new NotFoundException(
-        "Não existe comentários ou resenhas sobre esse livro"
-      );
+      throw new NotFoundException({
+        status: 204,
+        message: 'Não existe comentários ou resenhas sobre esse livro'
+      })
     }
     return {
       status: 200,
       message: "Resenhas e comentários encontrados com sucesso",
       data: postsByBook.map((post) => ({
-        autor: post.user,
-        texto: post.text,
-        dataPostagem: post.created_at,
-        curtidas: post._count.liked_by,
-        comentarios: post._count.comments,
-        spoiler: post.is_spoiler,
-        tipo: post.is_review ? "Resenha" : "Comentário",
-        livro: post.livro,
-        post_id: post.post_id,
-        id_postPai: post.parent_id,
+        post
       })),
     };
   }
