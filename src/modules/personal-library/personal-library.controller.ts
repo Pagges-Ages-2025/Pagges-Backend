@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, Get, HttpCode, Post } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Post,
+  Query,
+} from "@nestjs/common";
 import { UserTokenInfo } from "src/decorators/user-info.decorator";
 import { JwtPayload } from "src/interfaces/user-info.interface";
 import { UpdateOrCreateBookInUserBookshelf } from "./dto/create-or-update-book-to-bookshelf";
@@ -34,11 +42,11 @@ export class PersonalLibraryController {
   @Get("getBookshelfByState")
   async getBookshelfByState(
     @UserTokenInfo() userInfo: JwtPayload,
-    @Body() dto: { state: BookshelfState }
+    @Query("category") category: BookshelfState
   ) {
     return await this.personalLibrary.getUserBookshelfByState(
       userInfo.id,
-      dto.state
+      category
     );
   }
 
