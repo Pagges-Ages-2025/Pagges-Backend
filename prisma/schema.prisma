@@ -31,8 +31,8 @@ model User {
   name          String   @db.VarChar(255)
   email         String   @unique @db.VarChar(255)
   password      String   @db.VarChar(255)
-  points        Int?
-  pages         Int?
+  points        Int      @default(0)
+  pages         Int      @default(0)
   is_author     Boolean  @default(false)
   profile_image Bytes?
   created_at    DateTime @default(now()) @db.Timestamptz
