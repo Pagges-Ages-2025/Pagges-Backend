@@ -298,14 +298,19 @@ async function main() {
 
   await prisma.genre.createMany({
     data: [
-      { genre_name: "Fantasy" },
-      { genre_name: "Science Fiction" },
-      { genre_name: "Dystopian" },
-      { genre_name: "Technology" },
-      { genre_name: "Classic Literature" },
-      { genre_name: "Romance" },
-      { genre_name: "Philosophy" },
-      { genre_name: "Coming of Age" },
+      { genre_name: "Fiction" },
+      { genre_name: "Drama" },
+      { genre_name: "Biography & Autobiography" },
+      { genre_name: "Children's stories" },
+      { genre_name: "History" },
+      { genre_name: "Art" },
+      { genre_name: "England" },
+      { genre_name: "Religion" },
+      { genre_name: "Psychology" },
+      { genre_name: "Comics & Graphic Novels" },
+      { genre_name: "Medical" },
+      { genre_name: "Computers" },
+      { genre_name: "Action" },
     ],
   });
   const createdGenres = await prisma.genre.findMany();

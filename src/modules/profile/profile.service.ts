@@ -8,6 +8,7 @@ import { fromByteArray } from "base64-js";
 import { PrismaService } from "../prisma/prisma.service";
 import { ProfileDto } from "./dto/profile.dto";
 import { UpdateProfileDto } from "./dto/update-profile.dto";
+import { translateGenresOnlyGenreNamesPTBR } from "src/utils/genres-mapping/genres-mapping";
 
 @Injectable()
 export class ProfileService {
@@ -31,9 +32,9 @@ export class ProfileService {
       if (!user) {
         throw new NotFoundException("Usuário não encontrado");
       }
-
+      const genres = user.genres.map((genre)=> {return genre.genre});
       const friendsNumber = user.followers.length + user.following.length;
-      const favoriteGenres = user.genres.map((ug) => ug.genre.genre_name);
+      const favoriteGenres = translateGenresOnlyGenreNamesPTBR(genres);
 
       const profileImage = user.profile_image
         ? fromByteArray(user.profile_image)
