@@ -14,6 +14,7 @@ import { PostsModule } from "./modules/posts/posts.module";
 import { PrismaModule } from "./modules/prisma/prisma.module";
 import { ProfileModule } from "./modules/profile/profile.module";
 import { UserGenresModule } from "./modules/user-genres/user-genres.module";
+import { SocialModule } from "./modules/social/social.module";
 
 @Module({
   imports: [
@@ -37,6 +38,8 @@ import { UserGenresModule } from "./modules/user-genres/user-genres.module";
     ChallengesModule,
     UserGenresModule,
     PersonalLibraryModule,
+    SocialModule,
   ],
+  providers: [],
 })
 export class AppModule {}
