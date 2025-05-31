@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable } from "@nestjs/common";
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from "@nestjs/common";
 import { PrismaService } from "../prisma/prisma.service";
 
 @Injectable()
@@ -11,11 +15,13 @@ export class SocialService {
     });
 
     if (!userToFollow) {
-      throw new Error("User not found");
+      throw new NotFoundException(
+        "Usuário a ser seguido não encontrado no banco de dados"
+      );
     }
 
     if (userToFollow.user_id === userId) {
-      throw new Error("You cannot follow yourself");
+      throw new BadRequestException("Você não pode seguir você mesmo");
     }
 
     const existingFollow = await this.prisma.userFollow.findUnique({
@@ -54,7 +60,7 @@ export class SocialService {
       data: {
         followId: `${follow.follower_id}-${follow.following_id}`,
         followedAt: follow.created_at,
-        user: follow.following,
+        userFollowedData: follow.following,
       },
     };
   }
@@ -65,11 +71,15 @@ export class SocialService {
     });
 
     if (!userToUnfollow) {
-      throw new Error("User not found");
+      throw new NotFoundException(
+        "Usuário a ser deixado de seguir não encontrado no banco de dados"
+      );
     }
 
     if (userToUnfollow.user_id === userId) {
-      throw new Error("You cannot unfollow yourself");
+      throw new BadRequestException(
+        "Você não pode deixar de seguir você mesmo"
+      );
     }
 
     const existingFollow = await this.prisma.userFollow.findUnique({
@@ -93,11 +103,5 @@ export class SocialService {
         },
       },
     });
-
-    return {
-      status: 200,
-      message: "Usuário deixado de seguir com sucesso!",
-      data: null,
-    };
   }
 }
