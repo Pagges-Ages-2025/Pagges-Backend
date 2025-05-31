@@ -24,17 +24,16 @@ export class ChallengesController {
   async getAllChallenges() {
     return await this.challengesService.getAllChallenges();
   }
+  @Get("get-current")
+  @HttpCode(200)
+  async getCurrentChallenge() {
+    return await this.challengesService.getCurrentChallenge();
+  }
 
   @Get(":id")
   @HttpCode(200)
   async getChallengeById(@Param("id") id: string) {
     return await this.challengesService.getChallengeById(id);
-  }
-
-  @Get("get-current")
-  @HttpCode(200)
-  async getCurrentChallenge() {
-    return await this.challengesService.getCurrentChallenge();
   }
 
   @Post("create")
@@ -57,7 +56,7 @@ export class ChallengesController {
       await this.challengesService.updateCurrentChallenge();
     } catch (error) {
       PaggesLogger.error(
-        `An error occurred when trying to update the daily challenge. Error: ${error}`
+        `An error occurred when trying to update the daily challenge. Error: ${error}`,
       );
     }
   }
@@ -66,11 +65,11 @@ export class ChallengesController {
   @HttpCode(200)
   async updateUserPoints(
     @UserTokenInfo() jwtPayload: JwtPayload,
-    @Body() updateUserBody: UpdateUserPointsDto
+    @Body() updateUserBody: UpdateUserPointsDto,
   ) {
     return await this.challengesService.updateUserPoints(
       jwtPayload.id,
-      updateUserBody
+      updateUserBody,
     );
   }
 }
