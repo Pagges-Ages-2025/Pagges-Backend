@@ -66,11 +66,11 @@ export class ProfileController {
     return this.profileService.updateProfileImage(userInfo.id, file);
   }
 
-  @Get("user-profile")
-  getUserProfile(@Query('userEmail') userEmail: string) {
-    if (!userEmail) {
+  @Get("third-person-profile")
+  getThirdPersonProfile(@Query('username') username: string) {
+    if (!username) {
       throw new BadRequestException("Email do usuário não fornecido.");
     }
-    return this.profileService.getProfile(decodeURIComponent(userEmail));
+    return this.profileService.getProfile(decodeURIComponent(username));
   }
 }
