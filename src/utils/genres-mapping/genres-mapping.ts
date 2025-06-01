@@ -6,31 +6,31 @@ type Genre = {
 
 type TranslatedGenre = {
   genre_id: number;
-  translated_name: string;
+  genre_name: string;
 };
 
 const GENRE_TRANSLATIONS: Record<string, string> = {
-  "Fiction": "Ficção",
-  "Drama": "Drama",
+  Fiction: "Ficção",
+  Drama: "Drama",
   "Biography & Autobiography": "Autobiografia",
   "Children's stories": "Infantojuvenil",
-  "History": "História",
-  "Art": "Arte",
-  "England": "Inglaterra",
-  "Religion": "Religião",
-  "Psychology": "Psicologia",
+  History: "História",
+  Art: "Arte",
+  England: "Inglaterra",
+  Religion: "Religião",
+  Psychology: "Psicologia",
   "Comics & Graphic Novels": "Quadrinhos",
-  "Medical": "Medicina",
-  "Computers": "Computação",
-  "Action": "Ação",
+  Medical: "Medicina",
+  Computers: "Computação",
+  Action: "Ação",
 };
 
 export function translateGenresToPTBR(genres: Genre[]): TranslatedGenre[] {
   return genres
     .filter((genre) => GENRE_TRANSLATIONS.hasOwnProperty(genre.genre_name))
     .map((genre) => ({
-        genre_id:genre.genre_id,
-      translated_name: GENRE_TRANSLATIONS[genre.genre_name],
+      genre_id: genre.genre_id,
+      genre_name: GENRE_TRANSLATIONS[genre.genre_name],
     }));
 }
 
