@@ -8,7 +8,7 @@ import { fromByteArray } from "base64-js";
 import { PrismaService } from "../prisma/prisma.service";
 import { ProfileDto } from "./dto/profile.dto";
 import { UpdateProfileDto } from "./dto/update-profile.dto";
-import { translateGenresOnlyGenreNamesPTBR } from "src/utils/genres-mapping/genres-mapping";
+import { translateGenresOnlyGenreNamesPTBR, translateGenresToPTBR } from "src/utils/genres-mapping/genres-mapping";
 
 @Injectable()
 export class ProfileService {
@@ -34,7 +34,7 @@ export class ProfileService {
       }
       const genres = user.genres.map((genre)=> {return genre.genre});
       const friendsNumber = user.followers.length + user.following.length;
-      const favoriteGenres = translateGenresOnlyGenreNamesPTBR(genres);
+      const favoriteGenres = translateGenresToPTBR(genres);
 
       const profileImage = user.profile_image
         ? fromByteArray(user.profile_image)
@@ -233,7 +233,7 @@ export class ProfileService {
 
       const genres = user.genres.map((genre) => genre.genre);
       const friendsNumber = user.followers.length + user.following.length;
-      const favoriteGenres = translateGenresOnlyGenreNamesPTBR(genres);
+      const favoriteGenres = translateGenresToPTBR(genres);
 
       const profileImage = user.profile_image
         ? fromByteArray(user.profile_image)

@@ -69,8 +69,8 @@ export class ProfileController {
   @Get("third-person-profile")
   getThirdPersonProfile(@Query('username') username: string) {
     if (!username) {
-      throw new BadRequestException("Email do usuário não fornecido.");
+      throw new BadRequestException("Username do usuário não fornecido.");
     }
-    return this.profileService.getProfile(decodeURIComponent(username));
+    return this.profileService.getThirdPersonProfile(decodeURIComponent(username));
   }
 }

@@ -126,16 +126,10 @@ export class SocialService {
     });
 
     if(existingFollow){
-      return {
-        isFollowing: true,
-        message: "Você está seguindo este usuário.",
-      };
+      return true;
     }
 
-    return {
-      isFollowing: false,
-      message: "Você não está seguindo este usuário.",
-    };
+    return false;
 
   }
 }
