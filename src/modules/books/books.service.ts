@@ -219,4 +219,39 @@ export class BooksService {
 
     return booksWithAvg;
   }
+
+  async getBooksByMultipleGenres(genres: string[]) {
+    if (!genres || genres.length === 0) {
+      throw new NotFoundException('Nenhum gênero fornecido.');
+    }
+
+    const books = await this.prisma.book.findMany({
+      where: {
+        BookGenre: {
+          some: {
+            genre: {
+              genre_name: {
+                in: genres,
+              },
+            },
+          },
+        },
+      },
+      include: {
+        BookGenre: {
+          include: {
+            genre: true,
+          },
+        },
+      },
+      take: 30,
+    });
+
+    if (!books || books.length === 0) {
+      throw new NotFoundException('Nenhum livro encontrado para os gêneros fornecidos.');
+    }
+
+    return books;
+  }
+
 }

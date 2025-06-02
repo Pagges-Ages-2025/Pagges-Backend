@@ -56,4 +56,9 @@ export class BooksController {
   gerTrendingBooks() {
     return this.booksService.getTrendingBooks();
   }
+
+  @Post('genres')
+  async getBooksByGenres(@Body('genres') genres: string[]) {
+    return this.booksService.getBooksByMultipleGenres(genres);
+  }
 }
