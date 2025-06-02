@@ -1,10 +1,11 @@
-import { Body, Controller, Delete, HttpCode, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, HttpCode, Post } from "@nestjs/common";
 import { ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { UserTokenInfo } from "src/decorators/user-info.decorator";
 import { JwtPayload } from "src/interfaces/user-info.interface";
 import { UserFollowDto } from "./dto/user-follow.dto";
 import { UserUnfollowDto } from "./dto/user-unfollow.dto";
 import { SocialService } from "./social.service";
+import { get } from "http";
 
 @Controller("social")
 export class SocialController {
@@ -47,5 +48,12 @@ export class SocialController {
       userInfo.id,
       unfollowUserDto.username
     );
+  }
+  @Get("following")
+  @HttpCode(200)
+  @ApiOperation({ summary: "Listar usuários que estou seguindo" })
+  @ApiResponse({ status: 200, description: "Lista de usuários seguidos retornada com sucesso" })
+  getFollowing(@UserTokenInfo() userInfo: JwtPayload) {
+    return this.socialService.getFollowing(userInfo.id);
   }
 }

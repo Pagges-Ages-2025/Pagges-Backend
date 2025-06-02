@@ -104,4 +104,18 @@ export class SocialService {
       },
     });
   }
+
+  async getFollowing(userId: number){
+    const user = await this.prisma.user.findFirst({
+      where: {
+        user_id: userId
+      },
+      include: {
+        following: true
+      }
+    })
+    return {
+      data: user?.following.map(u => u.following_id)
+    }
+  }
 }
