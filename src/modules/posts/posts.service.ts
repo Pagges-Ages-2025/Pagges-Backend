@@ -13,40 +13,6 @@ export class PostsService {
         user_id: userId,
         parent_id: null,
       } 
-      // select: {
-      //   book_id: true,
-      //   user_id: true,
-      //   is_spoiler: true,
-      //   title: true,
-      //   text: true,
-      //   is_review: true,
-      //   parent_id: true,
-      //   created_at: true,
-      //   livro: {
-      //     select: {
-      //       google_image_url: true,
-      //       title: true,
-      //     },
-      //   },
-      //   user: {
-      //     select: {
-      //       username: true,
-      //     },
-      //   },
-      //   _count: {
-      //     select: {
-      //       liked_by: true,
-      //     },
-      //   },
-      // },
-      // where: {
-      //   user_id: userId,
-      //   is_review: true,
-      // },
-      // orderBy: {
-      //   created_at: 'desc',
-      // },
-      // take: 5,
     })
     // Fetch children for each review
     const reviewsWithChildren = await Promise.all(
@@ -94,6 +60,7 @@ export class PostsService {
           select: {
             name: true,
             username: true,
+            profile_image: true
           },
         },
         livro: {
