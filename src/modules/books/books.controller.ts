@@ -52,8 +52,15 @@ export class BooksController {
     return await this.booksService.registerBookInDatabase(book);
   }
 
-  @Get('trending')
+  @Get("trending")
+  @HttpCode(200)
   gerTrendingBooks() {
     return this.booksService.getTrendingBooks();
+  }
+
+  @Get("genre/:genreId")
+  @HttpCode(200)
+  getBooksByGenre(@Param("genreId", ParseIntPipe) genreId: number) {
+    return this.booksService.getBooksByGenre(genreId);
   }
 }

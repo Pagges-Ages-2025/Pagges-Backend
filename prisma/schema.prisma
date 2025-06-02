@@ -55,10 +55,10 @@ model Book {
   google_book_id   String   @unique
   title            String   @db.VarChar(8000)
   synopsis         String?  @db.VarChar(8000)
-  year             Int?
-  pages            Int?
-  authors          String?  @db.VarChar(8000)
-  google_image_url String?  @db.VarChar(8000)
+  year             Int
+  pages            Int
+  authors          String   @db.VarChar(8000)
+  google_image_url String   @db.VarChar(8000)
   created_at       DateTime @default(now()) @db.Timestamptz
 
   in_user_bookshelf UserBookshelfState[]

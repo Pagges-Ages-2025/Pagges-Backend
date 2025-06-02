@@ -298,14 +298,20 @@ async function main() {
 
   await prisma.genre.createMany({
     data: [
-      { genre_name: "Fantasy" },
-      { genre_name: "Science Fiction" },
+      { genre_name: "Fiction" },
+      { genre_name: "Drama" },
+      { genre_name: "Biography & Autobiography" },
+      { genre_name: "Children's stories" },
+      { genre_name: "History" },
+      { genre_name: "Art" },
+      { genre_name: "England" },
+      { genre_name: "Religion" },
+      { genre_name: "Psychology" },
+      { genre_name: "Comics & Graphic Novels" },
+      { genre_name: "Medical" },
+      { genre_name: "Computers" },
+      { genre_name: "Action" },
       { genre_name: "Dystopian" },
-      { genre_name: "Technology" },
-      { genre_name: "Classic Literature" },
-      { genre_name: "Romance" },
-      { genre_name: "Philosophy" },
-      { genre_name: "Coming of Age" },
     ],
   });
   const createdGenres = await prisma.genre.findMany();
@@ -315,7 +321,7 @@ async function main() {
     data: [
       {
         book_id: createdBooks[0].book_id, // Clean Code
-        genre_id: createdGenres[3].genre_id, // Technology
+        genre_id: createdGenres[10].genre_id, // Computers
       },
       {
         book_id: createdBooks[1].book_id, // The Hobbit
@@ -323,35 +329,35 @@ async function main() {
       },
       {
         book_id: createdBooks[2].book_id, // 1984
-        genre_id: createdGenres[2].genre_id, // Dystopian
+        genre_id: createdGenres[2].genre_id, // History
       },
       {
         book_id: createdBooks[3].book_id, // The Great Gatsby
-        genre_id: createdGenres[4].genre_id, // Classic Literature
+        genre_id: createdGenres[4].genre_id, // Fiction
       },
       {
         book_id: createdBooks[4].book_id, // To Kill a Mockingbird
-        genre_id: createdGenres[4].genre_id, // Classic Literature
+        genre_id: createdGenres[4].genre_id, // Fiction
       },
       {
         book_id: createdBooks[5].book_id, // The Lord of the Rings
-        genre_id: createdGenres[0].genre_id, // Fantasy
+        genre_id: createdGenres[0].genre_id, // Fiction
       },
       {
         book_id: createdBooks[6].book_id, // Pride and Prejudice
-        genre_id: createdGenres[5].genre_id, // Romance
+        genre_id: createdGenres[5].genre_id, // Fiction
       },
       {
         book_id: createdBooks[7].book_id, // The Catcher in the Rye
-        genre_id: createdGenres[7].genre_id, // Coming of Age
+        genre_id: createdGenres[7].genre_id, // Fiction
       },
       {
         book_id: createdBooks[8].book_id, // The Alchemist
-        genre_id: createdGenres[6].genre_id, // Philosophy
+        genre_id: createdGenres[6].genre_id, // Fiction
       },
       {
         book_id: createdBooks[9].book_id, // The Little Prince
-        genre_id: createdGenres[6].genre_id, // Philosophy
+        genre_id: createdGenres[6].genre_id, // Fiction
       },
     ],
   });

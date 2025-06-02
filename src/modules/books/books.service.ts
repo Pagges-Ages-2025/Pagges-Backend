@@ -220,4 +220,24 @@ export class BooksService {
 
     return booksWithAvg;
   }
+
+  async getBooksByGenre(genreId: number) {
+    const booksByGenre = await this.prisma.bookGenre.findMany({
+      where: {
+        genre_id: genreId,
+      },
+      include: {
+        book: true,
+      },
+      take: 30,
+    });
+
+    if (!booksByGenre || booksByGenre.length === 0) {
+      throw new NotFoundException("Nenhum livro encontrado para esse gênero");
+    }
+
+    const booksList = booksByGenre.map((book) => book.book);
+
+    return booksList;
+  }
 }
