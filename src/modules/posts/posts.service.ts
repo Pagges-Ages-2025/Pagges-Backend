@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from "@nestjs/common";
 import { PaggesLogger } from "src/config/winston-logger/pagges-logger.utils";
 import { PrismaService } from "../prisma/prisma.service";
 import { PostDto } from "./dto/post.dto";
-
+import { fromByteArray } from "base64-js";
 @Injectable()
 export class PostsService {
   constructor(private readonly prismaService: PrismaService) {}
@@ -12,19 +12,18 @@ export class PostsService {
       where: {
         user_id: userId,
         parent_id: null,
-      } 
-    })
+      },
+    });
     // Fetch children for each review
     const reviewsWithChildren = await Promise.all(
       reviews.map(async (post) => {
-      const children = await this.prismaService.post.findMany({
-        where: { parent_id: post.post_id },
-      });
-      return {
-        ...post,
-        children,
-        likes: post._count?.liked_by
-      };
+        const children = await this.prismaService.post.findMany({
+          where: { parent_id: post.post_id },
+        });
+        return {
+          ...post,
+          children,
+        };
       })
     );
 
@@ -60,7 +59,7 @@ export class PostsService {
           select: {
             name: true,
             username: true,
-            profile_image: true
+            profile_image: true,
           },
         },
         livro: {
@@ -82,18 +81,26 @@ export class PostsService {
       },
     });
 
+    const response = postsByBook.map((post) => ({
+      ...post,
+      user: {
+        ...post.user,
+        profile_image: post.user.profile_image
+          ? fromByteArray(post.user.profile_image)
+          : null,
+      },
+    }));
+
     if (postsByBook.length == 0) {
       throw new NotFoundException({
         status: 204,
-        message: 'Não existe comentários ou resenhas sobre esse livro'
-      })
+        message: "Não existe comentários ou resenhas sobre esse livro",
+      });
     }
     return {
       status: 200,
       message: "Resenhas e comentários encontrados com sucesso",
-      data: postsByBook.map((post) => ({
-        post
-      })),
+      data: response,
     };
   }
 }
