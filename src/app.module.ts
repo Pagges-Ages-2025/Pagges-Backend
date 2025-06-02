@@ -15,6 +15,7 @@ import { PrismaModule } from "./modules/prisma/prisma.module";
 import { ProfileModule } from "./modules/profile/profile.module";
 import { UserGenresModule } from "./modules/user-genres/user-genres.module";
 import { SocialModule } from "./modules/social/social.module";
+import { UserSearchModule } from "./modules/user-search/user-search.module";
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { SocialModule } from "./modules/social/social.module";
     UserGenresModule,
     PersonalLibraryModule,
     SocialModule,
+    UserSearchModule
   ],
   providers: [],
 })
