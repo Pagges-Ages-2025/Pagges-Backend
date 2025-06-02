@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
 import { PrismaService } from "../prisma/prisma.service";
 import { GetUserInfosDto } from "./dto/get_user_infos.dto";
 
@@ -8,6 +8,10 @@ export class UserSearchService {
 
   async getUserInfos(userLoggedId: number, toSearch: GetUserInfosDto) {
     const { userId, username } = toSearch
+
+    if (userId === undefined && username === undefined) {
+      return null;
+    }
 
     const userToSearch = await this.prisma.user.findFirst({
         where: {
@@ -27,6 +31,10 @@ export class UserSearchService {
         },
     });
 
+    if (!userToSearch) {
+      throw new NotFoundException("Usuário não encontrado.");
+    }
+
     const followRecord = await this.prisma.userFollow.findFirst({
         where: {
           follower_id:  userLoggedId,
@@ -35,6 +43,7 @@ export class UserSearchService {
       });
       
     const isFollowing = Boolean(followRecord);
+    
     return {
       user: userToSearch,
       "following?": isFollowing,
