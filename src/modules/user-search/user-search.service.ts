@@ -8,7 +8,7 @@ export class UserSearchService {
 
   async getUserInfos(userLoggedId: number, toSearch: GetUserInfosDto) {
     const { userId, username } = toSearch
-
+    
     if (userId === undefined && username === undefined) {
       return null;
     }
@@ -43,7 +43,7 @@ export class UserSearchService {
       });
       
     const isFollowing = Boolean(followRecord);
-    
+
     return {
       user: userToSearch,
       "following?": isFollowing,
