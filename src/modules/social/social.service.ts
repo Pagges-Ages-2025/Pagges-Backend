@@ -115,7 +115,7 @@ export class SocialService {
       }
     })
     return {
-      data: user?.followers.map(u => u.following_id)
+      data: user?.followers.map(u => u.follower_id)
     }
   }
 }
