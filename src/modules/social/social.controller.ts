@@ -49,11 +49,11 @@ export class SocialController {
       unfollowUserDto.username
     );
   }
-  @Get("following")
+  @Get("follower")
   @HttpCode(200)
   @ApiOperation({ summary: "Listar usuários que estou seguindo" })
   @ApiResponse({ status: 200, description: "Lista de usuários seguidos retornada com sucesso" })
   getFollowing(@UserTokenInfo() userInfo: JwtPayload) {
-    return this.socialService.getFollowing(userInfo.id);
+    return this.socialService.getFollower(userInfo.id);
   }
 }
