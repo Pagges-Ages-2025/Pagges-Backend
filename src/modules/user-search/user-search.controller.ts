@@ -1,4 +1,4 @@
-import { Controller, Get, Body } from '@nestjs/common'
+import { Controller, Get, Body, Query } from '@nestjs/common'
 import { UserSearchService } from './user-search.service'
 import { UserTokenInfo } from "src/decorators/user-info.decorator";
 import { JwtPayload } from 'src/interfaces/user-info.interface'
@@ -14,7 +14,7 @@ export class UserSearchController {
   }
 
   @Get('user')
-    findUsersByName(@Body() name: string) {
+    findUsersByName(@Query('name') name: string) {
       return this.userSearchService.findUsersByName(name)
     }
 }

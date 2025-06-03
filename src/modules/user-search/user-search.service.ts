@@ -67,11 +67,10 @@ export class UserSearchService {
     
     });
 
-    if (!users) {
-      throw new NotFoundException(
-        "Não existem usuários com esse nome"
-     );
-   }
+    if (users.length === 0) {
+    throw new NotFoundException("Não existem usuários com esse nome");
+  }
+  return users;
   }
 
 }
