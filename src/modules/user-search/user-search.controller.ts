@@ -12,4 +12,9 @@ export class UserSearchController {
   getUserInformations(@UserTokenInfo() userInfo: JwtPayload, @Body() dto: GetUserInfosDto) {
     return this.userSearchService.getUserInfos(userInfo.id, dto)
   }
+
+  @Get('user')
+    findUsersByName(@Body() name: string) {
+      return this.userSearchService.findUsersByName(name)
+    }
 }

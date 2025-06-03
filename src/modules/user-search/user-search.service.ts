@@ -49,4 +49,29 @@ export class UserSearchService {
       "following?": isFollowing,
     }
   }
+
+  async findUsersByName(name:string) {
+    const users = await this.prisma.user.findMany({
+      select: {
+        user_id: true,
+        name: true,
+        username: true,
+        profile_image:true,
+      },
+      where: {
+        name: {
+          contains: name,
+          mode: 'insensitive', 
+        },
+      },
+    
+    });
+
+    if (!users) {
+      throw new NotFoundException(
+        "Não existem usuários com esse nome"
+     );
+   }
+  }
+
 }
