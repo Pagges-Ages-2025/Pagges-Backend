@@ -7,6 +7,57 @@ import { fromByteArray } from "base64-js";
 export class PostsService {
   constructor(private readonly prismaService: PrismaService) {}
 
+  async getReviewsByParentId(postId: number) {
+    const reviews = await this.prismaService.post.findMany({
+      where: {
+        parent_id: postId,
+      }, 
+      include: {
+        user: {
+          select: {
+            name: true,
+            username: true,
+            profile_image: true,
+          },
+        },
+        livro: {
+          select: {
+            book_id: true,
+            google_image_url: true,
+            title: true,
+          },
+        },
+        _count: {
+          select: {
+            liked_by: true,
+            comments: true,
+          },
+        },
+      },
+    })
+
+    const response = reviews.map((post) => ({
+      ...post,
+      user: {
+        ...post.user,
+        profile_image: post.user.profile_image
+          ? fromByteArray(post.user.profile_image)
+          : null,
+      },
+    }));
+    if (reviews.length == 0) {
+      throw new NotFoundException({
+        status: 204,
+        message: "Não existe comentários ou resenhas sobre esse livro",
+      });
+    }
+    return {
+      status: 200,
+      message: "Resenhas e comentários encontrados com sucesso",
+      data: response,
+    };
+  }
+
   async getRecentReviewsFromUser(userId: number) {
     const reviews = await this.prismaService.post.findMany({
       where: {
@@ -53,6 +104,7 @@ export class PostsService {
     const postsByBook = await this.prismaService.post.findMany({
       where: {
         book_id: id,
+        parent_id: null, 
       },
       include: {
         user: {
