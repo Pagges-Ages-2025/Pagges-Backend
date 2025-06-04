@@ -277,6 +277,7 @@ export class BooksService {
       throw new NotFoundException("Nenhum livro encontrado para os gêneros favoritos.");
     }
 
-    return books;
+    const shuffledBooks = books.sort(() => Math.random() - 0.5);
+    return shuffledBooks.slice(0, 12);
   }
 }
