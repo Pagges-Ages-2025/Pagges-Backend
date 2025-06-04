@@ -53,7 +53,15 @@ export class SocialController {
   @HttpCode(200)
   @ApiOperation({ summary: "Listar usuários que estou seguindo" })
   @ApiResponse({ status: 200, description: "Lista de usuários seguidos retornada com sucesso" })
-  getFollowing(@UserTokenInfo() userInfo: JwtPayload) {
+  getFollower(@UserTokenInfo() userInfo: JwtPayload) {
     return this.socialService.getFollower(userInfo.id);
+  }
+
+  @Get("following")
+  @HttpCode(200)
+  @ApiOperation({ summary: "Listar usuários que estou seguindo" })
+  @ApiResponse({ status: 200, description: "Lista de usuários seguidos retornada com sucesso" })
+  getFollowing(@UserTokenInfo() userInfo: JwtPayload) {
+    return this.socialService.getFollowing(userInfo.id);
   }
 }

@@ -114,8 +114,20 @@ export class SocialService {
         followers: true
       }
     })
-    return {
-      data: user?.followers.map(u => u.follower_id)
-    }
+    return user?.followers.map(u => u.follower_id)
+    
+  }
+
+  async getFollowing(userId: number){
+    const user = await this.prisma.user.findFirst({
+      where: {
+        user_id: userId
+      },
+      include: {
+        following: true
+      }
+    })
+    return user?.following.map(u => u.following_id)
+    
   }
 }
