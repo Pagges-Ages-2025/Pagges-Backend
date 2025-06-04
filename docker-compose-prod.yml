@@ -1,0 +1,41 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: ABC # Change this in production
+      POSTGRES_DB: pagges
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - pagges-network
+
+  pagges-backend:
+    command: >
+      sh -c "npx prisma migrate deploy && ts-node prisma/seed-prod.ts && node dist/src/main.js"
+    image: 029236691098.dkr.ecr.us-east-2.amazonaws.com/pagges:pagges-backend-15240244275
+    container_name: pagges-backend-prod
+    environment:
+      PORT: 3000
+      DATABASE_URL: ABC
+      JWT_SECRET: ABC
+      GOOGLE_API_KEY: ABC
+    ports:
+      - "80:3000"
+    depends_on:
+      - postgres
+    restart: always
+    networks:
+      - pagges-network
+
+networks:
+  pagges-network:
+    driver: bridge
+
+volumes:
+  postgres-data:

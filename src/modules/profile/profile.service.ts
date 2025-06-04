@@ -8,6 +8,7 @@ import { fromByteArray } from "base64-js";
 import { PrismaService } from "../prisma/prisma.service";
 import { ProfileDto } from "./dto/profile.dto";
 import { UpdateProfileDto } from "./dto/update-profile.dto";
+import { translateGenresOnlyGenreNamesPTBR } from "src/utils/genres-mapping/genres-mapping";
 
 @Injectable()
 export class ProfileService {
@@ -31,9 +32,9 @@ export class ProfileService {
       if (!user) {
         throw new NotFoundException("Usuário não encontrado");
       }
-
+      const genres = user.genres.map((genre)=> {return genre.genre});
       const friendsNumber = user.followers.length + user.following.length;
-      const favoriteGenres = user.genres.map((ug) => ug.genre.genre_name);
+      const favoriteGenres = translateGenresOnlyGenreNamesPTBR(genres);
 
       const profileImage = user.profile_image
         ? fromByteArray(user.profile_image)
@@ -136,7 +137,7 @@ export class ProfileService {
 
           if (genres.length !== updateProfileDto.genreIds.length) {
             throw new BadRequestException(
-              "Um ou mais gêneros informados não existem"
+              "Um ou mais gêneros informados não existem",
             );
           }
 
@@ -167,13 +168,13 @@ export class ProfileService {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === "P2003") {
           throw new BadRequestException(
-            "Um ou mais gêneros informados não existem"
+            "Um ou mais gêneros informados não existem",
           );
         }
       }
 
       throw new BadRequestException(
-        "Erro ao atualizar perfil: " + error.message
+        "Erro ao atualizar perfil: " + error.message,
       );
     }
   }
@@ -181,7 +182,7 @@ export class ProfileService {
   async updateProfileImage(id: number, file: Express.Multer.File) {
     if (!file) {
       throw new BadRequestException(
-        "Nenhum arquivo foi enviado. Por favor, envie uma imagem para atualizar o perfil."
+        "Nenhum arquivo foi enviado. Por favor, envie uma imagem para atualizar o perfil.",
       );
     }
 
@@ -202,7 +203,7 @@ export class ProfileService {
       });
     } catch (error) {
       throw new BadRequestException(
-        "Erro ao atualizar imagem de perfil: " + error.message
+        "Erro ao atualizar imagem de perfil: " + error.message,
       );
     }
   }

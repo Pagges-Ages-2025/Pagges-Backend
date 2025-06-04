@@ -52,13 +52,21 @@ export class BooksController {
     return await this.booksService.registerBookInDatabase(book);
   }
 
-  @Get('trending')
+  @Get("trending")
+  @HttpCode(200)
   gerTrendingBooks() {
     return this.booksService.getTrendingBooks();
   }
 
-  @Post('genres')
-  async getBooksByGenres(@Body('genres') genres: string[]) {
-    return this.booksService.getBooksByMultipleGenres(genres);
+  @Get("genre/:genreId")
+  @HttpCode(200)
+  getBooksByGenre(@Param("genreId", ParseIntPipe) genreId: number) {
+    return this.booksService.getBooksByGenre(genreId);
+  }
+
+  @Get("favorites")
+  @HttpCode(200)
+  getBooksByUserFavoriteGenres(@UserTokenInfo() userInfo: JwtPayload) {
+    return this.booksService.getBooksByUserFavoriteGenres(userInfo.id);
   }
 }
