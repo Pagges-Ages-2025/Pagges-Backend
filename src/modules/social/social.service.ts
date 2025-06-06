@@ -105,29 +105,79 @@ export class SocialService {
     });
   }
 
-  async getFollower(userId: number){
+  async getFollower(userId: number) {
     const user = await this.prisma.user.findFirst({
-      where: {
-        user_id: userId
-      },
+      where: { user_id: userId },
       include: {
-        followers: true
-      }
-    })
-    return user?.followers.map(u => u.follower_id)
-    
+        followers: {
+          include: {
+            follower: true,
+          },
+        },
+      },
+    });
+
+    if (!user) return [];
+
+    const result = await Promise.all(
+      user.followers.map(async (relation) => {
+        const followerId = relation.follower_id;
+        const isFollowedBack = await this.prisma.userFollow.findFirst({
+          where: {
+            follower_id: userId,
+            following_id: followerId,
+          },
+        });
+
+        return {
+          user: relation.follower.user_id,
+          followsBack: !!isFollowedBack,
+        };
+      })
+    );
+    return result;
   }
 
-  async getFollowing(userId: number){
-    const user = await this.prisma.user.findFirst({
-      where: {
-        user_id: userId
+  async getOthersFollowers(myId: number, targetId: number) {
+  const user = await this.prisma.user.findFirst({
+    where: { user_id: targetId },
+    include: {
+      followers: {
+        include: {
+          follower: true,
+        },
       },
-      include: {
-        following: true
-      }
-    })
-    return user?.following.map(u => u.following_id)
-    
-  }
+    },
+  });
+
+  if (!user) return [];
+
+  const result = await Promise.all(
+    user.followers
+      .filter(relation => {
+        const followerId = relation.follower.user_id;
+        return followerId !== myId && followerId !== targetId;
+      })
+      .map(async (relation) => {
+        const followerId = relation.follower.user_id;
+
+        const isFollowedBack = await this.prisma.userFollow.findFirst({
+          where: {
+            follower_id: followerId,
+            following_id: myId, 
+          },
+        });
+
+        return {
+          user: followerId,
+          followsBack: !!isFollowedBack,
+        };
+      })
+  );
+
+  return result;
 }
+}
+
+
+
