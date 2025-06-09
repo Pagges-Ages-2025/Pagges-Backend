@@ -59,26 +59,34 @@ export class PostsService {
   }
 
   async getRecentReviewsFromUser(userId: number) {
-    const reviews = await this.prismaService.post.findMany({
+    return await this.prismaService.post.findMany({
       where: {
         user_id: userId,
         parent_id: null,
       },
+      include: {
+        user: {
+          select: {
+            name: true,
+            username: true,
+            profile_image: true,
+          },
+        },
+        livro: {
+          select: {
+            book_id: true,
+            google_image_url: true,
+            title: true,
+          },
+        },
+        _count: {
+          select: {
+            liked_by: true,
+            comments: true,
+          },
+        },
+      },
     });
-    // Fetch children for each review
-    const reviewsWithChildren = await Promise.all(
-      reviews.map(async (post) => {
-        const children = await this.prismaService.post.findMany({
-          where: { parent_id: post.post_id },
-        });
-        return {
-          ...post,
-          children,
-        };
-      })
-    );
-
-    return reviewsWithChildren;
   }
 
   async createNewPost(dto: PostDto, userId: number) {
