@@ -4,7 +4,7 @@ type Genre = {
   created_at: string | Date;
 };
 
-type TranslatedGenre = {
+export type TranslatedGenre = {
   genre_id: number;
   genre_name: string;
 };

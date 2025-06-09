@@ -5,6 +5,7 @@ import {
   Get,
   HttpCode,
   Put,
+  Query,
   UploadedFile,
   UseInterceptors,
 } from "@nestjs/common";
@@ -63,5 +64,13 @@ export class ProfileController {
     @UploadedFile() file: Express.Multer.File
   ) {
     return this.profileService.updateProfileImage(userInfo.id, file);
+  }
+
+  @Get("third-person-profile")
+  getThirdPersonProfile(@Query('username') username: string) {
+    if (!username) {
+      throw new BadRequestException("Username do usuário não fornecido.");
+    }
+    return this.profileService.getThirdPersonProfile(decodeURIComponent(username));
   }
 }
