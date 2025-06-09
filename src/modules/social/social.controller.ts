@@ -1,4 +1,4 @@
-import { BadRequestException, Body, Controller, Delete, Get, HttpCode, Post, Query } from "@nestjs/common";
+import { Body, Controller, Delete, HttpCode, Post } from "@nestjs/common";
 import { ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { UserTokenInfo } from "src/decorators/user-info.decorator";
 import { JwtPayload } from "src/interfaces/user-info.interface";
@@ -47,16 +47,5 @@ export class SocialController {
       userInfo.id,
       unfollowUserDto.username
     );
-  }
-
-  @Get("is-following")
-  isFollowing(
-    @UserTokenInfo() userInfo: JwtPayload,
-    @Query("username") username: string
-  ){
-    if(!username) {
-      throw new BadRequestException("username está vazio");
-    }
-    return this.socialService.isFollowing(userInfo.id, username);
   }
 }

@@ -104,32 +104,4 @@ export class SocialService {
       },
     });
   }
-
-  async isFollowing(userId: number, username: string) {
-    const userFollowing = await this.prisma.user.findUnique({
-      where: { username },
-    });
-
-    if (!userFollowing) {
-      throw new NotFoundException(
-        "Usuário a verificar se está seguindo não encontrado no banco de dados"
-      );
-    }
-
-   const existingFollow = await this.prisma.userFollow.findUnique({
-      where: {
-        follower_id_following_id: {
-          follower_id: userId,
-          following_id: userFollowing.user_id,
-        },
-      },
-    });
-
-    if(existingFollow){
-      return true;
-    }
-
-    return false;
-
-  }
 }
