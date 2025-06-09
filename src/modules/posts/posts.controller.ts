@@ -36,13 +36,13 @@ export class PostsController {
     return this.postsService.createNewPost(dto, userInfo.id)
   }
 
-  @Get('reviews/:livroId')
+  @Get('reviews/bookId/:livroId')
   @HttpCode(200)
   getParentReviews(@Param('livroId', ParseIntPipe) livroId: number) {
     return this.postsService.getBookReviews(livroId)
   }
 
-  @Get('reviews/:postId')
+  @Get('reviews/parentId/:postId')
   @HttpCode(200)
   getReviewsByParentId(@Param('postId', ParseIntPipe) postId: number) {
     return this.postsService.getReviewsByParentId(postId)
