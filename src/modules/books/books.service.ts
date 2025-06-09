@@ -242,7 +242,6 @@ export class BooksService {
   }
 
   async getBooksByUserFavoriteGenres(userId: number) {
-    
     const favoriteGenres = await this.prisma.userGenre.findMany({
       where: { user_id: userId },
       take: 3,
@@ -274,10 +273,12 @@ export class BooksService {
     });
 
     if (!books || books.length === 0) {
-      throw new NotFoundException("Nenhum livro encontrado para os gêneros favoritos.");
+      throw new NotFoundException(
+        "Nenhum livro encontrado para os gêneros favoritos."
+      );
     }
 
     const shuffledBooks = books.sort(() => Math.random() - 0.5);
-    return shuffledBooks.slice(0, 12);
+    return shuffledBooks;
   }
 }
