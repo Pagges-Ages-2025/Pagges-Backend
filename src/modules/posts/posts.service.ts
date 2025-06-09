@@ -122,13 +122,6 @@ export class PostsService {
             profile_image: true,
           },
         },
-        livro: {
-          select: {
-            book_id: true,
-            google_image_url: true,
-            title: true,
-          },
-        },
         _count: {
           select: {
             liked_by: true,
