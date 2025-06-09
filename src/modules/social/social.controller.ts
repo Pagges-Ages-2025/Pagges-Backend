@@ -6,6 +6,7 @@ import {
   HttpCode,
   Param,
   Post,
+  Query,
 } from "@nestjs/common";
 import { ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { UserTokenInfo } from "src/decorators/user-info.decorator";
@@ -85,5 +86,18 @@ export class SocialController {
       primaryUserInfo.id,
       secondaryUserId
     );
+  }
+
+  @Get("is-following")
+  @HttpCode(200)
+  @ApiOperation({ summary: "Verificar se estou seguindo um usuário" })
+  @ApiResponse({ status: 200, description: "Estou seguindo o usuário" })
+  @ApiResponse({ status: 400, description: "username está vazio" })
+  @ApiResponse({ status: 404, description: "Usuário não encontrado" })
+  isFollowing(
+    @UserTokenInfo() userInfo: JwtPayload,
+    @Query("username") username: string
+  ) {
+    return this.socialService.isFollowing(userInfo.id, username);
   }
 }
