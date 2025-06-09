@@ -1,4 +1,12 @@
-import { Body, Controller, Delete, HttpCode, Post } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+} from "@nestjs/common";
 import { ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { UserTokenInfo } from "src/decorators/user-info.decorator";
 import { JwtPayload } from "src/interfaces/user-info.interface";
@@ -46,6 +54,36 @@ export class SocialController {
     return this.socialService.unfollowUser(
       userInfo.id,
       unfollowUserDto.username
+    );
+  }
+  @Get("followers")
+  @HttpCode(200)
+  @ApiOperation({ summary: "Listar usuários que estou seguindo" })
+  @ApiResponse({
+    status: 200,
+    description: "Lista de seguidores do meu perfil",
+  })
+  getFollowers(@UserTokenInfo() userInfo: JwtPayload) {
+    return this.socialService.getFollowers(userInfo.id);
+  }
+
+  @Get("others-followers/:secondaryUserId")
+  @HttpCode(200)
+  @ApiOperation({
+    summary:
+      "Listar seguidores de outro usuário e verificar se me seguem de volta",
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Lista de seguidores do perfil de outro usuário",
+  })
+  getOthersFollowers(
+    @UserTokenInfo() primaryUserInfo: JwtPayload,
+    @Param("secondaryUserId") secondaryUserId: number
+  ) {
+    return this.socialService.getOthersFollowers(
+      primaryUserInfo.id,
+      secondaryUserId
     );
   }
 }
