@@ -13,7 +13,6 @@ import { JwtPayload } from "src/interfaces/user-info.interface";
 import { UserFollowDto } from "./dto/user-follow.dto";
 import { UserUnfollowDto } from "./dto/user-unfollow.dto";
 import { SocialService } from "./social.service";
-import { get } from "http";
 
 @Controller("social")
 export class SocialController {
@@ -57,18 +56,18 @@ export class SocialController {
       unfollowUserDto.username
     );
   }
-  @Get("follower")
+  @Get("followers")
   @HttpCode(200)
   @ApiOperation({ summary: "Listar usuários que estou seguindo" })
   @ApiResponse({
     status: 200,
-    description: "Lista de usuários seguidos retornada com sucesso",
+    description: "Lista de seguidores do meu perfil",
   })
-  getFollower(@UserTokenInfo() userInfo: JwtPayload) {
-    return this.socialService.getFollower(userInfo.id);
+  getFollowers(@UserTokenInfo() userInfo: JwtPayload) {
+    return this.socialService.getFollowers(userInfo.id);
   }
 
-  @Get("followers/:secondaryUserId")
+  @Get("others-followers/:secondaryUserId")
   @HttpCode(200)
   @ApiOperation({
     summary:
@@ -76,9 +75,9 @@ export class SocialController {
   })
   @ApiResponse({
     status: 200,
-    description: "Lista de seguidores retornada com sucesso",
+    description: "Lista de seguidores do perfil de outro usuário",
   })
-  getOthersFollower(
+  getOthersFollowers(
     @UserTokenInfo() primaryUserInfo: JwtPayload,
     @Param("secondaryUserId") secondaryUserId: number
   ) {

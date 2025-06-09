@@ -3,7 +3,9 @@ import {
   Injectable,
   NotFoundException,
 } from "@nestjs/common";
+import { fromByteArray } from "base64-js";
 import { PrismaService } from "../prisma/prisma.service";
+import { ProfileFollowersResponseDto } from "./dto/profile-followers.dto";
 
 @Injectable()
 export class SocialService {
@@ -105,23 +107,35 @@ export class SocialService {
     });
   }
 
-  async getFollower(userId: number) {
-    const user = await this.prisma.user.findFirst({
-      where: { user_id: userId },
+  async getFollowers(userId: number): Promise<ProfileFollowersResponseDto> {
+    const profileFollowers = await this.prisma.userFollow.findMany({
+      where: {
+        following_id: userId,
+      },
       include: {
-        followers: {
-          include: {
-            follower: true,
+        follower: {
+          select: {
+            user_id: true,
+            profile_image: true,
+            username: true,
           },
         },
       },
     });
 
-    if (!user) return [];
+    if (profileFollowers == undefined || profileFollowers.length === 0) {
+      return {
+        followers: [],
+      };
+    }
+
+    const followersList = profileFollowers.map((profileFollower) => {
+      return profileFollower.follower;
+    });
 
     const result = await Promise.all(
-      user.followers.map(async (relation) => {
-        const followerId = relation.follower_id;
+      followersList.map(async (follower) => {
+        const followerId = follower.user_id;
         const isFollowedBack = await this.prisma.userFollow.findFirst({
           where: {
             follower_id: userId,
@@ -130,54 +144,80 @@ export class SocialService {
         });
 
         return {
-          user: relation.follower.user_id,
-          followsBack: !!isFollowedBack,
+          user_id: follower.user_id,
+          profile_image: follower.profile_image
+            ? fromByteArray(follower.profile_image)
+            : null,
+          username: follower.username,
+          imFollowing: Boolean(isFollowedBack),
         };
       })
     );
-    return result;
+    return {
+      followers: result,
+    };
   }
 
-  async getOthersFollowers(myId: number, targetId: number) {
-  const user = await this.prisma.user.findFirst({
-    where: { user_id: targetId },
-    include: {
-      followers: {
-        include: {
-          follower: true,
+  async getOthersFollowers(
+    myId: number,
+    targetId: number
+  ): Promise<ProfileFollowersResponseDto> {
+    const thirdPersonProfileFollowers = await this.prisma.userFollow.findMany({
+      where: {
+        following_id: targetId,
+      },
+      include: {
+        follower: {
+          select: {
+            user_id: true,
+            profile_image: true,
+            username: true,
+          },
         },
       },
-    },
-  });
+    });
 
-  if (!user) return [];
+    if (
+      thirdPersonProfileFollowers == undefined ||
+      thirdPersonProfileFollowers.length === 0
+    ) {
+      return {
+        followers: [],
+      };
+    }
 
-  const result = await Promise.all(
-    user.followers
-      .filter(relation => {
-        const followerId = relation.follower.user_id;
-        return followerId !== myId && followerId !== targetId;
-      })
-      .map(async (relation) => {
-        const followerId = relation.follower.user_id;
+    // The myIdUser cant be in the followers list
+    const followersListWithoutMyId = thirdPersonProfileFollowers.filter(
+      (profileFollower) => profileFollower.follower_id !== myId
+    );
 
-        const isFollowedBack = await this.prisma.userFollow.findFirst({
+    const followersList = followersListWithoutMyId.map((profileFollower) => {
+      return profileFollower.follower;
+    });
+
+    const result = await Promise.all(
+      followersList.map(async (follower) => {
+        const followerId = follower.user_id;
+        const isMyUserFollowing = await this.prisma.userFollow.findFirst({
           where: {
-            follower_id: followerId,
-            following_id: myId, 
+            follower_id: myId,
+            following_id: followerId,
           },
         });
 
         return {
-          user: followerId,
-          followsBack: !!isFollowedBack,
+          user_id: follower.user_id,
+          profile_image: follower.profile_image
+            ? fromByteArray(follower.profile_image)
+            : null,
+          username: follower.username,
+          imFollowing: Boolean(isMyUserFollowing),
         };
       })
-  );
+    );
 
-  return result;
+    return {
+      followers: result,
+    };
+  }
 }
-}
-
-
-
