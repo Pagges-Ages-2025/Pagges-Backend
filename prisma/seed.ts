@@ -64,7 +64,23 @@ async function main() {
       },
       {
         follower_id: createdUsers[1].user_id,
+        following_id: createdUsers[0].user_id,
+      },
+      {
+        follower_id: createdUsers[1].user_id,
         following_id: createdUsers[2].user_id,
+      },
+      {
+        follower_id: createdUsers[2].user_id,
+        following_id: createdUsers[0].user_id,
+      },
+      {
+        follower_id: createdUsers[0].user_id,
+        following_id: createdUsers[2].user_id,
+      },
+      {
+        follower_id: createdUsers[2].user_id,
+        following_id: createdUsers[1].user_id,
       },
     ],
   });
