@@ -38,6 +38,14 @@ export class ProfileService {
       const friendsNumber = user.followers.length;
       const favoriteGenres = translateGenresToPTBR(genres);
 
+      const users = await this.prisma.user.findMany({
+        orderBy:{
+          points: "asc",
+        }
+      })
+
+      const position = users.findIndex(user => user.user_id)+1
+
       const profileImage = user.profile_image
         ? fromByteArray(user.profile_image)
         : null;
@@ -50,7 +58,7 @@ export class ProfileService {
         favoriteGenres: favoriteGenres,
         readKm: user.pages || 0,
         readBooks: user.pages || 0,
-        //ranking: user.points || 0, ------- proxima sprint
+        posicao_ranking: position, 
         friendsNumber: friendsNumber,
         isAuthor: user.is_author,
         profileImage: profileImage,
@@ -237,6 +245,14 @@ export class ProfileService {
       const friendsNumber = user.followers.length;
       const favoriteGenres = translateGenresToPTBR(genres);
 
+      const users = await this.prisma.user.findMany({
+        orderBy:{
+          points: "asc",
+        }
+      })
+
+      const position = users.findIndex(user => user.user_id)+1
+
       const profileImage = user.profile_image
         ? fromByteArray(user.profile_image)
         : null;
@@ -249,7 +265,7 @@ export class ProfileService {
         favoriteGenres: favoriteGenres,
         readKm: user.pages || 0,
         readBooks: user.pages || 0,
-        //ranking: user.points || 0, ------- proxima sprint
+        posicao_ranking: position,
         friendsNumber: friendsNumber,
         isAuthor: user.is_author,
         profileImage: profileImage,
