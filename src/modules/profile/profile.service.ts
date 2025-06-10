@@ -38,13 +38,15 @@ export class ProfileService {
       const friendsNumber = user.followers.length;
       const favoriteGenres = translateGenresToPTBR(genres);
 
-      const users = await this.prisma.user.findMany({
-        orderBy:{
-          points: "asc",
-        }
-      })
+      const usersAboveCount = await this.prisma.user.count({
+        where: {
+          points: {
+            gt: user.points,
+          },
+        },
+      });
 
-      const position = users.findIndex(user => user.user_id)+1
+      const position = usersAboveCount + 1;
 
       const profileImage = user.profile_image
         ? fromByteArray(user.profile_image)
@@ -245,13 +247,15 @@ export class ProfileService {
       const friendsNumber = user.followers.length;
       const favoriteGenres = translateGenresToPTBR(genres);
 
-      const users = await this.prisma.user.findMany({
-        orderBy:{
-          points: "asc",
-        }
-      })
+      const usersAboveCount = await this.prisma.user.count({
+        where: {
+          points: {
+            gt: user.points,
+          },
+        },
+      });
 
-      const position = users.findIndex(user => user.user_id)+1
+      const position = usersAboveCount + 1;
 
       const profileImage = user.profile_image
         ? fromByteArray(user.profile_image)
