@@ -4,6 +4,7 @@ import { PrismaClient } from "@prisma/client";
 import * as bcrypt from "bcrypt";
 import * as fs from "fs";
 import * as path from "path";
+import { bookSeed } from "./seed-dev-book";
 import { challengeSeed } from "./seed-dev-challenges";
 
 const prisma = new PrismaClient();
@@ -12,6 +13,36 @@ async function main() {
   const hashedPassword1 = await bcrypt.hash("password1", 10);
   const hashedPassword2 = await bcrypt.hash("password2", 10);
   const hashedPassword3 = await bcrypt.hash("password3", 10);
+  const hashedPassword4 = await bcrypt.hash("password4", 10);
+  const hashedPassword5 = await bcrypt.hash("password5", 10);
+  const hashedPassword6 = await bcrypt.hash("password6", 10);
+  const hashedPassword7 = await bcrypt.hash("password7", 10);
+  const hashedPassword8 = await bcrypt.hash("password8", 10);
+  const hashedPassword9 = await bcrypt.hash("password9", 10);
+  const hashedPassword10 = await bcrypt.hash("password10", 10);
+  const hashedPassword11 = await bcrypt.hash("password11", 10);
+  const hashedPassword12 = await bcrypt.hash("password12", 10);
+
+  await prisma.genre.createMany({
+    data: [
+      { genre_name: "Fiction" },
+      { genre_name: "Drama" },
+      { genre_name: "Biography & Autobiography" },
+      { genre_name: "Children's stories" },
+      { genre_name: "History" },
+      { genre_name: "Art" },
+      { genre_name: "England" },
+      { genre_name: "Religion" },
+      { genre_name: "Psychology" },
+      { genre_name: "Comics & Graphic Novels" },
+      { genre_name: "Medical" },
+      { genre_name: "Computers" },
+      { genre_name: "Action" },
+      { genre_name: "Dystopian" },
+    ],
+  });
+
+  await bookSeed(prisma);
 
   const users = await prisma.user.createMany({
     data: [
@@ -51,6 +82,102 @@ async function main() {
         biography:
           "Leitora voraz e amante de histórias. Sempre em busca de novos mundos e aventuras literárias.",
       },
+      {
+        name: "Diego",
+        username: "diego",
+        email: "diego@example.com",
+        password: hashedPassword4,
+        points: 210,
+        pages: 450,
+        is_author: true,
+        biography:
+          "Escritor de fantasia épica. Criador de mundos e contador de lendas.",
+      },
+      {
+        name: "Elisa",
+        username: "elisa",
+        email: "elisa@example.com",
+        password: hashedPassword5,
+        points: 70,
+        pages: 120,
+        is_author: false,
+        biography:
+          "Curiosa por natureza, adora livros de mistério e biografias inspiradoras.",
+      },
+      {
+        name: "Fernando",
+        username: "fernando",
+        email: "fernando@example.com",
+        password: hashedPassword6,
+        points: 190,
+        pages: 370,
+        is_author: true,
+        biography: "Historiador e autor de romances baseados em fatos reais.",
+      },
+      {
+        name: "Giovana",
+        username: "giovana",
+        email: "giovana@example.com",
+        password: hashedPassword7,
+        points: 110,
+        pages: 250,
+        is_author: false,
+        biography:
+          "Fã de mundos mágicos e criaturas encantadas. Leitora fiel de sagas.",
+      },
+      {
+        name: "Henrique",
+        username: "henrique",
+        email: "henrique@example.com",
+        password: hashedPassword8,
+        points: 300,
+        pages: 600,
+        is_author: true,
+        biography: "Poeta moderno que busca traduzir sentimentos em palavras.",
+      },
+      {
+        name: "Isabela",
+        username: "isabela",
+        email: "isabela@example.com",
+        password: hashedPassword9,
+        points: 95,
+        pages: 180,
+        is_author: false,
+        biography:
+          "Leitora casual, adora descobrir novos autores independentes.",
+      },
+      {
+        name: "João",
+        username: "joao",
+        email: "joao@example.com",
+        password: hashedPassword10,
+        points: 160,
+        pages: 290,
+        is_author: true,
+        biography: "Autor de romances contemporâneos e histórias de amor.",
+      },
+      {
+        name: "Kátia",
+        username: "katia",
+        email: "katia@example.com",
+        password: hashedPassword11,
+        points: 125,
+        pages: 240,
+        is_author: false,
+        biography:
+          "Viciada em suspenses e investigações. Nada escapa ao seu olhar atento.",
+      },
+      {
+        name: "Lucas",
+        username: "lucas",
+        email: "lucas@example.com",
+        password: hashedPassword12,
+        points: 180,
+        pages: 350,
+        is_author: true,
+        biography:
+          "Escritor de ficção científica com um toque de realismo tecnológico.",
+      },
     ],
   });
 
@@ -59,28 +186,204 @@ async function main() {
   await prisma.userFollow.createMany({
     data: [
       {
-        follower_id: createdUsers[0].user_id,
+        follower_id: createdUsers[3].user_id,
         following_id: createdUsers[1].user_id,
       },
       {
-        follower_id: createdUsers[1].user_id,
-        following_id: createdUsers[0].user_id,
+        follower_id: createdUsers[5].user_id,
+        following_id: createdUsers[2].user_id,
+      },
+      {
+        follower_id: createdUsers[0].user_id,
+        following_id: createdUsers[4].user_id,
+      },
+      {
+        follower_id: createdUsers[6].user_id,
+        following_id: createdUsers[3].user_id,
+      },
+      {
+        follower_id: createdUsers[2].user_id,
+        following_id: createdUsers[7].user_id,
       },
       {
         follower_id: createdUsers[1].user_id,
+        following_id: createdUsers[5].user_id,
+      },
+      {
+        follower_id: createdUsers[8].user_id,
+        following_id: createdUsers[0].user_id,
+      },
+      {
+        follower_id: createdUsers[4].user_id,
+        following_id: createdUsers[6].user_id,
+      },
+      {
+        follower_id: createdUsers[7].user_id,
+        following_id: createdUsers[9].user_id,
+      },
+      {
+        follower_id: createdUsers[9].user_id,
+        following_id: createdUsers[8].user_id,
+      },
+      {
+        follower_id: createdUsers[10].user_id,
+        following_id: createdUsers[3].user_id,
+      },
+      {
+        follower_id: createdUsers[11].user_id,
         following_id: createdUsers[2].user_id,
+      },
+      {
+        follower_id: createdUsers[6].user_id,
+        following_id: createdUsers[10].user_id,
+      },
+      {
+        follower_id: createdUsers[3].user_id,
+        following_id: createdUsers[11].user_id,
+      },
+      {
+        follower_id: createdUsers[1].user_id,
+        following_id: createdUsers[9].user_id,
+      },
+      {
+        follower_id: createdUsers[5].user_id,
+        following_id: createdUsers[7].user_id,
       },
       {
         follower_id: createdUsers[2].user_id,
         following_id: createdUsers[0].user_id,
       },
       {
+        follower_id: createdUsers[7].user_id,
+        following_id: createdUsers[1].user_id,
+      },
+      {
+        follower_id: createdUsers[10].user_id,
+        following_id: createdUsers[4].user_id,
+      },
+      {
+        follower_id: createdUsers[8].user_id,
+        following_id: createdUsers[6].user_id,
+      },
+      {
         follower_id: createdUsers[0].user_id,
+        following_id: createdUsers[9].user_id,
+      },
+      {
+        follower_id: createdUsers[4].user_id,
+        following_id: createdUsers[10].user_id,
+      },
+      {
+        follower_id: createdUsers[9].user_id,
+        following_id: createdUsers[11].user_id,
+      },
+      {
+        follower_id: createdUsers[10].user_id,
         following_id: createdUsers[2].user_id,
       },
       {
-        follower_id: createdUsers[2].user_id,
+        follower_id: createdUsers[11].user_id,
+        following_id: createdUsers[8].user_id,
+      },
+      {
+        follower_id: createdUsers[3].user_id,
+        following_id: createdUsers[6].user_id,
+      },
+      {
+        follower_id: createdUsers[5].user_id,
         following_id: createdUsers[1].user_id,
+      },
+      {
+        follower_id: createdUsers[6].user_id,
+        following_id: createdUsers[9].user_id,
+      },
+      {
+        follower_id: createdUsers[7].user_id,
+        following_id: createdUsers[4].user_id,
+      },
+      {
+        follower_id: createdUsers[1].user_id,
+        following_id: createdUsers[3].user_id,
+      },
+      {
+        follower_id: createdUsers[2].user_id,
+        following_id: createdUsers[5].user_id,
+      },
+      {
+        follower_id: createdUsers[0].user_id,
+        following_id: createdUsers[7].user_id,
+      },
+      {
+        follower_id: createdUsers[8].user_id,
+        following_id: createdUsers[10].user_id,
+      },
+      {
+        follower_id: createdUsers[10].user_id,
+        following_id: createdUsers[5].user_id,
+      },
+      {
+        follower_id: createdUsers[9].user_id,
+        following_id: createdUsers[0].user_id,
+      },
+      {
+        follower_id: createdUsers[11].user_id,
+        following_id: createdUsers[6].user_id,
+      },
+      {
+        follower_id: createdUsers[4].user_id,
+        following_id: createdUsers[2].user_id,
+      },
+      {
+        follower_id: createdUsers[5].user_id,
+        following_id: createdUsers[0].user_id,
+      },
+      {
+        follower_id: createdUsers[2].user_id,
+        following_id: createdUsers[9].user_id,
+      },
+      {
+        follower_id: createdUsers[6].user_id,
+        following_id: createdUsers[1].user_id,
+      },
+      {
+        follower_id: createdUsers[7].user_id,
+        following_id: createdUsers[10].user_id,
+      },
+      {
+        follower_id: createdUsers[3].user_id,
+        following_id: createdUsers[8].user_id,
+      },
+      {
+        follower_id: createdUsers[1].user_id,
+        following_id: createdUsers[11].user_id,
+      },
+      {
+        follower_id: createdUsers[0].user_id,
+        following_id: createdUsers[6].user_id,
+      },
+      {
+        follower_id: createdUsers[9].user_id,
+        following_id: createdUsers[2].user_id,
+      },
+      {
+        follower_id: createdUsers[10].user_id,
+        following_id: createdUsers[7].user_id,
+      },
+      {
+        follower_id: createdUsers[11].user_id,
+        following_id: createdUsers[5].user_id,
+      },
+      {
+        follower_id: createdUsers[8].user_id,
+        following_id: createdUsers[3].user_id,
+      },
+      {
+        follower_id: createdUsers[4].user_id,
+        following_id: createdUsers[1].user_id,
+      },
+      {
+        follower_id: createdUsers[7].user_id,
+        following_id: createdUsers[0].user_id,
       },
     ],
   });
@@ -312,24 +615,6 @@ async function main() {
     }
   }
 
-  await prisma.genre.createMany({
-    data: [
-      { genre_name: "Fiction" },
-      { genre_name: "Drama" },
-      { genre_name: "Biography & Autobiography" },
-      { genre_name: "Children's stories" },
-      { genre_name: "History" },
-      { genre_name: "Art" },
-      { genre_name: "England" },
-      { genre_name: "Religion" },
-      { genre_name: "Psychology" },
-      { genre_name: "Comics & Graphic Novels" },
-      { genre_name: "Medical" },
-      { genre_name: "Computers" },
-      { genre_name: "Action" },
-      { genre_name: "Dystopian" },
-    ],
-  });
   const createdGenres = await prisma.genre.findMany();
 
   // Add BookGenre relationships
@@ -380,17 +665,70 @@ async function main() {
 
   await prisma.userGenre.createMany({
     data: [
+      { user_id: createdUsers[0].user_id, genre_id: createdGenres[2].genre_id },
+      { user_id: createdUsers[0].user_id, genre_id: createdGenres[5].genre_id },
+      { user_id: createdUsers[0].user_id, genre_id: createdGenres[8].genre_id },
+
+      { user_id: createdUsers[1].user_id, genre_id: createdGenres[1].genre_id },
+      { user_id: createdUsers[1].user_id, genre_id: createdGenres[6].genre_id },
+      { user_id: createdUsers[1].user_id, genre_id: createdGenres[9].genre_id },
+
+      { user_id: createdUsers[2].user_id, genre_id: createdGenres[0].genre_id },
+      { user_id: createdUsers[2].user_id, genre_id: createdGenres[3].genre_id },
+      { user_id: createdUsers[2].user_id, genre_id: createdGenres[4].genre_id },
+
+      { user_id: createdUsers[3].user_id, genre_id: createdGenres[7].genre_id },
+      { user_id: createdUsers[3].user_id, genre_id: createdGenres[2].genre_id },
+      { user_id: createdUsers[3].user_id, genre_id: createdGenres[9].genre_id },
+
+      { user_id: createdUsers[4].user_id, genre_id: createdGenres[5].genre_id },
+      { user_id: createdUsers[4].user_id, genre_id: createdGenres[0].genre_id },
+      { user_id: createdUsers[4].user_id, genre_id: createdGenres[6].genre_id },
+
+      { user_id: createdUsers[5].user_id, genre_id: createdGenres[3].genre_id },
+      { user_id: createdUsers[5].user_id, genre_id: createdGenres[8].genre_id },
+      { user_id: createdUsers[5].user_id, genre_id: createdGenres[1].genre_id },
+
+      { user_id: createdUsers[6].user_id, genre_id: createdGenres[4].genre_id },
+      { user_id: createdUsers[6].user_id, genre_id: createdGenres[7].genre_id },
+      { user_id: createdUsers[6].user_id, genre_id: createdGenres[0].genre_id },
+
+      { user_id: createdUsers[7].user_id, genre_id: createdGenres[1].genre_id },
+      { user_id: createdUsers[7].user_id, genre_id: createdGenres[5].genre_id },
+      { user_id: createdUsers[7].user_id, genre_id: createdGenres[3].genre_id },
+
+      { user_id: createdUsers[8].user_id, genre_id: createdGenres[6].genre_id },
+      { user_id: createdUsers[8].user_id, genre_id: createdGenres[8].genre_id },
+      { user_id: createdUsers[8].user_id, genre_id: createdGenres[2].genre_id },
+
+      { user_id: createdUsers[9].user_id, genre_id: createdGenres[7].genre_id },
+      { user_id: createdUsers[9].user_id, genre_id: createdGenres[9].genre_id },
+      { user_id: createdUsers[9].user_id, genre_id: createdGenres[4].genre_id },
+
       {
-        user_id: createdUsers[0].user_id,
+        user_id: createdUsers[10].user_id,
+        genre_id: createdGenres[2].genre_id,
+      },
+      {
+        user_id: createdUsers[10].user_id,
+        genre_id: createdGenres[3].genre_id,
+      },
+      {
+        user_id: createdUsers[10].user_id,
         genre_id: createdGenres[0].genre_id,
       },
+
       {
-        user_id: createdUsers[0].user_id,
-        genre_id: createdGenres[1].genre_id,
+        user_id: createdUsers[11].user_id,
+        genre_id: createdGenres[8].genre_id,
       },
       {
-        user_id: createdUsers[0].user_id,
-        genre_id: createdGenres[2].genre_id,
+        user_id: createdUsers[11].user_id,
+        genre_id: createdGenres[6].genre_id,
+      },
+      {
+        user_id: createdUsers[11].user_id,
+        genre_id: createdGenres[1].genre_id,
       },
     ],
   });
