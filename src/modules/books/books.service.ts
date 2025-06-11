@@ -262,13 +262,6 @@ export class BooksService {
           },
         },
       },
-      include: {
-        BookGenre: {
-          include: {
-            genre: true,
-          },
-        },
-      },
       take: 12,
     });
 
