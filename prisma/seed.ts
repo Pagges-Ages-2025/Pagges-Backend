@@ -4,6 +4,7 @@ import { PrismaClient } from "@prisma/client";
 import * as bcrypt from "bcrypt";
 import * as fs from "fs";
 import * as path from "path";
+import { bookSeed } from "./seed-dev-book";
 import { challengeSeed } from "./seed-dev-challenges";
 
 const prisma = new PrismaClient();
@@ -12,6 +13,27 @@ async function main() {
   const hashedPassword1 = await bcrypt.hash("password1", 10);
   const hashedPassword2 = await bcrypt.hash("password2", 10);
   const hashedPassword3 = await bcrypt.hash("password3", 10);
+
+  await prisma.genre.createMany({
+    data: [
+      { genre_name: "Fiction" },
+      { genre_name: "Drama" },
+      { genre_name: "Biography & Autobiography" },
+      { genre_name: "Children's stories" },
+      { genre_name: "History" },
+      { genre_name: "Art" },
+      { genre_name: "England" },
+      { genre_name: "Religion" },
+      { genre_name: "Psychology" },
+      { genre_name: "Comics & Graphic Novels" },
+      { genre_name: "Medical" },
+      { genre_name: "Computers" },
+      { genre_name: "Action" },
+      { genre_name: "Dystopian" },
+    ],
+  });
+
+  await bookSeed(prisma);
 
   const users = await prisma.user.createMany({
     data: [
@@ -312,24 +334,6 @@ async function main() {
     }
   }
 
-  await prisma.genre.createMany({
-    data: [
-      { genre_name: "Fiction" },
-      { genre_name: "Drama" },
-      { genre_name: "Biography & Autobiography" },
-      { genre_name: "Children's stories" },
-      { genre_name: "History" },
-      { genre_name: "Art" },
-      { genre_name: "England" },
-      { genre_name: "Religion" },
-      { genre_name: "Psychology" },
-      { genre_name: "Comics & Graphic Novels" },
-      { genre_name: "Medical" },
-      { genre_name: "Computers" },
-      { genre_name: "Action" },
-      { genre_name: "Dystopian" },
-    ],
-  });
   const createdGenres = await prisma.genre.findMany();
 
   // Add BookGenre relationships
