@@ -63,4 +63,10 @@ export class BooksController {
   getBooksByGenre(@Param("genreId", ParseIntPipe) genreId: number) {
     return this.booksService.getBooksByGenre(genreId);
   }
+
+  @Get("favorites")
+  @HttpCode(200)
+  getBooksByUserFavoriteGenres(@UserTokenInfo() userInfo: JwtPayload) {
+    return this.booksService.getBooksByUserFavoriteGenres(userInfo.id);
+  }
 }

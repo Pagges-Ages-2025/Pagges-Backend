@@ -240,4 +240,38 @@ export class BooksService {
 
     return booksList;
   }
+
+  async getBooksByUserFavoriteGenres(userId: number) {
+    const favoriteGenres = await this.prisma.userGenre.findMany({
+      where: { user_id: userId },
+      take: 3,
+      select: { genre_id: true },
+    });
+
+    const genreIds = favoriteGenres.map((g) => g.genre_id);
+
+    if (genreIds.length === 0) {
+      throw new NotFoundException("Usuário não possui gêneros favoritos.");
+    }
+
+    const books = await this.prisma.book.findMany({
+      where: {
+        BookGenre: {
+          some: {
+            genre_id: { in: genreIds },
+          },
+        },
+      },
+      take: 12,
+    });
+
+    if (!books || books.length === 0) {
+      throw new NotFoundException(
+        "Nenhum livro encontrado para os gêneros favoritos."
+      );
+    }
+
+    const shuffledBooks = books.sort(() => Math.random() - 0.5);
+    return shuffledBooks;
+  }
 }
