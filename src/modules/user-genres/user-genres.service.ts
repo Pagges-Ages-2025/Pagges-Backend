@@ -57,11 +57,12 @@ export class UserGenresService {
       where: { user_id: id },
       include: { genre: true },
     });
-
+    
+    const genresWithTranslatedNames = translateGenresToPTBR(userGenres.map((ug) => ug.genre));
     return {
       status: 200,
       message: "Gêneros favoritos encontrados.",
-      data: userGenres.map((ug) => ug.genre),
+      data: genresWithTranslatedNames,
     };
   }
 }
