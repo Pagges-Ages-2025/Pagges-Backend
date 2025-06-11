@@ -55,7 +55,7 @@ async function main() {
         pages: 200,
         is_author: false,
         profile_image: fs.readFileSync(
-          path.join(__dirname, "../src/assets", "kermit_o_sapo.jpeg")
+          path.join(__dirname, "../src/assets", "images-4.jpeg")
         ),
         biography:
           "Leitora apaixonada por ficção científica e fantasia. Sempre em busca de novas histórias para explorar.",
@@ -68,6 +68,9 @@ async function main() {
         points: 80,
         pages: 150,
         is_author: true,
+        profile_image: fs.readFileSync(
+          path.join(__dirname, "../src/assets", "images-2.jpeg")
+        ),
         biography:
           "Escritor e crítico literário com mais de 10 anos de experiência. Apaixonado por ficção científica e fantasia, já publicou três livros best-sellers.",
       },
@@ -79,6 +82,9 @@ async function main() {
         points: 60,
         pages: 100,
         is_author: false,
+        profile_image: fs.readFileSync(
+          path.join(__dirname, "../src/assets", "images-3.jpeg")
+        ),
         biography:
           "Leitora voraz e amante de histórias. Sempre em busca de novos mundos e aventuras literárias.",
       },
@@ -90,6 +96,9 @@ async function main() {
         points: 210,
         pages: 450,
         is_author: true,
+        profile_image: fs.readFileSync(
+          path.join(__dirname, "../src/assets", "images-12.jpeg")
+        ),
         biography:
           "Escritor de fantasia épica. Criador de mundos e contador de lendas.",
       },
@@ -101,6 +110,9 @@ async function main() {
         points: 70,
         pages: 120,
         is_author: false,
+        profile_image: fs.readFileSync(
+          path.join(__dirname, "../src/assets", "images-5.jpeg")
+        ),
         biography:
           "Curiosa por natureza, adora livros de mistério e biografias inspiradoras.",
       },
@@ -112,6 +124,9 @@ async function main() {
         points: 190,
         pages: 370,
         is_author: true,
+        profile_image: fs.readFileSync(
+          path.join(__dirname, "../src/assets", "images-6.jpeg")
+        ),
         biography: "Historiador e autor de romances baseados em fatos reais.",
       },
       {
@@ -122,6 +137,9 @@ async function main() {
         points: 110,
         pages: 250,
         is_author: false,
+        profile_image: fs.readFileSync(
+          path.join(__dirname, "../src/assets", "images-7.jpeg")
+        ),
         biography:
           "Fã de mundos mágicos e criaturas encantadas. Leitora fiel de sagas.",
       },
@@ -133,6 +151,9 @@ async function main() {
         points: 300,
         pages: 600,
         is_author: true,
+        profile_image: fs.readFileSync(
+          path.join(__dirname, "../src/assets", "images-8.jpeg")
+        ),
         biography: "Poeta moderno que busca traduzir sentimentos em palavras.",
       },
       {
@@ -143,6 +164,9 @@ async function main() {
         points: 95,
         pages: 180,
         is_author: false,
+        profile_image: fs.readFileSync(
+          path.join(__dirname, "../src/assets", "images-9.jpeg")
+        ),
         biography:
           "Leitora casual, adora descobrir novos autores independentes.",
       },
@@ -154,6 +178,9 @@ async function main() {
         points: 160,
         pages: 290,
         is_author: true,
+        profile_image: fs.readFileSync(
+          path.join(__dirname, "../src/assets", "images-10.jpeg")
+        ),
         biography: "Autor de romances contemporâneos e histórias de amor.",
       },
       {
@@ -164,6 +191,9 @@ async function main() {
         points: 125,
         pages: 240,
         is_author: false,
+        profile_image: fs.readFileSync(
+          path.join(__dirname, "../src/assets", "images.jpeg")
+        ),
         biography:
           "Viciada em suspenses e investigações. Nada escapa ao seu olhar atento.",
       },
@@ -175,6 +205,9 @@ async function main() {
         points: 180,
         pages: 350,
         is_author: true,
+        profile_image: fs.readFileSync(
+          path.join(__dirname, "../src/assets", "images-11.jpeg")
+        ),
         biography:
           "Escritor de ficção científica com um toque de realismo tecnológico.",
       },
