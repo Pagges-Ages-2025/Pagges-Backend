@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { ScheduleModule } from "@nestjs/schedule";
+import { PrometheusModule } from "@willsoto/nestjs-prometheus";
 import * as Joi from "joi";
 import { WinstonModule } from "nest-winston";
 import { winstonLoggerConfig } from "./config/winston-logger/winston-config";
@@ -19,6 +20,7 @@ import { UserModule } from "./modules/user/user.module";
 
 @Module({
   imports: [
+    PrometheusModule.register(),
     ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       validationSchema: Joi.object({
