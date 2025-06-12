@@ -11,7 +11,7 @@ import { UpdateUserPointsDto } from "./dto/update_user_points.dto";
 
 @Injectable()
 export class ChallengesService implements OnModuleInit {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async onModuleInit() {
     await this.initializeRandomChallenge();
@@ -284,5 +284,16 @@ export class ChallengesService implements OnModuleInit {
         },
       },
     });
+  }
+
+  async getUserCorrectChallenges(userId: number) {
+    const registerCount =
+      await this.prisma.challengeUser.count({
+        where: {
+          user_id: userId,
+          has_user_guessed_correctly: true
+        },
+      });
+    return { registerCount : registerCount};
   }
 }
