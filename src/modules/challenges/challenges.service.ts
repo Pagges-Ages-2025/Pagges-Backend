@@ -226,11 +226,17 @@ export class ChallengesService implements OnModuleInit {
     });
 
     if (userChallenge) {
-      PaggesLogger.log(
-        `User ${userId} already answered challenge ${challengeAnswered.challenge_id}`
-      );
-      throw new BadRequestException("User already answered this challenge");
-    }
+      const today = new Date();
+      const answeredDate = new Date(userChallenge.created_at);
+      
+      const isSameDay = today.toDateString() === answeredDate.toDateString();
+      
+      if (isSameDay) {
+        PaggesLogger.log(
+          `User ${userId} already answered challenge ${challengeAnswered.challenge_id} today`
+        );
+        throw new BadRequestException("User already answered this challenge today");
+      }
 
     await this.prisma.challengeUser.create({
       data: {
