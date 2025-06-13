@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma/prisma.service";
+import { fromByteArray } from "base64-js";
 
 @Injectable()
 export class UserService {
@@ -21,7 +22,16 @@ export class UserService {
       },
     });
 
-    const usersWithoutMe = users.filter((user) => user.user_id !== myId);
+    const usersWithProfileImage = users.map((user) => ({
+      ...user,
+      profile_image: user.profile_image
+        ? fromByteArray(user.profile_image)
+        : null,
+    }));
+
+    const usersWithoutMe = usersWithProfileImage.filter(
+      (user) => user.user_id !== myId
+    );
 
     if (usersWithoutMe.length === 0) {
       return [];
