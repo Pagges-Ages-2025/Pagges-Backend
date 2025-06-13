@@ -17,6 +17,7 @@ import { ProfileModule } from "./modules/profile/profile.module";
 import { SocialModule } from "./modules/social/social.module";
 import { UserGenresModule } from "./modules/user-genres/user-genres.module";
 import { UserModule } from "./modules/user/user.module";
+import { RankingModule } from "./modules/ranking/ranking.module";
 
 @Module({
   imports: [
@@ -43,6 +44,7 @@ import { UserModule } from "./modules/user/user.module";
     PersonalLibraryModule,
     SocialModule,
     UserModule,
+    RankingModule,
   ],
   providers: [],
 })

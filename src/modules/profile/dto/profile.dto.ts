@@ -7,7 +7,7 @@ export class ProfileDto {
   favoriteGenres: TranslatedGenre[]
   readKm: number
   readBooks: number = 20
-  //ranking: number = 10 -------- proxima sprint
+  ranking_position: number 
   friendsNumber: number
   isAuthor: boolean
   email: string
