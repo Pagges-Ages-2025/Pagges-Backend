@@ -29,7 +29,7 @@ export class RankingService {
           : null;
 
         return {
-          posicao: index + 1,
+          position: index + 1,
           name: user.name,
           profile_image: fotoBase64,
           points: user.points,
