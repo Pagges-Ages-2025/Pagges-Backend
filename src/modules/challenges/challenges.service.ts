@@ -57,13 +57,13 @@ export class ChallengesService implements OnModuleInit {
       });
 
       PaggesLogger.log(
-        `Initialized random challenge: ${randomChallenge.question}, ID: ${randomChallenge.challenge_id}`
+        `Initialized random challenge: ${randomChallenge.question}, ID: ${randomChallenge.challenge_id}`,
       );
     } catch (error: unknown) {
       const errorMessage =
         error instanceof Error ? error.message : "Unknown error occurred";
       PaggesLogger.error(
-        `Failed to initialize random challenge: ${errorMessage}`
+        `Failed to initialize random challenge: ${errorMessage}`,
       );
     }
   }
@@ -177,7 +177,7 @@ export class ChallengesService implements OnModuleInit {
           data: { is_current: true },
         });
         PaggesLogger.log(
-          `Updated current challenge to: ${nextChallenge.question}, ID: ${nextChallenge.challenge_id}`
+          `Updated current challenge to: ${nextChallenge.question}, ID: ${nextChallenge.challenge_id}`,
         );
         return nextChallenge;
       }
@@ -228,15 +228,18 @@ export class ChallengesService implements OnModuleInit {
     if (userChallenge) {
       const today = new Date();
       const answeredDate = new Date(userChallenge.created_at);
-      
+
       const isSameDay = today.toDateString() === answeredDate.toDateString();
-      
+
       if (isSameDay) {
         PaggesLogger.log(
-          `User ${userId} already answered challenge ${challengeAnswered.challenge_id} today`
+          `User ${userId} already answered challenge ${challengeAnswered.challenge_id} today`,
         );
-        throw new BadRequestException("User already answered this challenge today");
+        throw new BadRequestException(
+          "User already answered this challenge today",
+        );
       }
+    }
 
     await this.prisma.challengeUser.create({
       data: {
@@ -254,7 +257,7 @@ export class ChallengesService implements OnModuleInit {
     }
 
     PaggesLogger.log(
-      `User ${userId} answered challenge ${challengeAnswered.challenge_id} correctly`
+      `User ${userId} answered challenge ${challengeAnswered.challenge_id} correctly`,
     );
 
     const updatedUser = await this.prisma.user.update({
@@ -267,7 +270,7 @@ export class ChallengesService implements OnModuleInit {
     });
 
     PaggesLogger.log(
-      `User ${userId} has ${updatedUser.points} points after answering challenge ${challengeAnswered.challenge_id}`
+      `User ${userId} has ${updatedUser.points} points after answering challenge ${challengeAnswered.challenge_id}`,
     );
 
     return {
