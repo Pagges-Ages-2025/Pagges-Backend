@@ -18,6 +18,7 @@ export class RankingService {
         },
         take: 10,
         select: {
+          username: true,
           name: true,
           profile_image: true,
           points: true,
@@ -31,6 +32,7 @@ export class RankingService {
 
         return {
           position: index + 1,
+          username: user.username,
           name: user.name,
           profile_image: fotoBase64,
           points: user.points,
