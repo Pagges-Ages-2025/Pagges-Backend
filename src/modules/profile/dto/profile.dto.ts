@@ -1,11 +1,13 @@
+import { TranslatedGenre } from "src/utils/genres-mapping/genres-mapping"
+
 export class ProfileDto {
   id: number
   name: string
   biography: string
-  favoriteGenres: string[]
+  favoriteGenres: TranslatedGenre[]
   readKm: number
   readBooks: number = 20
-  //ranking: number = 10 -------- proxima sprint
+  ranking_position: number 
   friendsNumber: number
   isAuthor: boolean
   email: string

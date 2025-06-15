@@ -23,7 +23,7 @@ export class BooksService {
     return {
       status: 200,
       message: "avaliações encontradas com sucesso.",
-      data: Math.round(avaregeRating._avg.rating),
+      data: Number(avaregeRating._avg.rating.toFixed(1)),
     };
   }
 
@@ -135,6 +135,7 @@ export class BooksService {
         `Livro ${book.titulo} já existe no banco de dados. Não será criado novamente.`
       );
       return {
+        data: existingBook,
         message: "Livro já existe no banco de dados.",
         status: 200,
       };
@@ -173,7 +174,7 @@ export class BooksService {
 
   async getTrendingBooks() {
     const ratedBooks = await this.prisma.rateBook.groupBy({
-      by: ['book_id'],
+      by: ["book_id"],
       _avg: {
         rating: true,
       },
@@ -187,7 +188,7 @@ export class BooksService {
     });
 
     if (!ratedBooks || ratedBooks.length === 0) {
-      throw new NotFoundException('Nenhum livro bem avaliado encontrado');
+      throw new NotFoundException("Nenhum livro bem avaliado encontrado");
     }
 
     const bookIds = ratedBooks.map((b) => b.book_id);
@@ -209,7 +210,7 @@ export class BooksService {
     });
 
     if (!trendingBooks || trendingBooks.length === 0) {
-      throw new NotFoundException('Nenhum livro em alta encontrado');
+      throw new NotFoundException("Nenhum livro em alta encontrado");
     }
 
     const booksWithAvg = trendingBooks.map((book) => ({
@@ -218,5 +219,59 @@ export class BooksService {
     }));
 
     return booksWithAvg;
+  }
+
+  async getBooksByGenre(genreId: number) {
+    const booksByGenre = await this.prisma.bookGenre.findMany({
+      where: {
+        genre_id: genreId,
+      },
+      include: {
+        book: true,
+      },
+      take: 30,
+    });
+
+    if (!booksByGenre || booksByGenre.length === 0) {
+      throw new NotFoundException("Nenhum livro encontrado para esse gênero");
+    }
+
+    const booksList = booksByGenre.map((book) => book.book);
+
+    return booksList;
+  }
+
+  async getBooksByUserFavoriteGenres(userId: number) {
+    const favoriteGenres = await this.prisma.userGenre.findMany({
+      where: { user_id: userId },
+      take: 3,
+      select: { genre_id: true },
+    });
+
+    const genreIds = favoriteGenres.map((g) => g.genre_id);
+
+    if (genreIds.length === 0) {
+      throw new NotFoundException("Usuário não possui gêneros favoritos.");
+    }
+
+    const books = await this.prisma.book.findMany({
+      where: {
+        BookGenre: {
+          some: {
+            genre_id: { in: genreIds },
+          },
+        },
+      },
+      take: 12,
+    });
+
+    if (!books || books.length === 0) {
+      throw new NotFoundException(
+        "Nenhum livro encontrado para os gêneros favoritos."
+      );
+    }
+
+    const shuffledBooks = books.sort(() => Math.random() - 0.5);
+    return shuffledBooks;
   }
 }

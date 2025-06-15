@@ -1,161 +1,52 @@
 import { Injectable, NotFoundException } from "@nestjs/common";
-import { BookshelfState } from "@prisma/client";
+
 import { PaggesLogger } from "src/config/winston-logger/pagges-logger.utils";
-import { GoogleIntegrationService } from "../google-integration/google-integration.service";
 import { PrismaService } from "../prisma/prisma.service";
+import { BookshelfState } from "./dto/types";
 
 @Injectable()
 export class PersonalLibraryService {
-  constructor(
-    private readonly prismaService: PrismaService,
-    private readonly googleIntegrationService: GoogleIntegrationService
-  ) {}
+  constructor(private readonly prismaService: PrismaService) {}
 
-  // Função para converter ID string do Google Books em um número (hash simples)
-  private hashStringToNumber(str: string): number {
-    let hash = 5381;
-    for (let i = 0; i < str.length; i++) {
-      hash = (hash << 5) + hash + str.charCodeAt(i);
-    }
-    // Garantir que seja positivo e evitar colisões com IDs existentes
-    return Math.abs(hash % 1000000) + 10000;
-  }
-
-  // Função para truncar texto que exceda o limite do banco de dados
-  private truncateText(
-    text: string | null | undefined,
-    maxLength: number
-  ): string {
-    if (!text) return "";
-    return text.length > maxLength
-      ? text.substring(0, maxLength - 3) + "..."
-      : text;
-  }
-
-  async addBookToList(
+  async updateOrCreateUserBookshelfState(
     user_id: number,
-    book_id: number | string,
-    listToAdd: BookshelfState
+    book_id: number,
+    new_state: BookshelfState
   ) {
-    const user = await this.prismaService.user.findFirst({
-      where: {
-        user_id: user_id,
-      },
-    });
-    if (!user) throw new NotFoundException("usuário não encontrado");
-
-    // Para IDs do Google Books (que são strings alfanuméricas)
-    const isGoogleBookId =
-      typeof book_id === "string" && isNaN(Number(book_id));
-    const numericBookId = isGoogleBookId
-      ? this.hashStringToNumber(book_id as string)
-      : Number(book_id);
-
-    PaggesLogger.log(
-      `Processando livro: ID original=${book_id}, isGoogleBookId=${isGoogleBookId}, numericBookId=${numericBookId}`
-    );
-
-    // Verifica se o livro existe no banco de dados
-    let book = await this.prismaService.book.findUnique({
-      where: {
-        book_id: numericBookId,
-      },
-    });
-
-    // Se o livro não existir, busca na API do Google
-    if (!book) {
-      try {
-        // Busca informações do livro na API do Google Books
-        const googleBookId = isGoogleBookId
-          ? (book_id as string)
-          : String(book_id);
-        PaggesLogger.log(`Buscando livro na API do Google: ${googleBookId}`);
-
-        const googleBookData =
-          await this.googleIntegrationService.getBookById(googleBookId);
-
-        // Trata os campos limitados pelo tamanho da coluna no banco de dados
-        const truncatedTitle = this.truncateText(googleBookData.title, 250);
-        const truncatedAuthors = this.truncateText(googleBookData.authors, 250);
-        const truncatedImageUrl = this.truncateText(
-          googleBookData.google_image_url,
-          990
-        );
-        const truncatedSynopsis = this.truncateText(
-          googleBookData.synopsis,
-          990
-        );
-
-        // Cria o livro no banco de dados com as informações do Google Books
-        book = await this.prismaService.book.create({
-          data: {
-            google_book_id: googleBookId,
-            title: truncatedTitle,
-            authors: truncatedAuthors,
-            google_image_url: truncatedImageUrl,
-            synopsis: truncatedSynopsis,
-            year: parseInt(googleBookData.year) || new Date().getFullYear(),
-            pages: googleBookData.pages,
-          },
-        });
-
-        PaggesLogger.log(
-          `Livro criado no banco de dados: ID=${numericBookId}, Título=${truncatedTitle}`
-        );
-      } catch (error) {
-        PaggesLogger.error(
-          `Erro ao buscar/criar livro do Google Books: ${error.message}`
-        );
-        throw error;
-      }
-    }
-
-    if (!book) throw new NotFoundException("livro não encontrado");
-
-    const exists = await this.prismaService.userBookshelfState.findUnique({
-      where: {
-        user_id_book_id: {
-          user_id,
-          book_id: numericBookId,
-        },
-      },
-    });
-
-    PaggesLogger.log(`Estado do livro na biblioteca: Já existe=${!!exists}`);
-
-    if (exists) {
-      const update = await this.prismaService.userBookshelfState.update({
+    try {
+      const result = await this.prismaService.userBookshelfState.upsert({
         where: {
           user_id_book_id: {
             user_id,
-            book_id: numericBookId,
+            book_id,
           },
         },
-        data: {
-          state: { set: listToAdd },
+        update: {
+          state: new_state,
         },
-      });
-      return update;
-    } else {
-      const create = await this.prismaService.userBookshelfState.create({
-        data: {
+        create: {
           user_id,
-          book_id: numericBookId,
-          state: listToAdd,
+          book_id,
+          state: new_state,
         },
       });
-      return create;
+
+      return {
+        message:
+          result.state === new_state
+            ? "Biblioteca pessoal atualizada com sucesso"
+            : "Livro adicionado à biblioteca pessoal com sucesso",
+        data: result,
+      };
+    } catch (error) {
+      PaggesLogger.error(
+        `Error updating user bookshelf state: ${error.message}`
+      );
+      throw new Error("Failed to update user bookshelf state");
     }
   }
 
   async removeBookFromList(user_id: number, book_id: number) {
-    const user = await this.prismaService.user.findFirst({
-      where: {
-        user_id: user_id,
-      },
-    });
-    if (!user) throw new NotFoundException("usuário não encontrado");
-
     // Verifica se existe um estado do livro na biblioteca do usuário
     const bookInLibrary =
       await this.prismaService.userBookshelfState.findUnique({
@@ -185,48 +76,44 @@ export class PersonalLibraryService {
     PaggesLogger.log(
       `Livro removido da biblioteca do usuário: ${user_id}, livro ID: ${book_id}`
     );
-    return remove;
+
+    return {
+      message: "Livro removido da biblioteca do usuário com sucesso",
+      data: remove,
+    };
   }
 
-  async getBooksArray(user_id: number, state: BookshelfState) {
-    const user = await this.prismaService.user.findFirst({
-      where: {
-        user_id: user_id,
-      },
-    });
-
-    console.log("User found:", user);
-    if (!user) throw new NotFoundException("usuário não encontrado");
-
-    const arrayList = await this.prismaService.userBookshelfState.findMany({
-      where: {
-        user_id: user_id,
-        state: state,
-      },
-      include: {
-        book: {
-          include: {
-            ratings: {
-              where: {
-                user_id: user_id,
-              },
-              select: {
-                rating: true,
+  async getUserBookshelfByState(user_id: number, state: BookshelfState) {
+    const userBookshelfByState =
+      await this.prismaService.userBookshelfState.findMany({
+        where: {
+          user_id: user_id,
+          state: state,
+        },
+        include: {
+          book: {
+            include: {
+              ratings: {
+                where: {
+                  user_id: user_id,
+                },
+                select: {
+                  rating: true,
+                },
               },
             },
           },
         },
-      },
-    });
+      });
 
-    return arrayList.map((entry) => {
-      const book = entry.book;
+    return userBookshelfByState.map((book_object) => {
+      const book = book_object.book;
 
       const userRating =
         book.ratings.length > 0 ? book.ratings[0].rating : null;
 
       return {
-        ...entry,
+        ...book_object,
         book,
         userRating,
       };

@@ -1,0 +1,81 @@
+name: Build and Deploy to ECR
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - develop
+
+env:
+  AWS_REGION: us-east-2
+  ECR_REGISTRY: 029236691098.dkr.ecr.us-east-2.amazonaws.com
+  REPOSITORY_NAME: pagges
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build, tag, and push image to Amazon ECR
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: pagges-backend-${{ github.run_id }}
+        run: |
+          docker build -t $ECR_REGISTRY/$REPOSITORY_NAME:$IMAGE_TAG .
+          docker push $ECR_REGISTRY/$REPOSITORY_NAME:$IMAGE_TAG
+
+      - name: Send Discord notification on success
+        if: success()
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: |
+            🚀 **Build and Deployment Successful!**
+
+            **Repository:** ${{ github.repository }}
+            **Branch:** ${{ github.ref_name }}
+            **Commit:** ${{ github.sha }}
+            **Commit Message:** ${{ github.event.head_commit.message }}
+            **Build ID:** ${{ github.run_id }}
+            **Triggered by:** ${{ github.actor }}
+
+            **Image Details:**
+            - Registry: ${{ env.ECR_REGISTRY }}
+            - Repository: ${{ env.REPOSITORY_NAME }}
+            - Image Tag: ${{ github.run_id }}
+
+            **Full Image:** `${{ env.ECR_REGISTRY }}/${{ env.REPOSITORY_NAME }}:pagges-backend-${{ github.run_id }}`
+
+            [View Workflow Run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+
+      - name: Send Discord notification on failure
+        if: failure()
+        uses: Ilshidur/action-discord@master
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+        with:
+          args: |
+            ❌ **Build and Deployment Failed!**
+
+            **Repository:** ${{ github.repository }}
+            **Branch:** ${{ github.ref_name }}
+            **Commit:** ${{ github.sha }}
+            **Triggered by:** ${{ github.actor }}
+
+            Please check the GitHub Actions logs for more details:
+            [View Workflow Run](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})

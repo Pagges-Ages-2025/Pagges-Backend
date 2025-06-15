@@ -1,14 +1,25 @@
-import { Body, Controller, HttpCode, Patch, Post } from "@nestjs/common";
-import { SocialService } from "./social.service";
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Param,
+  Post,
+  Query,
+} from "@nestjs/common";
+import { ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { UserTokenInfo } from "src/decorators/user-info.decorator";
 import { JwtPayload } from "src/interfaces/user-info.interface";
-import { ApiOperation, ApiResponse } from "@nestjs/swagger";
+import { UserFollowDto } from "./dto/user-follow.dto";
+import { UserUnfollowDto } from "./dto/user-unfollow.dto";
+import { SocialService } from "./social.service";
 
 @Controller("social")
 export class SocialController {
   constructor(private readonly socialService: SocialService) {}
 
-  @Post()
+  @Post("follow")
   @HttpCode(201)
   @ApiOperation({ summary: "Seguir um usuário" })
   @ApiResponse({ status: 201, description: "Usuário seguido com sucesso" })
@@ -16,29 +27,77 @@ export class SocialController {
     status: 400,
     description: "Erro de validação ou usuário já seguido",
   })
-  @ApiResponse({ status: 401, description: "Usuário não encontrado" })
+  @ApiResponse({ status: 404, description: "Usuário não encontrado" })
   followuser(
     @UserTokenInfo() userInfo: JwtPayload,
-    @Body() followUserDto: { username: string },
+    @Body() followUserDto: UserFollowDto
   ) {
     return this.socialService.followUser(userInfo.id, followUserDto.username);
   }
 
-  @Patch("unfollow")
-  @HttpCode(200)
+  @Delete("unfollow")
+  @HttpCode(204)
   @ApiOperation({ summary: "Deixar de seguir um usuário" })
   @ApiResponse({
-    status: 200,
+    status: 204,
     description: "Deixou de seguir o usuário com sucesso",
   })
-  @ApiResponse({ status: 400, description: "Usuário não estava sendo seguido" })
+  @ApiResponse({
+    status: 400,
+    description:
+      "Usuário não estava sendo seguido ou você não pode deixar de seguir você mesmo",
+  })
+  @ApiResponse({ status: 404, description: "Usuário não encontrado" })
   unfollowUser(
     @UserTokenInfo() userInfo: JwtPayload,
-    @Body() unfollowUserDto: { username: string },
+    @Body() unfollowUserDto: UserUnfollowDto
   ) {
     return this.socialService.unfollowUser(
       userInfo.id,
-      unfollowUserDto.username,
+      unfollowUserDto.username
     );
+  }
+  @Get("followers")
+  @HttpCode(200)
+  @ApiOperation({ summary: "Listar usuários que estou seguindo" })
+  @ApiResponse({
+    status: 200,
+    description: "Lista de seguidores do meu perfil",
+  })
+  getFollowers(@UserTokenInfo() userInfo: JwtPayload) {
+    return this.socialService.getFollowers(userInfo.id);
+  }
+
+  @Get("others-followers/:secondaryUserId")
+  @HttpCode(200)
+  @ApiOperation({
+    summary:
+      "Listar seguidores de outro usuário e verificar se me seguem de volta",
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Lista de seguidores do perfil de outro usuário",
+  })
+  getOthersFollowers(
+    @UserTokenInfo() primaryUserInfo: JwtPayload,
+    @Param("secondaryUserId") secondaryUserId: number
+  ) {
+    return this.socialService.getOthersFollowers(
+      primaryUserInfo.id,
+      secondaryUserId
+    );
+  }
+
+  @Get("is-following")
+  @HttpCode(200)
+  @ApiOperation({ summary: "Verificar se estou seguindo um usuário" })
+  @ApiResponse({ status: 200, description: "Estou seguindo o usuário" })
+  @ApiResponse({ status: 400, description: "username está vazio" })
+  @ApiResponse({ status: 404, description: "Usuário não encontrado" })
+  isFollowing(
+    @UserTokenInfo() userInfo: JwtPayload,
+    @Query("username") username: string
+  ) {
+    return this.socialService.isFollowing(userInfo.id, username);
   }
 }

@@ -1,6 +1,7 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 import { ScheduleModule } from "@nestjs/schedule";
+import { PrometheusModule } from "@willsoto/nestjs-prometheus";
 import * as Joi from "joi";
 import { WinstonModule } from "nest-winston";
 import { winstonLoggerConfig } from "./config/winston-logger/winston-config";
@@ -13,11 +14,14 @@ import { PersonalLibraryModule } from "./modules/personal-library/personal-libra
 import { PostsModule } from "./modules/posts/posts.module";
 import { PrismaModule } from "./modules/prisma/prisma.module";
 import { ProfileModule } from "./modules/profile/profile.module";
-import { UserGenresModule } from "./modules/user-genres/user-genres.module";
 import { SocialModule } from "./modules/social/social.module";
+import { UserGenresModule } from "./modules/user-genres/user-genres.module";
+import { UserModule } from "./modules/user/user.module";
+import { RankingModule } from "./modules/ranking/ranking.module";
 
 @Module({
   imports: [
+    PrometheusModule.register(),
     ScheduleModule.forRoot(),
     ConfigModule.forRoot({
       validationSchema: Joi.object({
@@ -39,6 +43,8 @@ import { SocialModule } from "./modules/social/social.module";
     UserGenresModule,
     PersonalLibraryModule,
     SocialModule,
+    UserModule,
+    RankingModule,
   ],
   providers: [],
 })

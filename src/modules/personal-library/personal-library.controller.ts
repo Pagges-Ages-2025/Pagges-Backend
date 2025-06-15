@@ -1,59 +1,57 @@
-import { Body, Controller, Delete, Get, Param, Put } from '@nestjs/common'
-import { UserTokenInfo } from 'src/decorators/user-info.decorator';
-import { JwtPayload } from 'src/interfaces/user-info.interface';
-import { PersonalLibraryService } from './personal-library.service';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  HttpCode,
+  Post,
+  Query,
+} from "@nestjs/common";
+import { UserTokenInfo } from "src/decorators/user-info.decorator";
+import { JwtPayload } from "src/interfaces/user-info.interface";
+import { UpdateOrCreateBookInUserBookshelf } from "./dto/create-or-update-book-to-bookshelf";
+import { DeleteBookInUserBookshelf } from "./dto/delete-book-in-bookshelf";
+import { BookshelfState } from "./dto/types";
+import { PersonalLibraryService } from "./personal-library.service";
 
-export enum BookshelfState {
-  TO_BE_READ = 'TO_BE_READ',
-  READING = 'READING',
-  READ = 'READ',
-}
-
-@Controller('personal-library')
+@Controller("personal-library")
 export class PersonalLibraryController {
-  constructor(
-    private readonly personalLibrary: PersonalLibraryService
-  ) {}
+  constructor(private readonly personalLibrary: PersonalLibraryService) {}
 
-  @Put('addBook/:bookId')
-  addBookToList(
-    @UserTokenInfo() userInfo: JwtPayload, 
-    @Param('bookId') bookId: string, 
-    @Body() listToAdd: { state: BookshelfState }
+  @Post("addBook")
+  updateOrCreateBookInUserBookshelf(
+    @UserTokenInfo() userInfo: JwtPayload,
+    @Body() dto: UpdateOrCreateBookInUserBookshelf
   ) {
-    return this.personalLibrary.addBookToList(userInfo.id, bookId, listToAdd.state)
+    return this.personalLibrary.updateOrCreateUserBookshelfState(
+      userInfo.id,
+      dto.bookId,
+      dto.state
+    );
   }
 
-  @Delete('removeBook/:bookId')
-  removeBookFromList(
-    @UserTokenInfo() userInfo: JwtPayload, 
-    @Param('bookId') bookId: string
+  @Delete("removeBook")
+  @HttpCode(204)
+  removeBookFromUserBookshelf(
+    @UserTokenInfo() userInfo: JwtPayload,
+    @Body() dto: DeleteBookInUserBookshelf
   ) {
-    // Converte para número se for um ID numérico, caso contrário usa a mesma função hash do service
-    const numericBookId = !isNaN(Number(bookId)) ? 
-      Number(bookId) : 
-      this.hashStringToNumber(bookId);
-      
-    return this.personalLibrary.removeBookFromList(userInfo.id, numericBookId)
+    return this.personalLibrary.removeBookFromList(userInfo.id, dto.bookId);
   }
 
-  @Get('getBooksArray/:listName')
-  getBooksArray(@UserTokenInfo() userInfo: JwtPayload, @Param('listName') listName: BookshelfState) {
-    const state: BookshelfState = listName as BookshelfState;
-    return this.personalLibrary.getBooksArray(userInfo.id, state)
+  @Get("getBookshelfByState")
+  async getBookshelfByState(
+    @UserTokenInfo() userInfo: JwtPayload,
+    @Query("category") category: BookshelfState
+  ) {
+    return await this.personalLibrary.getUserBookshelfByState(
+      userInfo.id,
+      category
+    );
   }
 
-  @Get('getUserStatistics')
+  @Get("getUserStatistics")
   getUserStatistics(@UserTokenInfo() userInfo: JwtPayload) {
-    return this.personalLibrary.getUserStatistics(userInfo.id)
-  }
-  
-  // Função duplicada do service para garantir consistência na conversão
-  private hashStringToNumber(str: string): number {
-    let hash = 5381;
-    for (let i = 0; i < str.length; i++) {
-        hash = ((hash << 5) + hash) + str.charCodeAt(i);
-    }
-    return Math.abs(hash % 1000000) + 10000;
+    return this.personalLibrary.getUserStatistics(userInfo.id);
   }
 }

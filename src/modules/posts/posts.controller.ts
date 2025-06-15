@@ -36,9 +36,24 @@ export class PostsController {
     return this.postsService.createNewPost(dto, userInfo.id)
   }
 
-  @Get('reviews/:livroId')
+  @Get('reviews/bookId/:livroId')
   @HttpCode(200)
-  getReviews(@Param('livroId', ParseIntPipe) livroId: number) {
+  getParentReviews(@Param('livroId', ParseIntPipe) livroId: number) {
     return this.postsService.getBookReviews(livroId)
+  }
+
+  @ApiOperation({ summary: 'Buscar os posts dos usuários que estou seguindo, ordenados pelos mais recentes' })
+  @ApiResponse({ status: 200, description: 'Lista de posts retornada com sucesso' })
+  @ApiResponse({ status: 401, description: 'Usuário não autorizado' })
+  @Get('following')
+  @HttpCode(200)
+  getFollowingPosts(@UserTokenInfo() userInfo: JwtPayload) {
+    return this.postsService.getFollowingPosts(userInfo.id)
+  }
+
+  @Get('reviews/parentId/:postId')
+  @HttpCode(200)
+  getReviewsByParentId(@Param('postId', ParseIntPipe) postId: number) {
+    return this.postsService.getReviewsByParentId(postId)
   }
 }
