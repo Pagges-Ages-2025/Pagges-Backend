@@ -223,9 +223,10 @@ export class ChallengesService implements OnModuleInit {
         challenge_id: challengeAnswered.challenge_id,
         user_id: userId,
       },
+      orderBy: {
+        created_at: "desc",
+      },
     });
-
-    console.log(userChallenge);
 
     if (userChallenge) {
       const today = new Date();
@@ -242,8 +243,6 @@ export class ChallengesService implements OnModuleInit {
         );
       }
     }
-
-    console.log(challengeAnswered);
 
     await this.prisma.challengeUser.create({
       data: {
