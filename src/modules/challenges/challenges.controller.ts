@@ -72,4 +72,9 @@ export class ChallengesController {
       updateUserBody,
     );
   }
+
+  @Get("correct-challenges")
+  async getUserCorrectChallenges(@UserTokenInfo() jwtPayload: JwtPayload) {
+    return await this.challengesService.getUserCorrectChallenges(jwtPayload.id);
+  }
 }
