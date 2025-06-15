@@ -55,21 +55,21 @@ async function main() {
         pages: 200,
         is_author: false,
         profile_image: fs.readFileSync(
-          path.join(__dirname, "../src/assets", "images-4.jpeg")
+          path.join(__dirname, "../src/assets", "images.png")
         ),
         biography:
           "Leitora apaixonada por ficção científica e fantasia. Sempre em busca de novas histórias para explorar.",
       },
       {
-        name: "Bob",
-        username: "bob456",
-        email: "bob@example.com",
+        name: "Pedro",
+        username: "pedro456",
+        email: "pedro@example.com",
         password: hashedPassword2,
         points: 80,
         pages: 150,
         is_author: true,
         profile_image: fs.readFileSync(
-          path.join(__dirname, "../src/assets", "images-2.jpeg")
+          path.join(__dirname, "../src/assets", "images-7.png")
         ),
         biography:
           "Escritor e crítico literário com mais de 10 anos de experiência. Apaixonado por ficção científica e fantasia, já publicou três livros best-sellers.",
@@ -83,7 +83,7 @@ async function main() {
         pages: 100,
         is_author: false,
         profile_image: fs.readFileSync(
-          path.join(__dirname, "../src/assets", "images-3.jpeg")
+          path.join(__dirname, "../src/assets", "images-1.png")
         ),
         biography:
           "Leitora voraz e amante de histórias. Sempre em busca de novos mundos e aventuras literárias.",
@@ -97,7 +97,7 @@ async function main() {
         pages: 450,
         is_author: true,
         profile_image: fs.readFileSync(
-          path.join(__dirname, "../src/assets", "images-12.jpeg")
+          path.join(__dirname, "../src/assets", "images-8.png")
         ),
         biography:
           "Escritor de fantasia épica. Criador de mundos e contador de lendas.",
@@ -111,7 +111,7 @@ async function main() {
         pages: 120,
         is_author: false,
         profile_image: fs.readFileSync(
-          path.join(__dirname, "../src/assets", "images-5.jpeg")
+          path.join(__dirname, "../src/assets", "images-2.png")
         ),
         biography:
           "Curiosa por natureza, adora livros de mistério e biografias inspiradoras.",
@@ -125,7 +125,7 @@ async function main() {
         pages: 370,
         is_author: true,
         profile_image: fs.readFileSync(
-          path.join(__dirname, "../src/assets", "images-6.jpeg")
+          path.join(__dirname, "../src/assets", "images-9.png")
         ),
         biography: "Historiador e autor de romances baseados em fatos reais.",
       },
@@ -138,7 +138,7 @@ async function main() {
         pages: 250,
         is_author: false,
         profile_image: fs.readFileSync(
-          path.join(__dirname, "../src/assets", "images-7.jpeg")
+          path.join(__dirname, "../src/assets", "images-3.png")
         ),
         biography:
           "Fã de mundos mágicos e criaturas encantadas. Leitora fiel de sagas.",
@@ -152,7 +152,7 @@ async function main() {
         pages: 600,
         is_author: true,
         profile_image: fs.readFileSync(
-          path.join(__dirname, "../src/assets", "images-8.jpeg")
+          path.join(__dirname, "../src/assets", "images-10.png")
         ),
         biography: "Poeta moderno que busca traduzir sentimentos em palavras.",
       },
@@ -165,7 +165,7 @@ async function main() {
         pages: 180,
         is_author: false,
         profile_image: fs.readFileSync(
-          path.join(__dirname, "../src/assets", "images-9.jpeg")
+          path.join(__dirname, "../src/assets", "images-4.png")
         ),
         biography:
           "Leitora casual, adora descobrir novos autores independentes.",
@@ -179,7 +179,7 @@ async function main() {
         pages: 290,
         is_author: true,
         profile_image: fs.readFileSync(
-          path.join(__dirname, "../src/assets", "images-10.jpeg")
+          path.join(__dirname, "../src/assets", "images-11.png")
         ),
         biography: "Autor de romances contemporâneos e histórias de amor.",
       },
@@ -192,21 +192,21 @@ async function main() {
         pages: 240,
         is_author: false,
         profile_image: fs.readFileSync(
-          path.join(__dirname, "../src/assets", "images.jpeg")
+          path.join(__dirname, "../src/assets", "images-5.png")
         ),
         biography:
           "Viciada em suspenses e investigações. Nada escapa ao seu olhar atento.",
       },
       {
-        name: "Lucas",
-        username: "lucas",
-        email: "lucas@example.com",
+        name: "Alinne",
+        username: "alinne",
+        email: "alinne@example.com",
         password: hashedPassword12,
         points: 180,
         pages: 350,
         is_author: true,
         profile_image: fs.readFileSync(
-          path.join(__dirname, "../src/assets", "images-11.jpeg")
+          path.join(__dirname, "../src/assets", "images-6.png")
         ),
         biography:
           "Escritor de ficção científica com um toque de realismo tecnológico.",

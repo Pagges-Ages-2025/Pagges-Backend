@@ -60,7 +60,7 @@ export class ProfileService {
         favoriteGenres: favoriteGenres,
         readKm: user.pages || 0,
         readBooks: user.pages || 0,
-        ranking_position: position, 
+        ranking_position: position,
         friendsNumber: friendsNumber,
         isAuthor: user.is_author,
         profileImage: profileImage,
