@@ -12,4 +12,9 @@ export class RankingController {
   getProfile(@UserTokenInfo() userInfo: JwtPayload) {
     return this.rankingService.getRanking();
   }
+
+  @Get("getRankingMe")
+  getUserRankingPosition(@UserTokenInfo() userInfo: JwtPayload) {
+    return this.rankingService.getUserPersonalRanking(userInfo.id);
+  }
 }
