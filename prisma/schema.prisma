@@ -111,7 +111,7 @@ model ChallengeUser {
   user      User      @relation(fields: [user_id], references: [user_id])
   challenge Challenge @relation(fields: [challenge_id], references: [challenge_id])
 
-  @@id([user_id, challenge_id])
+  @@id([user_id, challenge_id, created_at])
   @@map("challenge_user")
 }
 
