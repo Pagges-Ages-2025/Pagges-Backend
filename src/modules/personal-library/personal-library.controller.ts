@@ -19,6 +19,7 @@ export class PersonalLibraryController {
   constructor(private readonly personalLibrary: PersonalLibraryService) {}
 
   @Post("addBook")
+  @HttpCode(201)
   updateOrCreateBookInUserBookshelf(
     @UserTokenInfo() userInfo: JwtPayload,
     @Body() dto: UpdateOrCreateBookInUserBookshelf

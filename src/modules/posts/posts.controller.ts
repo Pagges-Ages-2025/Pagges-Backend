@@ -6,54 +6,72 @@ import {
   Param,
   ParseIntPipe,
   Post,
-} from '@nestjs/common'
-import { ApiOperation, ApiResponse } from '@nestjs/swagger'
-import { UserTokenInfo } from 'src/decorators/user-info.decorator'
-import { JwtPayload } from 'src/interfaces/user-info.interface'
-import { PostDto } from './dto/post.dto'
-import { PostsService } from './posts.service'
+} from "@nestjs/common";
+import { ApiOperation, ApiResponse } from "@nestjs/swagger";
+import { UserTokenInfo } from "src/decorators/user-info.decorator";
+import { JwtPayload } from "src/interfaces/user-info.interface";
+import { PostDto } from "./dto/post.dto";
+import { PostsService } from "./posts.service";
 
-@Controller('posts')
+@Controller("posts")
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
-  @ApiOperation({ summary: 'Buscar os posts mais recentes de um usuário' })
-  @ApiResponse({ status: 200, description: 'Busca realizada com sucesso' })
-  @ApiResponse({ status: 400, description: 'Erro ao realizar busca' })
-  @ApiResponse({ status: 401, description: 'Usuário não autorizado' })
-  @Get('user-recent-reviews')
+  @ApiOperation({ summary: "Buscar os posts mais recentes de um usuário" })
+  @ApiResponse({ status: 200, description: "Busca realizada com sucesso" })
+  @ApiResponse({ status: 400, description: "Erro ao realizar busca" })
+  @ApiResponse({ status: 401, description: "Usuário não autorizado" })
+  @Get("user-recent-reviews")
   @HttpCode(200)
   getRecentReviewsFromUser(@UserTokenInfo() userInfo: JwtPayload) {
-    return this.postsService.getRecentReviewsFromUser(userInfo.id)
+    return this.postsService.getRecentReviewsFromUser(userInfo.id);
   }
 
-  @Post('create-new-post')
+  @Get("user-recent-reviews/:username")
+  @HttpCode(200)
+  getThirdProfilePageUserRecentReviews(@Param("username") username: string) {
+    return this.postsService.getRecentReviewsFromThirdProfilePage(username);
+  }
+
+  @Post("create-new-post")
   @HttpCode(201)
   postCreateNewPost(
     @Body() dto: PostDto,
-    @UserTokenInfo() userInfo: JwtPayload,
+    @UserTokenInfo() userInfo: JwtPayload
   ) {
-    return this.postsService.createNewPost(dto, userInfo.id)
+    return this.postsService.createNewPost(dto, userInfo.id);
   }
 
-  @Get('reviews/bookId/:livroId')
+  @Get("reviews/bookId/:livroId")
   @HttpCode(200)
-  getParentReviews(@Param('livroId', ParseIntPipe) livroId: number) {
-    return this.postsService.getBookReviews(livroId)
+  getParentReviews(@Param("livroId", ParseIntPipe) livroId: number) {
+    return this.postsService.getBookReviews(livroId);
   }
 
-  @ApiOperation({ summary: 'Buscar os posts dos usuários que estou seguindo, ordenados pelos mais recentes' })
-  @ApiResponse({ status: 200, description: 'Lista de posts retornada com sucesso' })
-  @ApiResponse({ status: 401, description: 'Usuário não autorizado' })
-  @Get('following')
+  @ApiOperation({
+    summary:
+      "Buscar os posts dos usuários que estou seguindo, ordenados pelos mais recentes",
+  })
+  @ApiResponse({
+    status: 200,
+    description: "Lista de posts retornada com sucesso",
+  })
+  @ApiResponse({ status: 401, description: "Usuário não autorizado" })
+  @Get("following")
   @HttpCode(200)
   getFollowingPosts(@UserTokenInfo() userInfo: JwtPayload) {
-    return this.postsService.getFollowingPosts(userInfo.id)
+    return this.postsService.getFollowingPosts(userInfo.id);
   }
 
-  @Get('reviews/parentId/:postId')
+  @Get("reviews/parentId/:postId")
   @HttpCode(200)
-  getReviewsByParentId(@Param('postId', ParseIntPipe) postId: number) {
-    return this.postsService.getReviewsByParentId(postId)
+  getReviewsByParentId(@Param("postId", ParseIntPipe) postId: number) {
+    return this.postsService.getReviewsByParentId(postId);
+  }
+
+  @Get("for-you-posts-section")
+  @HttpCode(200)
+  getForYouPostsSection(@UserTokenInfo() userInfo: JwtPayload) {
+    return this.postsService.getForYouPostsSection(userInfo.id);
   }
 }
