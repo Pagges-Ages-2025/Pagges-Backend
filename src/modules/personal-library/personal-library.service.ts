@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from "@nestjs/common";
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from "@nestjs/common";
 
 import { PaggesLogger } from "src/config/winston-logger/pagges-logger.utils";
 import { PrismaService } from "../prisma/prisma.service";
@@ -32,17 +36,16 @@ export class PersonalLibraryService {
       });
 
       return {
-        message:
-          result.state === new_state
-            ? "Biblioteca pessoal atualizada com sucesso"
-            : "Livro adicionado à biblioteca pessoal com sucesso",
+        message: "Biblioteca pessoal atualizada com sucesso",
         data: result,
       };
     } catch (error) {
       PaggesLogger.error(
-        `Error updating user bookshelf state: ${error.message}`
+        `Erro ao atualizar estado do livro na biblioteca pessoal: ${error.message}`
       );
-      throw new Error("Failed to update user bookshelf state");
+      throw new BadRequestException(
+        "Falha ao atualizar estado do livro na biblioteca pessoal"
+      );
     }
   }
 

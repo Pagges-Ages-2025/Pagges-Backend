@@ -58,11 +58,14 @@ export class PostsService {
     };
   }
 
-  async getRecentReviewsFromUser(userId: number) {
+  async getRecentReviewsFromThirdProfilePage(username: string) {
     return await this.prismaService.post.findMany({
       where: {
-        user_id: userId,
+        user: {
+          username: username,
+        },
         parent_id: null,
+        is_review: true,
       },
       include: {
         user: {
@@ -85,6 +88,44 @@ export class PostsService {
             comments: true,
           },
         },
+      },
+      orderBy: {
+        created_at: "desc",
+      },
+    });
+  }
+
+  async getRecentReviewsFromUser(userId: number) {
+    return await this.prismaService.post.findMany({
+      where: {
+        user_id: userId,
+        parent_id: null,
+        is_review: true,
+      },
+      include: {
+        user: {
+          select: {
+            name: true,
+            username: true,
+            profile_image: true,
+          },
+        },
+        livro: {
+          select: {
+            book_id: true,
+            google_image_url: true,
+            title: true,
+          },
+        },
+        _count: {
+          select: {
+            liked_by: true,
+            comments: true,
+          },
+        },
+      },
+      orderBy: {
+        created_at: "desc",
       },
     });
   }
@@ -198,6 +239,65 @@ export class PostsService {
     return {
       status: 200,
       message: "Posts dos usuários seguidos retornados com sucesso",
+      data: posts.map((post) => ({
+        post_id: post.post_id,
+        autor: {
+          ...post.user,
+          profile_image: post.user.profile_image
+            ? fromByteArray(post.user.profile_image)
+            : null,
+        },
+        texto: post.text,
+        dataPostagem: post.created_at,
+        curtidas: post._count.liked_by,
+        comentarios: post._count.comments,
+        spoiler: post.is_spoiler,
+        livro: post.livro,
+        id_postPai: post.parent_id,
+      })),
+    };
+  }
+
+  async getForYouPostsSection(user_id: number) {
+    // exclude my posts
+    const posts = await this.prismaService.post.findMany({
+      where: {
+        is_review: true,
+        parent_id: null,
+        user: {
+          user_id: {
+            not: user_id,
+          },
+        },
+      },
+      include: {
+        user: {
+          select: {
+            user_id: true,
+            username: true,
+            name: true,
+            profile_image: true,
+          },
+        },
+        livro: {
+          select: {
+            title: true,
+            google_image_url: true,
+          },
+        },
+        _count: {
+          select: {
+            liked_by: true,
+            comments: true,
+          },
+        },
+      },
+      orderBy: { created_at: "desc" },
+    });
+
+    return {
+      status: 200,
+      message: "Posts seção para você retornados com sucesso",
       data: posts.map((post) => ({
         post_id: post.post_id,
         autor: {

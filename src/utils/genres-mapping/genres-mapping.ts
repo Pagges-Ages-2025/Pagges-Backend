@@ -23,6 +23,7 @@ const GENRE_TRANSLATIONS: Record<string, string> = {
   Medical: "Medicina",
   Computers: "Computação",
   Action: "Ação",
+  Dystopian: "Distópico",
 };
 
 export function translateGenresToPTBR(genres: Genre[]): TranslatedGenre[] {
